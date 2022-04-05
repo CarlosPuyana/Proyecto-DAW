@@ -10,7 +10,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Empleados")
+@Table(name = "empleados")
 public class Empleados {
 
 	@Id
@@ -26,11 +26,63 @@ public class Empleados {
 	@Column(name = "role", nullable = false)
 	private String role;
 	
-	@ManyToOne()
-	@JoinColumn(name = "restauranteId")
-	private Restaurante restauranteId;
+	@ManyToOne(targetEntity = Restaurante.class)
+	@JoinColumn(name = "restaurante_id")
+	private Restaurante restaurante;
 	
 	public Empleados() {
 		// TODO Auto-generated constructor stub
 	}
+
+	public Empleados(int empleadoId, String nombre, String apellidos, String role, Restaurante restaurante) {
+		super();
+		this.empleadoId = empleadoId;
+		this.nombre = nombre;
+		this.apellidos = apellidos;
+		this.role = role;
+		this.restaurante = restaurante;
+	}
+
+	public int getEmpleadoId() {
+		return empleadoId;
+	}
+
+	public void setEmpleadoId(int empleadoId) {
+		this.empleadoId = empleadoId;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+	
+	
+	
 }

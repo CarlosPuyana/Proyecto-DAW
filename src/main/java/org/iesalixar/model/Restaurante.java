@@ -1,7 +1,10 @@
 package org.iesalixar.model;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,8 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Restaurante")
-public class Restaurante {
+@Table(name = "restaurante")
+public class Restaurante implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,18 +37,33 @@ public class Restaurante {
 	@Column(name = "codigoPostal", nullable = false)
 	private String codigoPostal;
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "nombreRestaurante")
-	private List<Mesa> listaMesas;
+	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Mesa> mesas = new HashSet<>();
 	
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "nombreRestauranteE")
-	private List<Empleados> listaEmpleados;
+	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Empleados> empleados = new HashSet<>();
+	
+	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Productos> productos = new HashSet<>();
 	
 	public Restaurante() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+
+
+	public int getRestauranteId() {
+		return restauranteId;
+	}
+
+	
+
+
+
 
 	public Restaurante(int restauranteId, String nombreRestaurante, String telefono, String direccion, String ciudad,
-			String codigoPostal, List<Mesa> listaMesas, List<Empleados> listaEmpleados) {
+			String codigoPostal, Set<Mesa> mesas, Set<Empleados> empleados, Set<Productos> productos) {
 		super();
 		this.restauranteId = restauranteId;
 		this.nombreRestaurante = nombreRestaurante;
@@ -53,12 +71,9 @@ public class Restaurante {
 		this.direccion = direccion;
 		this.ciudad = ciudad;
 		this.codigoPostal = codigoPostal;
-		this.listaMesas = listaMesas;
-		this.listaEmpleados = listaEmpleados;
-	}
-
-	public int getRestauranteId() {
-		return restauranteId;
+		this.mesas = mesas;
+		this.empleados = empleados;
+		this.productos = productos;
 	}
 
 	public void setRestauranteId(int restauranteId) {
@@ -105,22 +120,48 @@ public class Restaurante {
 		this.codigoPostal = codigoPostal;
 	}
 
-	public List<Mesa> getListaMesas() {
-		return listaMesas;
+
+
+
+	public Set<Mesa> getMesas() {
+		return mesas;
 	}
 
-	public void setListaMesas(List<Mesa> listaMesas) {
-		this.listaMesas = listaMesas;
+
+
+
+	public void setMesas(Set<Mesa> mesas) {
+		this.mesas = mesas;
 	}
 
-	public List<Empleados> getListaEmpleados() {
-		return listaEmpleados;
+
+
+
+	public Set<Empleados> getEmpleados() {
+		return empleados;
 	}
 
-	public void setListaEmpleados(List<Empleados> listaEmpleados) {
-		this.listaEmpleados = listaEmpleados;
+
+
+
+	public void setEmpleados(Set<Empleados> empleados) {
+		this.empleados = empleados;
 	}
-	
+
+
+
+
+	public Set<Productos> getProductos() {
+		return productos;
+	}
+
+
+
+
+	public void setProductos(Set<Productos> productos) {
+		this.productos = productos;
+	}
+
 	
 	
 	
