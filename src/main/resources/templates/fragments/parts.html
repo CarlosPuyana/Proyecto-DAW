@@ -1,0 +1,30 @@
+<meta charset="UTF-8">
+<nav th:fragment="menu" class="navbar navbar-expand-lg navbar-light bg-primary ">
+	<div class="container-fluid">
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarNav" aria-controls="navbarNav"
+			aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+			<ul class="navbar-nav">
+				<li class="nav-item "><a class="nav-link text-white" aria-current="page"
+					href="/" th:text="Inicio"></a></li>
+				<li sec:authorize="!isAuthenticated()" class="nav-item"><a class="nav-link text-white" th:href="@{/login}" th:text="Login"></a>
+				</li>	
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a class="nav-link text-white" th:href="@{/profesores/addProfesor}" th:text="${'Añadir Profesores'}"></a>				
+				</li>
+				<li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item"><a class="nav-link text-white" th:href="@{/profesores/addAsignatura}" th:text="${'Añadir Asignaturas'}"></a>				
+				</li>		
+				</li>
+				<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link text-white " th:href="@{/profesores}" th:text="Profesores"></a>
+				</li>
+				</li>
+				<li sec:authorize="isAuthenticated()" class="nav-item"><a class="nav-link text-white" th:href="@{/logout}"><i class="bi bi-box-arrow-left"></i></a></li>
+				</li>
+			</ul>
+		</div>
+	</div>
+</nav>
+
+

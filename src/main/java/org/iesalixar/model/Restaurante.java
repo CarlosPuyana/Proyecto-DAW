@@ -49,18 +49,10 @@ public class Restaurante implements Serializable {
 	public Restaurante() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-
 
 	public int getRestauranteId() {
 		return restauranteId;
 	}
-
-	
-
-
-
 
 	public Restaurante(int restauranteId, String nombreRestaurante, String telefono, String direccion, String ciudad,
 			String codigoPostal, Set<Mesa> mesas, Set<Empleados> empleados, Set<Productos> productos) {
@@ -120,43 +112,25 @@ public class Restaurante implements Serializable {
 		this.codigoPostal = codigoPostal;
 	}
 
-
-
-
 	public Set<Mesa> getMesas() {
 		return mesas;
 	}
-
-
-
 
 	public void setMesas(Set<Mesa> mesas) {
 		this.mesas = mesas;
 	}
 
-
-
-
 	public Set<Empleados> getEmpleados() {
 		return empleados;
 	}
-
-
-
 
 	public void setEmpleados(Set<Empleados> empleados) {
 		this.empleados = empleados;
 	}
 
-
-
-
 	public Set<Productos> getProductos() {
 		return productos;
 	}
-
-
-
 
 	public void setProductos(Set<Productos> productos) {
 		this.productos = productos;
