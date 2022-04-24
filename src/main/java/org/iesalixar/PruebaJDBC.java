@@ -3,10 +3,10 @@ package org.iesalixar;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class MainJDBC {
+public class PruebaJDBC {
 
 	public static void main(String[] args) {
-		
+
 		String jdbcUrl = "jdbc:mariadb://localhost:3336/proyecto";
 		String usuario = "root";
 		String contra = "root";

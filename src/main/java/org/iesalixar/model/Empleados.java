@@ -17,12 +17,6 @@ public class Empleados {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int empleadoId;
 	
-	@Column(name = "usuario", unique = true, nullable = false)
-	private String userName;
-	
-	@Column(nullable = false)
-	private String password;
-	
 	@Column(name = "nombre", nullable = false)
 	private String nombre;
 	
@@ -32,9 +26,6 @@ public class Empleados {
 	@Column(name = "role", nullable = false)
 	private String role;
 	
-	@Column(nullable = false, columnDefinition = "BOOLEAN")
-	private boolean activo;
-	
 	@ManyToOne(targetEntity = Restaurante.class)
 	@JoinColumn(name = "restaurante_id")
 	private Restaurante restaurante;
@@ -43,21 +34,21 @@ public class Empleados {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Empleados(int empleadoId, String userName, String password, String nombre, String apellidos, String role,
-			boolean activo, Restaurante restaurante) {
+	public Empleados(int empleadoId, String nombre, String apellidos, String role, Restaurante restaurante) {
 		super();
 		this.empleadoId = empleadoId;
-		this.userName = userName;
-		this.password = password;
 		this.nombre = nombre;
 		this.apellidos = apellidos;
 		this.role = role;
-		this.activo = activo;
 		this.restaurante = restaurante;
 	}
 
 	public int getEmpleadoId() {
 		return empleadoId;
+	}
+
+	public void setEmpleadoId(int empleadoId) {
+		this.empleadoId = empleadoId;
 	}
 
 	public String getNombre() {
@@ -90,34 +81,6 @@ public class Empleados {
 
 	public void setRestaurante(Restaurante restaurante) {
 		this.restaurante = restaurante;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setEmpleadoId(int empleadoId) {
-		this.empleadoId = empleadoId;
-	}
-
-	public boolean isActivo() {
-		return activo;
-	}
-
-	public void setActivo(boolean activo) {
-		this.activo = activo;
 	}
 	
 	
