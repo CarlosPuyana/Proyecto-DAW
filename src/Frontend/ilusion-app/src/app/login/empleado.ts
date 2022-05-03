@@ -1,7 +1,7 @@
 export class Empleado {
 
   id!: number;
-  username!: string;
+  userName!: string;
   password!: string;
   nombre!: string;
   apellidos!: string;

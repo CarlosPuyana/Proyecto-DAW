@@ -1,6 +1,19 @@
+
+
 <div class="border-bottom border-dark w-100" id="barra-top">
   <p id="nav-perfil"><i class="bi bi-person-circle fs-2"></i></p>
-  <p id="nav-perfil-arrow"><i class="bi bi-chevron-down fs-4"></i></p>
+  <div id="nav-perfil-arrow">
+    <div class="dropdown">
+      <a href="#"  role="button" data-bs-toggle="dropdown" >
+        <i class="bi bi-chevron-down fs-4"></i>
+      </a>
+
+      <ul class="dropdown-menu">
+        <li><a href="#" class="dropdown-item">Perfil</a></li>
+        <li><a class="dropdown-item" (click)="logout()" >Cerrar Sesión</a></li>
+      </ul>
+    </div>
+  </div>
 </div>
   <div class="d-flex flex-column flex-shrink-0 p-3 mh-100" id="barra-lat">
 

@@ -8,7 +8,42 @@ import { Empleado } from './empleado';
 })
 export class AuthService {
 
+  private _empleado!: Empleado;
+  private _token!: string;
+
   constructor(private httpClient: HttpClient) { }
+
+  public get empleado(): Empleado {
+    if (this._empleado != null) {
+
+      return this._empleado;
+    } else if (this._empleado == null && sessionStorage.getItem('usuario') != null) {
+
+      this._empleado = JSON.parse(sessionStorage.getItem('usuario') || "[]") as Empleado;
+
+      return this._empleado;
+
+    }
+
+    return new Empleado();
+  }
+
+  public get token(): string {
+    if (this._token != null) {
+
+      return this._token;
+    } else if (this._token == null && sessionStorage.getItem('token') != null) {
+
+      this._token = sessionStorage.getItem('token')!;
+
+      return this._token;
+    }
+
+    return '';
+  }
+
+
+
 
   login(empleado: Empleado): Observable<any> {
 
@@ -20,6 +55,50 @@ export class AuthService {
     const body = {email, password}
 
     return this.httpClient.post<any>(urlEndpoint, body);
+  }
+
+  guardarUsuario(accessToken: string): void {
+
+    let payload = this.obtenerDatosToken(accessToken);
+
+    this._empleado = new Empleado();
+
+    this._empleado.email = payload.email;
+    this._empleado.role = payload.rol;
+    this._empleado.userName = payload.username;
+
+    sessionStorage.setItem('usuario', JSON.stringify(this._empleado));
+
+    console.log(this._empleado)
+  }
+
+  guardarToken(accessToken: string): void {
+
+    this._token = accessToken;
+    sessionStorage.setItem('token', accessToken);
+
+  }
+
+  obtenerDatosToken(accessToken: string): any {
+
+    if (accessToken != null) {
+      return JSON.parse(atob(accessToken.split(".")[1]))
+    }
+
+    return null;
+  }
+
+  isAuthenticated(): boolean {
+
+    let payload = this.obtenerDatosToken(this.token);
+
+    if (payload != null && payload.username && payload.username.length > 0) return true
+    else return false;
+
+  }
+
+  logout(): void {
+    window.sessionStorage.clear();
   }
 
 }
