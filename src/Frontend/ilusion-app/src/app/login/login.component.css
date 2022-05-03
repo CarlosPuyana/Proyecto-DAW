@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+* {
+	font-family: 'Merriweather', serif;
+	 overflow-x: hidden;
+
+}
+
+.body {
+	background: url(https://phantom-elmundo.unidadeditorial.es/297988002a7215e4c442c0088ce69a9e/resize/473/f/webp/assets/multimedia/imagenes/2022/01/13/16421099348840.jpg) no-repeat fixed ;
+	background-size: cover;
+}
+
+#contenedor {
+	width: 100%;
+	height: 700px;
+}
+
+#div-centrar {
+	background-color: green;
+
+}
+
+input {
+	height: 40px;
+	background-color: #454545;
+}
+
+.boton {
+	width: 247px;
+}
+
+.formulario .form-titulo {
+	padding-top: 50px;
+	padding-bottom: 10px;
+}
+
+.formulario .form-grupo {
+	padding-bottom: 10px;
+
+}
+
+.form-boton {
+	padding-top: 30px;
+}
+
+.form-grupo #gridCheck {
+
+	position: relative;
+	right: 85px;
+}
+
+#check-label {
+
+	position: relative;
+	right: 85px;
+	bottom: 15px;
+	font-size: 10px;
+}
+
+#help-label {
+	position: absolute;
+	bottom: 419px;
+
+	font-size: 10px;
+}
+
+#label-registro {
+	color: #737373;
+	font-size: 13px;
+}
+
+.form-grupo input {
+
+	color: white;
+}

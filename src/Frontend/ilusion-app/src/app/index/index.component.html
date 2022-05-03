@@ -1,0 +1,80 @@
+<div class="border-bottom border-dark w-100" id="barra-top">
+  <p id="nav-perfil"><i class="bi bi-person-circle fs-2"></i></p>
+  <p id="nav-perfil-arrow"><i class="bi bi-chevron-down fs-4"></i></p>
+</div>
+  <div class="d-flex flex-column flex-shrink-0 p-3 mh-100" id="barra-lat">
+
+    <br>
+
+    <div class="border border-light rounded" id="barra-perfil">
+
+      <p><i class="bi bi-person-circle" style="font-size: 60px"></i></p>
+
+      <div id="nombre-perfil">
+        <h5 class="text-light">ADMIN ADMIN</h5>
+        <p class="text-light" *ngIf="hasRole('ROLE_ADMIN')"> ADMINISTRADOR </p>
+        <p class="text-light" *ngIf="hasRole('ROLE_DUENO')"> DUEÑO LOCAL </p>
+        <p class="text-light" *ngIf="hasRole('ROLE_CAMARERO')"> CAMARERO </p>
+        <p class="text-light" *ngIf="hasRole('ROLE_COCINERO')"> COCINERO </p>
+      </div>
+
+    </div>
+        <br>
+    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none text-light">
+          <span class="fs-4">Menú principal</span>
+      </a>
+    <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
+
+        <li class="nav-item">
+          <a href="#" class="nav-link link-light" aria-current="page" *ngIf="hasRole('ROLE_ADMIN')"> Creación usuarios </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Creación restaurante </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Creación de productos</a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Lista usuarios </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Lista restaurantes </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Creación empleados </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Lista empleados </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Creación productos </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Lista productos </a>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_CAMARERO')"> Lista productos </a>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_COCINERO')"> Lista productos </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Lista pedidos </a>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_CAMARERO')"> Lista pedidos </a>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_COCINERO')"> Lista pedidos </a>
+        </li>
+
+        <li>
+          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_CAMARERO')"> Crear pedido </a>
+        </li>
+
+      </ul>
+  </div>
+
+

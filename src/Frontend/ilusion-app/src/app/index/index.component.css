@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+* {
+	font-family: 'Merriweather', serif;
+}
+
+#barra-lat {
+
+  position: absolute;
+  top: 0;
+	background-color: #326fa8;
+	width: 300px;
+	min-height: 100%;
+  height: 786px;
+
+}
+
+#barra-perfil {
+
+	width: 270px;
+	height: 100px;
+
+}
+
+#barra-perfil i {
+	position: relative;
+	left: 20px;
+	top: 5px;
+}
+
+#nombre-perfil {
+	position: relative;
+	bottom: 85px;
+	left: 100px;
+}
+
+#barra-top {
+
+	height: 80px;
+	width: 0px;
+	position: relative;
+	top: 0;
+	left: 0px;
+}
+
+#nav-perfil {
+
+	position: absolute;
+	right: 50px;
+	top: 15px;
+
+}
+
+#nav-perfil-arrow {
+
+	position: absolute;
+	top: 20px;;
+	right: 20px;
+
+}
+

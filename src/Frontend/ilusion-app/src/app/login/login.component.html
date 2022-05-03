@@ -1,0 +1,48 @@
+  <div class="body">
+  <div>
+      <h1>La Ilusión</h1>
+    </div>
+
+    <div class="w-100">
+
+      <div class="row  justify-content-center vh-100">
+        <div class="col-3 text-center bg-black bg-opacity-75" style="height: 550px;">
+
+          <div class="formulario">
+            <div class="form-titulo">
+              <h3 class="text-light">Iniciar sesión</h3>
+            </div>
+
+            <form >
+
+              <div class="form-grupo">
+                <input [(ngModel)]="empleado.email" type="text" name="correo" placeholder="Correo" class="rounded p-2" id="correo " name="correo" autofocus required />
+              </div>
+
+              <div class="form-grupo">
+                <input [(ngModel)]="empleado.password" type="password" name="password" placeholder="Contraseña" class="rounded p-2" id="password" name="password" required />
+              </div>
+
+              <div class="form-boton">
+                <input (click)="login()" type="submit" value="Iniciar sesión" class="boton btn btn-danger" />
+              </div>
+
+              <div class="form-grupo">
+                <input type="checkbox" id="gridCheck" checked> <label class="text-light" id="check-label">Recuérdame</label>
+                <label class="text-light" id="help-label">¿Necesitas ayuda?</label>
+              </div>
+
+              <div class="form-grupo" style="width: 300px; text-align: center;">
+
+                <label id="label-registro">¿Todavía sin cuenta? </label> <a class="text-light" style="text-decoration: none; font-size: 13px;">Contácta con un administrador</a>
+
+              </div>
+
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+</div>
