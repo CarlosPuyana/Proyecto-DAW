@@ -1,0 +1,6 @@
+ /* Populate tabla clientes */
+INSERT INTO restaurante VALUES(1, 'Sevilla', '41900', 'Calle Sagrada Familia S/N', 'La Ilusión', '666666666');
+INSERT INTO empleados (id, activo, apellidos, nombre, password, role, usuario, restaurante_id, email) VALUES(1, 1, 'admin', 'admin', '$2a$12$CH4zIV3ZYeIvf1RdJ7wDc.e5asOjL0Nj4sS9fzWCHEpbA7tUZkew.', 'ROLE_ADMIN', 'admin', 1, 'admin@admin.com')
+INSERT INTO empleados (id, activo, apellidos, nombre, password, role, usuario, restaurante_id, email) VALUES(2, 1, 'dueno', 'dueno', '$2a$12$CTvolRrRdaYiM5vUN0MXYeNHAjyDQupjqEaS9eY2lP/O5D6rm.cMu', 'ROLE_DUENO', 'dueno', 1, 'dueno@dueno.com')
+INSERT INTO empleados (id, activo, apellidos, nombre, password, role, usuario, restaurante_id, email) VALUES(3, 1, 'camarero', 'camarero', '$2a$12$4Y3B3yh37W.kYDDPWLTgG.v7OsoIsGNsRE81WSMvsyKq/Nny8WGya', 'ROLE_CAMARERO', 'camarero', 1, 'camarero@camarero.com')
+INSERT INTO empleados (id, activo, apellidos, nombre, password, role, usuario, restaurante_id, email) VALUES(4, 1, 'cocinero', 'cocinero', '$2a$12$Z6jVNG7.neFbjLzFvjIT5etUrLUT3JZm4/eP2eeA6C6UnZp1uAYCC', 'ROLE_COCINERO', 'cocinero', 1, 'cocinero@cocinero.com')

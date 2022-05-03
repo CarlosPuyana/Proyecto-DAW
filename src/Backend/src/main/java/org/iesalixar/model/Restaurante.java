@@ -7,20 +7,24 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import lombok.Data;
+
 @Entity
 @Table(name = "restaurante")
+@Data
 public class Restaurante implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int restauranteId;
+	private Long id;
 	
 	@Column(name = "nombreRestaurante", nullable = false)
 	private String nombreRestaurante;
@@ -49,23 +53,11 @@ public class Restaurante implements Serializable {
 	public Restaurante() {
 		// TODO Auto-generated constructor stub
 	}
-	
-	
 
-
-	public int getRestauranteId() {
-		return restauranteId;
-	}
-
-	
-
-
-
-
-	public Restaurante(int restauranteId, String nombreRestaurante, String telefono, String direccion, String ciudad,
+	public Restaurante(Long id, String nombreRestaurante, String telefono, String direccion, String ciudad,
 			String codigoPostal, Set<Mesa> mesas, Set<Empleados> empleados, Set<Productos> productos) {
-		super();
-		this.restauranteId = restauranteId;
+		
+		this.id = id;
 		this.nombreRestaurante = nombreRestaurante;
 		this.telefono = telefono;
 		this.direccion = direccion;
@@ -76,91 +68,6 @@ public class Restaurante implements Serializable {
 		this.productos = productos;
 	}
 
-	public void setRestauranteId(int restauranteId) {
-		this.restauranteId = restauranteId;
-	}
-
-	public String getNombreRestaurante() {
-		return nombreRestaurante;
-	}
-
-	public void setNombreRestaurante(String nombreRestaurante) {
-		this.nombreRestaurante = nombreRestaurante;
-	}
-
-	public String getTelefono() {
-		return telefono;
-	}
-
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
-	}
-
-	public String getDireccion() {
-		return direccion;
-	}
-
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
-	}
-
-	public String getCiudad() {
-		return ciudad;
-	}
-
-	public void setCiudad(String ciudad) {
-		this.ciudad = ciudad;
-	}
-
-	public String getCodigoPostal() {
-		return codigoPostal;
-	}
-
-	public void setCodigoPostal(String codigoPostal) {
-		this.codigoPostal = codigoPostal;
-	}
-
-
-
-
-	public Set<Mesa> getMesas() {
-		return mesas;
-	}
-
-
-
-
-	public void setMesas(Set<Mesa> mesas) {
-		this.mesas = mesas;
-	}
-
-
-
-
-	public Set<Empleados> getEmpleados() {
-		return empleados;
-	}
-
-
-
-
-	public void setEmpleados(Set<Empleados> empleados) {
-		this.empleados = empleados;
-	}
-
-
-
-
-	public Set<Productos> getProductos() {
-		return productos;
-	}
-
-
-
-
-	public void setProductos(Set<Productos> productos) {
-		this.productos = productos;
-	}
 
 	
 	
