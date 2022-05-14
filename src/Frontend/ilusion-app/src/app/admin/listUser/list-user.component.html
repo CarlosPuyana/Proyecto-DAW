@@ -1,0 +1,68 @@
+<app-index></app-index>
+<div class="container p-5 flex text-center bg-white">
+  <div class="card">
+    <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+      <p-table #dt [value]="empleados" responsiveLayout="stack" breackpoint="815px">
+
+        <ng-template pTemplate="caption">
+          <div style="text-align: right">
+            <button class="btn float-left edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Añadir usuario</button>
+            <i class="bi bi-search-heart"></i>
+
+            <button class="btn float-right edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Excel</button>
+            <i class="bi bi-search-heart"></i>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header" let-columns>
+          <tr>
+
+            <th pSortableColumn="usuario">Usuario
+              <p-sortIcon field="usuario"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="email">Email
+              <p-sortIcon field="email"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="nombre">Nombre
+              <p-sortIcon field="nombre"></p-sortIcon>
+            </th>
+
+
+            <th pSortableColumn="apellidos">Apellidos
+              <p-sortIcon field="apellidos"></p-sortIcon>
+            </th>
+
+
+            <th pSortableColumn="role">Role
+              <p-sortIcon field="role"></p-sortIcon>
+            </th>
+
+            <th> Editar </th>
+            <th> Dar de baja </th>
+
+          </tr>
+
+        </ng-template>
+
+        <ng-template pTemplate="body" let-user let-columns="user">
+
+          <tr>
+
+            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{user.userName}} </td>
+            <td> <span class="p-column-title" pSortableColumn="email"><strong>Email</strong></span> {{user.email}} </td>
+            <td> <span class="p-column-title" pSortableColumn="nombre"><strong>Nombre</strong></span> {{user.nombre}} </td>
+            <td> <span class="p-column-title" pSortableColumn="apellidos"><strong>Apellidos</strong></span> {{user.apellidos}} </td>
+            <td> <span class="p-column-title" pSortableColumn="role"><strong>Rol</strong></span> {{user.role}} </td>
+            <td class="justify-content-evenly " (click)="selectUserToEdit(user)"><span class="p-column-title">Editar</span><a class="btn"><i class="bi bi-pencil-square"></i></a></td>
+            <td class="justify-content-evenly "><span class="p-column-title">Borrar</span><a class="btn"><i class="bi bi-person-x-fill"></i></a></td>
+
+          </tr>
+
+        </ng-template>
+
+      </p-table>
+    </div>
+  </div>
+</div>

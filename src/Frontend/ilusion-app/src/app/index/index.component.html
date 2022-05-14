@@ -1,20 +1,20 @@
 
+  <div class="border-bottom border-dark w-100" id="barra-top">
+    <p id="nav-perfil"><i class="bi bi-person-circle fs-2"></i></p>
+    <div id="nav-perfil-arrow">
+      <div class="dropdown">
+        <a href="#"  role="button" data-bs-toggle="dropdown" >
+          <i class="bi bi-chevron-down fs-4"></i>
+        </a>
 
-<div class="border-bottom border-dark w-100" id="barra-top">
-  <p id="nav-perfil"><i class="bi bi-person-circle fs-2"></i></p>
-  <div id="nav-perfil-arrow">
-    <div class="dropdown">
-      <a href="#"  role="button" data-bs-toggle="dropdown" >
-        <i class="bi bi-chevron-down fs-4"></i>
-      </a>
-
-      <ul class="dropdown-menu">
-        <li><a href="#" class="dropdown-item">Perfil</a></li>
-        <li><a class="dropdown-item" (click)="logout()" >Cerrar Sesión</a></li>
-      </ul>
+        <ul class="dropdown-menu">
+          <li><a href="#" class="dropdown-item">Perfil</a></li>
+          <li><a class="dropdown-item"  >Cerrar Sesión</a></li> <!-- (click)="logout()" -->
+        </ul>
+      </div>
     </div>
   </div>
-</div>
+
   <div class="d-flex flex-column flex-shrink-0 p-3 mh-100" id="barra-lat">
 
     <br>
@@ -25,69 +25,70 @@
 
       <div id="nombre-perfil">
         <h5 class="text-light">ADMIN ADMIN</h5>
-        <p class="text-light" *ngIf="hasRole('ROLE_ADMIN')"> ADMINISTRADOR </p>
-        <p class="text-light" *ngIf="hasRole('ROLE_DUENO')"> DUEÑO LOCAL </p>
-        <p class="text-light" *ngIf="hasRole('ROLE_CAMARERO')"> CAMARERO </p>
-        <p class="text-light" *ngIf="hasRole('ROLE_COCINERO')"> COCINERO </p>
+        <p class="text-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> ADMINISTRADOR </p>
+        <p class="text-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> DUEÑO LOCAL </p>
+        <p class="text-light" *ngIf="findRolUser() === 'ROLE_CAMARERO' "> CAMARERO </p>
+        <p class="text-light" *ngIf="findRolUser() === 'ROLE_COCINERO' "> COCINERO </p>
       </div>
 
     </div>
         <br>
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none text-light">
+    <a href="/dashboard" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none text-light">
           <span class="fs-4">Menú principal</span>
       </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
 
         <li class="nav-item">
-          <a href="#" class="nav-link link-light" aria-current="page" *ngIf="hasRole('ROLE_ADMIN')"> Creación usuarios </a>
+          <a [routerLink]="['/dashboard/admin/createUser']" class="nav-link link-light" aria-current="page" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación usuarios </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Creación restaurante </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación restaurante </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Creación de productos</a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación de productos</a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Lista usuarios </a>
+          <a [routerLink]="['/dashboard/admin/listUsers']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Lista usuarios </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_ADMIN')"> Lista restaurantes </a>
+          <a [routerLink]="['/dashboard/admin/listRestaurants']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Lista restaurantes </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Creación empleados </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación empleados </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Lista empleados </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista empleados </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Creación productos </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación productos </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Lista productos </a>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_CAMARERO')"> Lista productos </a>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_COCINERO')"> Lista productos </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista productos </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO' "> Lista productos </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_COCINERO' "> Lista productos </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_DUENO')"> Lista pedidos </a>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_CAMARERO')"> Lista pedidos </a>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_COCINERO')"> Lista pedidos </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista pedidos </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO' "> Lista pedidos </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_COCINERO' "> Lista pedidos </a>
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="hasRole('ROLE_CAMARERO')"> Crear pedido </a>
+          <a href="#" class="nav-link link-light" *ngIf="authService.hasRole('ROLE_CAMARERO')"> Crear pedido </a>
         </li>
 
       </ul>
   </div>
+
 
 

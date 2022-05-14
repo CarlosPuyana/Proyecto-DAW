@@ -1,0 +1,52 @@
+<app-index></app-index>
+<div class="container p-4 bg-white">
+
+  <div class="rounded d-flex justify-content-center">
+    <div class="col-md-4 col-sm-12 col-xl-5 shadow-lg p-5 bg-light">
+      <div class="text-center">
+        <h3>Crear Usuario</h3>
+      </div>
+
+      <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="registerUser()">
+
+        <div class="form-group form-outline mb-4">
+          <label>Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" aria-describedby="emailHelp" placeholder="email@example.com">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label>UserName</label>
+          <input type="text" class="form-control" formControlName="userName">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label>Nombre</label>
+          <input type="text" class="form-control" formControlName="name">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label>Apellidos</label>
+          <input type="text" class="form-control" formControlName="apellidos">
+        </div>
+
+        <div class="form-group">
+          <label for="roles"> Rol </label>
+          <select name="role" id="role" formControlName="role" class="form-control">
+              <option [selected]="optionDefault" disabled></option>
+              <option>ADMIN</option>
+              <option>DUEÑO</option>
+              <option>CAMARERO</option>
+              <option>COCINERO</option>
+          </select>
+        </div>
+
+        <br>
+        <button class="btn btn-primary" type="submit" >Añadir</button>
+
+      </form>
+
+    </div>
+
+
+  </div>
+</div>

@@ -13,14 +13,14 @@
               <h3 class="text-light">Iniciar sesión</h3>
             </div>
 
-            <form >
+            <form [formGroup]="dataLogin" (ngSubmit)="login()" >
 
               <div class="form-grupo">
-                <input [(ngModel)]="empleado.email" type="text" name="correo" placeholder="Correo" class="rounded p-2" id="correo " name="correo" autofocus required />
+                <input formControlName="email" type="text" name="correo" placeholder="Correo" class="rounded p-2" id="correo " name="correo" autofocus required /> <!-- [(ngModel)]="empleado.email" -->
               </div>
 
               <div class="form-grupo">
-                <input [(ngModel)]="empleado.password" type="password" name="password" placeholder="Contraseña" class="rounded p-2" id="password" name="password" required />
+                <input formControlName="password" type="password" name="password" placeholder="Contraseña" class="rounded p-2" id="password" name="password" required  /> <!-- [(ngModel)]="empleado.password" -->
               </div>
 
               <div class="form-boton">

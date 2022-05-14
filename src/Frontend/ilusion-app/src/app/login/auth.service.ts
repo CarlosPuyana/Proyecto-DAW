@@ -1,17 +1,67 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Empleado } from './empleado';
+import { UserLogin } from '../interfaces/userLogin.interface';
+import { environment } from 'src/environments/environment';
+import { AuthResponse } from '../interfaces/auth-response.interface';
+import { Empleado } from '../interfaces/empleado.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private _empleado!: Empleado;
   private _token!: string;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
+
+  validateToken(): Observable<AuthResponse> {
+
+    let url = environment.baseUrl + "api/v1/auth";
+    const httpHeaders = new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.get<AuthResponse>(url, {headers: httpHeaders});
+  }
+
+  login(data: UserLogin) {
+
+    let url = environment.baseUrl + "api/v1/auth/login";
+    const body = {
+      "email": data.email,
+      "password": data.password
+    }
+
+
+    return this.http.post<AuthResponse>(url, body);
+  }
+
+  createUser(user: Empleado) {
+
+    let url = environment.baseUrl + "api/v1/users";
+
+    console.log("Entro aqui");
+
+
+    const body = {
+      nombre: user.nombre,
+      apellidos: user.apellidos,
+      userName: user.userName,
+      email: user.email,
+      role: user.role,
+      password: user.password
+    }
+
+    console.log(user)
+    console.log(body);
+
+
+    const httpHeaders = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.post<AuthResponse>(url, body, {headers: httpHeaders});
+  }
+
+/*
 
   public get empleado(): Empleado {
     if (this._empleado != null) {
@@ -28,7 +78,7 @@ export class AuthService {
     return new Empleado();
   }
 
-  public get token(): string {
+  public get token(): any {
     if (this._token != null) {
 
       return this._token;
@@ -39,22 +89,19 @@ export class AuthService {
       return this._token;
     }
 
-    return '';
+    return null;
   }
-
-
-
 
   login(empleado: Empleado): Observable<any> {
 
-    const urlEndpoint = 'http://localhost:8080/login'
+    const urlEndpoint = 'http://localhost:8080/api/v1/auth/login'
 
     const email = empleado.email
     const password = empleado.password
 
     const body = {email, password}
 
-    return this.httpClient.post<any>(urlEndpoint, body);
+    return this.http.post<any>(urlEndpoint, body);
   }
 
   guardarUsuario(accessToken: string): void {
@@ -69,7 +116,6 @@ export class AuthService {
 
     sessionStorage.setItem('usuario', JSON.stringify(this._empleado));
 
-    console.log(this._empleado)
   }
 
   guardarToken(accessToken: string): void {
@@ -90,15 +136,33 @@ export class AuthService {
 
   isAuthenticated(): boolean {
 
-    let payload = this.obtenerDatosToken(this.token);
+    let payload = null;
 
-    if (payload != null && payload.username && payload.username.length > 0) return true
-    else return false;
+    payload = this.obtenerDatosToken(this.token);
+
+    if (payload != null && payload.username && payload.username.length > 0) {
+
+      return true
+    }
+    else  {
+       payload = null
+       return false;
+    }
+
 
   }
 
   logout(): void {
     window.sessionStorage.clear();
+
+  }
+*/
+
+  hasRole(role: string): boolean {
+
+    /* if (this._empleado.role.includes(role)) return true; */
+
+    return false;
   }
 
 }

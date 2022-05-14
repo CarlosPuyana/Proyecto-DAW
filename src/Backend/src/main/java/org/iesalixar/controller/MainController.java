@@ -12,31 +12,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200/")
+@RequestMapping("/api/v1/auth")
 public class MainController {
 
-	@Autowired
-	EmpleadoServiceImpl empleadoService;
-
+	@Autowired EmpleadoServiceImpl empleadoService;
 	@Autowired EmpleadoRepository emplRepo;
-	
-	@Autowired
-	private JWTUtil jwtUtil;
-	@Autowired
-	private AuthenticationManager authManager;
+	@Autowired private JWTUtil jwtUtil;
+	@Autowired private AuthenticationManager authManager;
 
+	/**
+	 * Logea un usuario. Recibe un email y contraseña en un JSON
+	 * @param body
+	 * @return
+	 */
 	@PostMapping("/login")
 	public Map<String, Object> loginHandler(@RequestBody LoginCredentials body) {
 
-		System.out.println("entro");
 		
 		Map<String, Object> map = null;
 
@@ -47,7 +44,8 @@ public class MainController {
 			authManager.authenticate(authInputToken);
 
 			String rol = emplRepo.findByEmail(body.getEmail()).get().getRole();
-			String token = jwtUtil.generateToken(body.getEmail(), rol);
+			String userName = emplRepo.findByEmail(body.getEmail()).get().getUserName();
+			String token = jwtUtil.generateToken(body.getEmail(), rol, userName);
 			map = Collections.singletonMap("jwt_token", token);
 		} catch (AuthenticationException authExc) {
 			
@@ -57,30 +55,8 @@ public class MainController {
 		return map;
 	}
 
-	@GetMapping("/dashboard")
-	public String home() {
-
-		return "Estoy en el dashboard";
-
-	}
-
-	@GetMapping("/profile")
-	public String perfil() {
-
-		return "perfil";
-	}
-
-	@RequestMapping("/logout")
-	public String logout() {
-
-		return "redirect:/";
-
-	}
 	
-	@GetMapping("/prueba")
-	public String prueba() {
-		
-		return "prueba";
-	}
+
+	
 
 }

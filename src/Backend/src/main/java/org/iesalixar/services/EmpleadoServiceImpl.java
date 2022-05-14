@@ -1,5 +1,7 @@
 package org.iesalixar.services;
 
+import java.util.List;
+
 import org.iesalixar.model.Empleados;
 import org.iesalixar.repositories.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +25,17 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return emplRepo.findByUserName(userName);
 	}
 
+	@Override
+	public List<Empleados> findAll() {
+		
+		return emplRepo.findAll();
+	}
+
+	@Override
+	public Empleados insertarEmpleado(Empleados empleado) {
+		
+		return emplRepo.save(empleado);
+	}
+	
 	
 }

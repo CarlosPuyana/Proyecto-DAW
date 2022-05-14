@@ -10,6 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.ToString;
 
@@ -45,7 +47,7 @@ public class Empleados {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "restaurante_id")
-	@ToString.Exclude
+	@JsonIgnore
 	private Restaurante restaurante;
 	
 	public Empleados() {

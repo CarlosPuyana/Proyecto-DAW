@@ -13,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 
 @Entity
@@ -42,12 +44,15 @@ public class Restaurante implements Serializable {
 	private String codigoPostal;
 	
 	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private Set<Mesa> mesas = new HashSet<>();
 	
 	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private Set<Empleados> empleados = new HashSet<>();
 	
 	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true)
+	@JsonIgnore
 	private Set<Productos> productos = new HashSet<>();
 	
 	public Restaurante() {
