@@ -36,19 +36,10 @@ public class UserController {
 	@Autowired EmpleadoServiceImpl empleadoService;
 	@Autowired RestauranteServiceImpl restService;
 	
-	@GetMapping("/dashboard")
-	public String home() {
-
-		return "Estoy en el dashboard";
-
-	}
-
-	@GetMapping("/profile")
-	public String perfil() {
-
-		return "perfil";
-	}
-	
+	/**
+	 * Muestra todos los empleados
+	 * @return
+	 */
 	@GetMapping()
 	public List<Empleados> users() {
 		
@@ -192,5 +183,11 @@ public class UserController {
 		return empleadoService.findAllByRestaurante(empl.getRestaurante());
 	}
 	
+	@GetMapping("/{id}")
+	public Empleados getEmpleado(@PathVariable Long id) {
+		
+		
+		return empleadoService.findEmpleadoById(id);
+	}
 	
 }

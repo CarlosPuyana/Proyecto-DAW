@@ -75,9 +75,6 @@ export class ListUserComponent implements OnInit {
     this.formBuilder.group({
       name: [ , [ Validators.required, Validators.maxLength(30), ] ],
       email: [ , [ Validators.required, Validators.email] ],
-    }, {
-      validator: this.MustMatch('password', 'password_repeat')
-
     })
   }
 
@@ -86,20 +83,6 @@ export class ListUserComponent implements OnInit {
     this.dialog = !this.dialog;
   }
 
-  MustMatch(controlName: string, matchingControlName: string) {
-    return (formGroup: FormGroup) => {
-    const control = formGroup.controls[controlName];
-    const matchingControl = formGroup.controls[matchingControlName];
-    if (matchingControl.errors && !matchingControl.errors['mustMatch']) {
-    return;
-    }
-    if (control.value !== matchingControl.value) {
-    matchingControl.setErrors({ mustMatch: true });
-    } else {
-    matchingControl.setErrors(null);
-    }
-    }
-    }
 
   notValidField(field: string) {
 

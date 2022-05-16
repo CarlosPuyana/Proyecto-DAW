@@ -12,6 +12,7 @@ export interface Empleado {
 
 export interface EmpleadoResponse {
   id: number;
+  userName: string;
   nombre: string;
   email: string;
   apellidos: string;

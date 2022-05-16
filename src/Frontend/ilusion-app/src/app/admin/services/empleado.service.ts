@@ -71,10 +71,10 @@ export class EmpleadoService {
     return this.http.get<EmpleadoResponse[]>(path + "?role=" + role)
   }
 
-  setRestaurant(user: Empleado, rest: string) {
+  setRestaurant(user: EmpleadoResponse, rest: string) {
     let path = this.url + "/restaurant" + "?nombreRestaurante=" + rest;
 
-    console.log(user.nombre);
+    console.log(user);
 
 
     const header = new HttpHeaders()

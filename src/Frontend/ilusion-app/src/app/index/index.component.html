@@ -84,7 +84,7 @@
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="authService.hasRole('ROLE_CAMARERO')"> Crear pedido </a>
+          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO'"> Crear pedido </a>
         </li>
 
       </ul>

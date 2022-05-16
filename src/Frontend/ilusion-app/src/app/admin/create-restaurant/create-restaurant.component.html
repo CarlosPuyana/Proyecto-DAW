@@ -40,8 +40,7 @@
           <label> DUEÑO </label>
           <select name="dueno" id="dueno" class="form-control" formControlName="dueno">
             <option [selected]="optionDefault" disabled>{{optionDefault}}</option>
-            <option *ngFor="let c of duenos" [value]="c">{{c.nombre}}</option>
-
+            <option *ngFor="let c of duenos" [value]="c.id">{{c.nombre}}</option>
           </select>
         </div>
 

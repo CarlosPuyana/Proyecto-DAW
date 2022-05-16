@@ -16,8 +16,10 @@ import { Observable } from 'rxjs';
 export class CreateRestaurantComponent implements OnInit {
 
   duenos!: EmpleadoResponse[];
+  manito!: EmpleadoResponse;
   optionDefault: string = "Seleccione un dueño";
   list: EmpleadoResponse[] = this.duenos;
+  id!: number;
 
 
   constructor(private formBuilder: FormBuilder, private router: Router, private restaurantService: RestuaranteService, private empleadoService: EmpleadoService) { }
@@ -49,7 +51,6 @@ export class CreateRestaurantComponent implements OnInit {
       next: (resp => {
 
         this.duenos = resp;
-        console.log(this.duenos);
 
       }), error: (err => {
         console.log(err.error.mensaje);
@@ -71,10 +72,25 @@ export class CreateRestaurantComponent implements OnInit {
     this.restaurantService.createRestaurant(data).subscribe({
       next: resp => {
 
-       /* this.empleadoService.setRestaurant(this.duenos, this.formCreate.value.nombreRestaurante).subscribe({
-          next: resp => {
+        this.empleadoService.findUserById(this.formCreate.value.dueno).subscribe({
 
-          }, error: err => {
+          next: (resp2 => {
+            this.manito = resp2;
+            this.empleadoService.setRestaurant(this.manito, this.formCreate.value.nombreRestaurante).subscribe({
+              next: resp => {
+
+              }, error: err => {
+                console.log(err);
+
+                if (err.status == 0) {
+                  alert("El servidor está inoperativo en estos momentos")
+                } else {
+                  Swal.fire('Error!', err.error.mensaje, 'error');
+                }
+              }
+            })
+
+          }) , error: err => {
             console.log(err);
 
             if (err.status == 0) {
@@ -83,7 +99,7 @@ export class CreateRestaurantComponent implements OnInit {
               Swal.fire('Error!', err.error.mensaje, 'error');
             }
           }
-        })*/
+        })
 
         // Redirigimos a la lista
         this.router.navigateByUrl("/dashboard/admin/listRestaurants");
