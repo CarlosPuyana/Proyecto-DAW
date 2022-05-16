@@ -35,7 +35,6 @@ export class AdminComponent implements OnInit {
 
   registerUser() {
 
-    console.log("Entro aqui");
     const data: Empleado = {
 
       "email": this.formCreate.value.email,
@@ -46,9 +45,6 @@ export class AdminComponent implements OnInit {
 
     }
 
-    console.log(data);
-
-    console.log("Entro aqui2");
       this.serviceAuth.createUser(data).subscribe({
         next: resp => {
           // Redirigimos a la lista
@@ -58,7 +54,7 @@ export class AdminComponent implements OnInit {
           console.log(err);
 
           if (err.status == 0) {
-            alert("El servidor está inoperatiuvo en estos momentos")
+            alert("El servidor está inoperativo en estos momentos")
           } else {
             Swal.fire('Error!', err.error.mensaje, 'error');
           }

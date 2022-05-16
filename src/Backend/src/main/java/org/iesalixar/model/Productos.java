@@ -21,7 +21,7 @@ public class Productos {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long productoId;
+	private Long id;
 	
 	@Column(name = "nombreProducto", nullable = false)
 	private String nombreProducto;
@@ -41,15 +41,6 @@ public class Productos {
 	
 	public Productos() {
 		// TODO Auto-generated constructor stub
-	}
-	
-
-	public Long getProductoId() {
-		return productoId;
-	}
-
-	public void setProductoId(Long productoId) {
-		this.productoId = productoId;
 	}
 
 	public String getNombreProducto() {
@@ -84,9 +75,29 @@ public class Productos {
 		this.pedidos = pedidos;
 	}
 
+	
+	
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	public Long getId() {
+		return id;
+	}
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(nombreProducto, productoId);
+		return Objects.hash(nombreProducto, id);
 	}
 
 	@Override
@@ -98,7 +109,7 @@ public class Productos {
 		if (getClass() != obj.getClass())
 			return false;
 		Productos other = (Productos) obj;
-		return Objects.equals(nombreProducto, other.nombreProducto) && productoId == other.productoId;
+		return Objects.equals(nombreProducto, other.nombreProducto) && id == other.id;
 	}
 	
 	

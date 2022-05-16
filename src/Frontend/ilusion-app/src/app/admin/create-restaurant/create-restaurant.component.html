@@ -1,0 +1,57 @@
+<app-index></app-index>
+
+<div class="container p-4 bg-white">
+
+  <div class="rounded d-flex justify-content-center">
+
+    <div class="col-md-4 col-sm-12 col-xl-5 shadow-lg p-5 bg-light">
+      <div class="text-center">
+        <h3>Crear Restaurante</h3>
+      </div>
+
+      <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="registerRestaurant()">
+
+        <div class="form-group form-outline mb-4">
+          <label> Nombre Restaurante</label>
+          <input type="text" class="form-control" formControlName="nombreRestaurante">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label> Teléfono </label>
+          <input type="number" class="form-control" formControlName="telefono">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label> Dirección </label>
+          <input type="text" class="form-control" formControlName="direccion">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label> Ciudad </label>
+          <input type="text" class="form-control" formControlName="ciudad">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label> Código Postal </label>
+          <input type="number" class="form-control" formControlName="codigoPostal">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label> DUEÑO </label>
+          <select name="dueno" id="dueno" class="form-control" formControlName="dueno">
+            <option [selected]="optionDefault" disabled>{{optionDefault}}</option>
+            <option *ngFor="let c of duenos" [value]="c">{{c.nombre}}</option>
+
+          </select>
+        </div>
+
+        <br>
+        <button class="btn btn-primary" type="submit" >Añadir</button>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>

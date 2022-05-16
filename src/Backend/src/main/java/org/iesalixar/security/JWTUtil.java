@@ -31,7 +31,7 @@ public class JWTUtil {
      * @throws IllegalArgumentException
      * @throws JWTCreationException
      */
-	public String generateToken(String email, String rol, String userName) throws IllegalArgumentException, JWTCreationException {
+	public String generateToken(String email, String rol, String userName, Long id) throws IllegalArgumentException, JWTCreationException {
 		
 		Calendar calendar = Calendar.getInstance();
 			calendar.setTime(new Date());
@@ -44,6 +44,7 @@ public class JWTUtil {
 				.withClaim("email", email)
 				.withClaim("rol", rol)
 				.withClaim("username", userName)
+                .withClaim("id", id)
 				.withIssuedAt(new Date())
 				.withIssuer("La ilusión")
 				.sign(Algorithm.HMAC256(secret));

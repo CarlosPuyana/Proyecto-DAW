@@ -12,6 +12,9 @@ import { AdminComponent } from './admin/createUser/admin.component';
 import { ListUserComponent } from './admin/listUser/list-user.component';
 import {TableModule} from 'primeng/table';
 import { ListRestComponent } from './admin/listRestaurant/list-rest.component';
+import { CreateRestaurantComponent } from './admin/create-restaurant/create-restaurant.component';
+import { ListEmpleadosComponent } from './dueno/list-empleados/list-empleados.component';
+import { ListProductosComponent } from './dueno/list-productos/list-productos.component';
 
 
 const routes: Routes = [
@@ -21,6 +24,9 @@ const routes: Routes = [
   {path: 'dashboard/admin/createUser', component: AdminComponent},
   {path: 'dashboard/admin/listUsers', component: ListUserComponent},
   {path: 'dashboard/admin/listRestaurants', component: ListRestComponent},
+  {path: 'dashboard/admin/createRestaurant', component: CreateRestaurantComponent},
+  {path: 'dashboard/dueno/listEmpleados', component: ListEmpleadosComponent},
+  {path: 'dashboard/dueno/listProductos', component: ListProductosComponent}
 ]
 
 @NgModule({
@@ -31,7 +37,10 @@ const routes: Routes = [
     IndexComponent,
     AdminComponent,
     ListUserComponent,
-    ListRestComponent
+    ListRestComponent,
+    CreateRestaurantComponent,
+    ListEmpleadosComponent,
+    ListProductosComponent
   ],
   imports: [
     TableModule,

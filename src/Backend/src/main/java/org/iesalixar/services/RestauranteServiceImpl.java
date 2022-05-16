@@ -14,8 +14,26 @@ public class RestauranteServiceImpl implements RestauranteService {
 	
 	@Override
 	public List<Restaurante> findAll() {
-		// TODO Auto-generated method stub
+		
 		return restRepo.findAll();
+	}
+
+	@Override
+	public Restaurante insertarRestaurante(Restaurante restaurante) {
+		
+		return restRepo.save(restaurante);
+	}
+
+	@Override
+	public Restaurante findRestauranteById(Long id) {
+		
+		return restRepo.findRestauranteById(id);
+	}
+
+	@Override
+	public Restaurante findRestauranteByNombreRestaurante(String nombreRestaurante) {
+		
+		return restRepo.findRestauranteByNombreRestaurante(nombreRestaurante);
 	}
 
 }

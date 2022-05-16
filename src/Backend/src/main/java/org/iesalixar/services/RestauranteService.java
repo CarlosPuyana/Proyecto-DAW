@@ -8,4 +8,7 @@ public interface RestauranteService {
 
 	
 	public List<Restaurante> findAll();
+	public Restaurante insertarRestaurante(Restaurante restaurante);
+	public Restaurante findRestauranteById(Long id);
+	public Restaurante findRestauranteByNombreRestaurante(String nombreRestaurante);
 }

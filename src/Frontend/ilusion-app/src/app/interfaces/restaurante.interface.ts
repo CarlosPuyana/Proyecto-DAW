@@ -5,6 +5,7 @@ export interface Restaurante {
   telefono: string;
   ciudad: string;
   codigoPostal: string;
+  direccion: string;
 }
 
 export interface RestauranteResponse {
@@ -14,4 +15,5 @@ export interface RestauranteResponse {
   telefono: string;
   ciudad: string;
   codigoPostal: string;
+  direccion: string;
 }

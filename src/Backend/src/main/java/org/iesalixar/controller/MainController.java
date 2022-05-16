@@ -45,7 +45,8 @@ public class MainController {
 
 			String rol = emplRepo.findByEmail(body.getEmail()).get().getRole();
 			String userName = emplRepo.findByEmail(body.getEmail()).get().getUserName();
-			String token = jwtUtil.generateToken(body.getEmail(), rol, userName);
+			Long id = emplRepo.findByEmail(body.getEmail()).get().getId();
+			String token = jwtUtil.generateToken(body.getEmail(), rol, userName, id );
 			map = Collections.singletonMap("jwt_token", token);
 		} catch (AuthenticationException authExc) {
 			

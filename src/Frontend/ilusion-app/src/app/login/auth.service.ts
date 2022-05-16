@@ -39,9 +39,6 @@ export class AuthService {
 
     let url = environment.baseUrl + "api/v1/users";
 
-    console.log("Entro aqui");
-
-
     const body = {
       nombre: user.nombre,
       apellidos: user.apellidos,
@@ -50,10 +47,6 @@ export class AuthService {
       role: user.role,
       password: user.password
     }
-
-    console.log(user)
-    console.log(body);
-
 
     const httpHeaders = new HttpHeaders()
       .set('Authorization', `Bearer ${localStorage.getItem('token')}`);

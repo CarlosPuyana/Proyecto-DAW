@@ -2,7 +2,7 @@
 <div class="container p-5 flex text-center bg-white">
   <div class="card">
     <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <p-table #dt [value]="restaurantes" responsiveLayout="stack" breackpoint="815px">
+      <p-table #dt [value]="empleados" responsiveLayout="stack" breackpoint="815px">
 
         <ng-template pTemplate="caption">
           <div style="text-align: right">
@@ -35,28 +35,23 @@
             </th>
 
 
-            <th pSortableColumn="cp">CP
-              <p-sortIcon field="cp"></p-sortIcon>
+            <th pSortableColumn="role">Role
+              <p-sortIcon field="role"></p-sortIcon>
             </th>
-
-            <th> Editar </th>
-            <th> Dar de baja </th>
 
           </tr>
 
         </ng-template>
 
-        <ng-template pTemplate="body" let-restaurante let-columns="restaurante">
+        <ng-template pTemplate="body" let-user let-columns="user">
 
           <tr>
 
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.nombreRestaurante}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Email</strong></span> {{restaurante.telefono}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.direccion}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.ciudad}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.codigoPostal}} </td>
-            <td class="justify-content-evenly"><span class="p-column-title">Editar</span><a class="btn"><i class="bi bi-pencil-square"></i></a></td>
-            <td class="justify-content-evenly "><span class="p-column-title">Borrar</span><a class="btn"><i class="bi bi-person-x-fill"></i></a></td>
+            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{user.userName}} </td>
+            <td> <span class="p-column-title" pSortableColumn="email"><strong>Email</strong></span> {{user.email}} </td>
+            <td> <span class="p-column-title" pSortableColumn="nombre"><strong>Nombre</strong></span> {{user.nombre}} </td>
+            <td> <span class="p-column-title" pSortableColumn="apellidos"><strong>Apellidos</strong></span> {{user.apellidos}} </td>
+            <td> <span class="p-column-title" pSortableColumn="role"><strong>Rol</strong></span> {{user.role}} </td>
 
           </tr>
 

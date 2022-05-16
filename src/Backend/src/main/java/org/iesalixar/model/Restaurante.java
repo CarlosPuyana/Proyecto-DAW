@@ -55,8 +55,20 @@ public class Restaurante implements Serializable {
 	@JsonIgnore
 	private Set<Productos> productos = new HashSet<>();
 	
+	
 	public Restaurante() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Restaurante(Long id, String nombreRestaurante, String telefono, String direccion, String ciudad,
+			String codigoPostal, Set<Empleados> empleados) {
+		this.id = id;
+		this.nombreRestaurante = nombreRestaurante;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.ciudad = ciudad;
+		this.codigoPostal = codigoPostal;
+		this.empleados = empleados;
 	}
 
 	public Restaurante(Long id, String nombreRestaurante, String telefono, String direccion, String ciudad,
