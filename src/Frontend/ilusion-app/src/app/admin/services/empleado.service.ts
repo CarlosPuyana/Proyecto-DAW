@@ -51,14 +51,17 @@ export class EmpleadoService {
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '');
 
-    return this.http.get<EmpleadoResponse[]>(path);
+    return this.http.get<EmpleadoResponse[]>(path, {headers: header});
   }
 
   findUsersByRestaurante(id: number): Observable<EmpleadoResponse[]> {
 
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '');
+
     let path = this.url + "/restaurant/" + id;
 
-    return this.http.get<EmpleadoResponse[]>(path);
+    return this.http.get<EmpleadoResponse[]>(path, {headers: header});
   }
 
   findUsersByRole(role: string): Observable<EmpleadoResponse[]> {
@@ -68,14 +71,11 @@ export class EmpleadoService {
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '');
 
-    return this.http.get<EmpleadoResponse[]>(path + "?role=" + role)
+    return this.http.get<EmpleadoResponse[]>(path + "?role=" + role, {headers: header})
   }
 
   setRestaurant(user: EmpleadoResponse, rest: string) {
     let path = this.url + "/restaurant" + "?nombreRestaurante=" + rest;
-
-    console.log(user);
-
 
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '');

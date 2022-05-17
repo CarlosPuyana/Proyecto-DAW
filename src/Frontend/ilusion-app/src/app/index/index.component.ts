@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { EmpleadoService } from '../admin/services/empleado.service';
+import { EmpleadoResponse } from '../interfaces/empleado.interface';
 
 @Component({
   selector: 'app-index',
@@ -13,9 +15,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class IndexComponent implements OnInit {
 
   jwt:JwtHelperService=new JwtHelperService();
-  private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
-  constructor(public authService: AuthService, private router: Router, private http: HttpClient) { }
+  nombre!: string;
+  apellidos!: string;
+  user!: EmpleadoResponse;
+
+  constructor(public authService: AuthService, private router: Router, private http: HttpClient, private empleadoService: EmpleadoService) { }
 
   logout(): void {
 
@@ -30,7 +35,7 @@ export class IndexComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.findInfoUser()
   }
 
   /**
@@ -42,6 +47,37 @@ export class IndexComponent implements OnInit {
     let token = localStorage.getItem("token")!;
 
     return this.jwt.decodeToken(token).id;
+  }
+
+  /**
+   * Obtiene informacion de un usuario
+   */
+  findInfoUser() {
+
+    let id = this.findIdUser();
+
+    this.empleadoService.findUserById(id).subscribe({
+      next: resp => {
+
+        this.user = resp;
+
+        this.nombre = this.user.nombre
+        this.apellidos = this.user.apellidos
+
+      }, error: err => {
+
+        console.log(err);
+
+        if (err.status == 0) {
+
+          alert("El servidor está inoperativo en estos momentos")
+        } else {
+
+          Swal.fire('Error!', err.error.mensaje, 'error');
+        }
+      }
+    })
+
   }
 
   /**
