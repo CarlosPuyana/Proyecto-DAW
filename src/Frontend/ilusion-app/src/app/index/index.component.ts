@@ -16,22 +16,8 @@ export class IndexComponent implements OnInit {
   private httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
 
   constructor(public authService: AuthService, private router: Router, private http: HttpClient) { }
-/*
-  private agregarAuthorizationHeader() {
-    let token = this.authService.token;
-
-    if (token != null) {
-      return this.httpHeaders.append('Authorization', 'Bearer ' + token);
-    }
-
-    return this.httpHeaders;
-
-  }
-
 
   logout(): void {
-
-
 
     Swal.fire('LogOut', 'Has cerrado sesión con éxito', 'success');
 
@@ -39,7 +25,7 @@ export class IndexComponent implements OnInit {
 
     this.authService.logout();
 
-  } */
+  }
 
 
 

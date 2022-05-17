@@ -5,12 +5,14 @@ import { UserLogin } from '../interfaces/userLogin.interface';
 import { environment } from 'src/environments/environment';
 import { AuthResponse } from '../interfaces/auth-response.interface';
 import { Empleado } from '../interfaces/empleado.interface';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  jwt:JwtHelperService = new JwtHelperService();
   private _token!: string;
 
   constructor(private http: HttpClient) { }
@@ -52,6 +54,37 @@ export class AuthService {
       .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
     return this.http.post<AuthResponse>(url, body, {headers: httpHeaders});
+  }
+
+  isAuthenticated(): boolean {
+
+    let payload = null;
+    payload = this.jwt.decodeToken(localStorage.getItem('token')!);
+
+    if (payload != null && payload.email.length > 0) {
+
+      return true;
+    } else {
+
+      payload = null;
+      return false;
+    }
+
+  }
+
+  logout(): void {
+
+    window.localStorage.clear();
+    window.sessionStorage.clear();
+  }
+
+  hasRole(rol: string): boolean {
+
+    let payload = this.jwt.decodeToken(localStorage.getItem('token')!);
+
+    if (payload.rol.includes(rol)) return true;
+
+    return false;
   }
 
 }

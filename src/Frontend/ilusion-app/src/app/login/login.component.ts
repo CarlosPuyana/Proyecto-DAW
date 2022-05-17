@@ -25,18 +25,16 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
 
-/*
+
     if (this.authService.isAuthenticated()) {
       console.log("aqui tambien");
 
-      Swal.fire('Login', `Hola ${this.authService.empleado.userName} ya estás autenticado`, 'info');
+      Swal.fire('Login', `Ya estás autenticado`, 'info');
       this.router.navigate(['/dashboard']);
     } else {
+
       this.router.navigate(['/login'])
     }
-
-*/
-
   }
 
   dataLogin: FormGroup = this.formBuilder.group({
