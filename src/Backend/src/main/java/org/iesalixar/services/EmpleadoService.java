@@ -16,4 +16,6 @@ public interface EmpleadoService {
 	public Empleados updateEmpleado(Empleados empl);
 	public List<Empleados> findAllByRestaurante(Restaurante restaurante);
 	
+	public Restaurante findRestaurante(Empleados empleado);
+	
 }

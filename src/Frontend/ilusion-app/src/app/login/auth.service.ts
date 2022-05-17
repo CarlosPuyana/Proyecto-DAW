@@ -4,7 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UserLogin } from '../interfaces/userLogin.interface';
 import { environment } from 'src/environments/environment';
 import { AuthResponse } from '../interfaces/auth-response.interface';
-import { Empleado } from '../interfaces/empleado.interface';
+import { Empleado, EmpleadoResponse } from '../interfaces/empleado.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -54,6 +54,25 @@ export class AuthService {
       .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
     return this.http.post<AuthResponse>(url, body, {headers: httpHeaders});
+  }
+
+  createEmpleado(user: Empleado) {
+
+    let url = environment.baseUrl + "api/v1/duenos/empleado";
+
+    const body = {
+      nombre: user.nombre,
+      apellidos: user.apellidos,
+      userName: user.userName,
+      email: user.email,
+      role: user.role,
+      password: user.password
+    }
+
+    const httpHeaders = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.post<EmpleadoResponse>(url, body, {headers: httpHeaders});
   }
 
   isAuthenticated(): boolean {

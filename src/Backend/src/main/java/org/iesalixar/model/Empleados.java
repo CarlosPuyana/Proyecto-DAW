@@ -2,7 +2,6 @@ package org.iesalixar.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -44,7 +43,7 @@ public class Empleados {
 	@Column(nullable = false, columnDefinition = "BOOLEAN")
 	private boolean activo;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne()
 	@JoinColumn(name = "restaurante_id")
 	@JsonIgnore
 	private Restaurante restaurante;

@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { Observable } from 'rxjs';
 import { Empleado, EmpleadoResponse } from '../../interfaces/empleado.interface';
 import { AuthResponse } from 'src/app/interfaces/auth-response.interface';
+import { RestauranteResponse } from '../../interfaces/restaurante.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -54,6 +55,21 @@ export class EmpleadoService {
     return this.http.get<EmpleadoResponse[]>(path, {headers: header});
   }
 
+  findRestaurante(id: number): Observable<RestauranteResponse> {
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '');
+
+    let path = environment.baseUrl + "api/v1/duenos/restaurant/" + id;
+
+    return this.http.get<RestauranteResponse>(path, {headers: header});
+  }
+
+
+/**
+ * Coge los empleados de un restaurante
+ * @param id
+ * @returns
+ */
   findUsersByRestaurante(id: number): Observable<EmpleadoResponse[]> {
 
     const header = new HttpHeaders()

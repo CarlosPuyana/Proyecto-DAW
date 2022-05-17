@@ -16,4 +16,5 @@ public interface EmpleadoRepository extends JpaRepository<Empleados,Long> {
 	public Optional<Empleados> findByEmail(String email);
 	public List<Empleados> findEmpleadosByRole(String role);
 	public List<Empleados> findAllByRestaurante(Restaurante restaurante);
+	
 }

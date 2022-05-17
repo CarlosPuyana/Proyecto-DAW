@@ -20,7 +20,7 @@ export class ListEmpleadosComponent implements OnInit {
   dialog!: boolean;
   dialogSave!: boolean;
   formGroupEdit!: FormGroup;
-  jwt:JwtHelperService=new JwtHelperService();
+  jwt:JwtHelperService = new JwtHelperService();
 
   constructor(private serviceEmpleado: EmpleadoService, private primengConfig: PrimeNGConfig, private router: Router, private formBuilder: FormBuilder) { }
 
