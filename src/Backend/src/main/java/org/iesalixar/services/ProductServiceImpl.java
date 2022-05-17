@@ -30,6 +30,24 @@ public class ProductServiceImpl implements ProductService {
 		
 		return prodRepo.findProductoById(id);
 	}
+
+	@Override
+	public Productos insertarProducto(Productos producto) {
+		
+		return prodRepo.save(producto);
+	}
+
+	@Override
+	public Productos findProductoByNombreProducto(String nombreProducto) {
+		
+		return prodRepo.findByNombreProducto(nombreProducto);
+	}
+
+	@Override
+	public Productos updateProducto(Productos producto) {
+		
+		return prodRepo.save(producto);
+	}
 	
 	
 

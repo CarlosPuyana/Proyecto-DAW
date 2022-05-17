@@ -68,7 +68,7 @@
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación productos </a>
+          <a [routerLink]="['/dashboard/dueno/crearProducto']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación productos </a>
         </li>
 
         <li>

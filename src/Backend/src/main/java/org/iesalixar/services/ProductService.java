@@ -10,5 +10,9 @@ public interface ProductService {
 	public List<Productos> findAll();
 	public List<Productos> findAllByRestaurante(Restaurante restaurante);
 	public Productos findProductoById(Long id);
+	public Productos insertarProducto(Productos producto);
+	
+	public Productos findProductoByNombreProducto(String nombreProducto);
+	public Productos updateProducto(Productos producto);
 	
 }

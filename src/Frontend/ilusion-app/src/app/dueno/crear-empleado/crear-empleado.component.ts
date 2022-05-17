@@ -36,7 +36,11 @@ export class CrearEmpleadoComponent implements OnInit {
     role: [ 'Elige un rol', [ Validators.required ] ]
   })
 
+  /**
+   * Crea un empleado y lo registra en el restaurante del dueño
+   */
   registerUser() {
+
     const data: Empleado = {
       "email": this.formCreate.value.email,
       "userName": this.formCreate.value.userName,

@@ -17,6 +17,10 @@ export class EmpleadoService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Devuelve el id del usuario a traves del token
+   * @returns
+   */
   findIdUser(): number {
 
     let token = localStorage.getItem('token')!;
@@ -24,6 +28,10 @@ export class EmpleadoService {
     return this.jwt.decodeToken(token).id;
   }
 
+  /**
+   * Devuelve el rol del usuario desde el token
+   * @returns
+   */
   findRolUser(): string {
 
     let token = localStorage.getItem('token')!;
@@ -55,6 +63,11 @@ export class EmpleadoService {
     return this.http.get<EmpleadoResponse[]>(path, {headers: header});
   }
 
+  /**
+   * Devuelve un restaurante con el id
+   * @param id
+   * @returns
+   */
   findRestaurante(id: number): Observable<RestauranteResponse> {
     const header = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '');
@@ -80,6 +93,11 @@ export class EmpleadoService {
     return this.http.get<EmpleadoResponse[]>(path, {headers: header});
   }
 
+  /**
+   * Devuelve todos los usuarios con el rol
+   * @param role
+   * @returns
+   */
   findUsersByRole(role: string): Observable<EmpleadoResponse[]> {
 
     let path = this.url + "/roles";
@@ -90,6 +108,12 @@ export class EmpleadoService {
     return this.http.get<EmpleadoResponse[]>(path + "?role=" + role, {headers: header})
   }
 
+  /**
+   * Insertas un restaurante a un empleado
+   * @param user
+   * @param rest
+   * @returns
+   */
   setRestaurant(user: EmpleadoResponse, rest: string) {
     let path = this.url + "/restaurant" + "?nombreRestaurante=" + rest;
 

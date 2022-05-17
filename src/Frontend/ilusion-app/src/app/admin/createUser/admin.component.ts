@@ -33,6 +33,9 @@ export class AdminComponent implements OnInit {
     role: [ 'Elige un rol', [ Validators.required ]  ]
   })
 
+  /**
+   * Metodo para registrar usuarios
+   */
   registerUser() {
 
     const data: Empleado = {

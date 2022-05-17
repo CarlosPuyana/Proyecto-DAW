@@ -116,8 +116,6 @@ public class UserController {
 	@PutMapping("/restaurant")
 	public ResponseEntity<?> updateRestaurante(@Valid @RequestBody Empleados user, @RequestParam String nombreRestaurante , BindingResult result) {
 		
-		System.out.println(user);
-		
 		Empleados userActual = empleadoService.findEmpleadoByUserName(user.getUserName());
 		Empleados userUpdate = null;
 		

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
-import { ProductoResponse } from 'src/app/interfaces/producto.interface';
+import { Producto, ProductoResponse } from 'src/app/interfaces/producto.interface';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -22,4 +22,11 @@ export class ProductoService {
 
     return this.http.get<ProductoResponse[]>(path);
   }
+
+  createProducto(producto: Producto) {
+
+    let url = environment.baseUrl
+
+  }
+
 }

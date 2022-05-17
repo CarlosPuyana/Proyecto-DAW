@@ -18,6 +18,7 @@ import { ListProductosComponent } from './dueno/list-productos/list-productos.co
 import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { CrearEmpleadoComponent } from './dueno/crear-empleado/crear-empleado.component';
+import { CrearProductoComponent } from './dueno/crear-producto/crear-producto.component';
 
 
 const routes: Routes = [
@@ -30,7 +31,8 @@ const routes: Routes = [
   {path: 'dashboard/admin/createRestaurant', component: CreateRestaurantComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
   {path: 'dashboard/dueno/listEmpleados', component: ListEmpleadosComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/listProductos', component: ListProductosComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
-  {path: 'dashboard/dueno/crearEmpleado', component: CrearEmpleadoComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}}
+  {path: 'dashboard/dueno/crearEmpleado', component: CrearEmpleadoComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
+  {path: 'dashboard/dueno/crearProducto', component: CrearProductoComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}}
 ]
 
 @NgModule({
@@ -45,7 +47,8 @@ const routes: Routes = [
     CreateRestaurantComponent,
     ListEmpleadosComponent,
     ListProductosComponent,
-    CrearEmpleadoComponent
+    CrearEmpleadoComponent,
+    CrearProductoComponent
   ],
   imports: [
     TableModule,

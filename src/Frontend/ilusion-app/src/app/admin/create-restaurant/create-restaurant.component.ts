@@ -58,6 +58,9 @@ export class CreateRestaurantComponent implements OnInit {
     })
   }
 
+  /**
+   * Metodo para crear un Restaurantne
+   */
   registerRestaurant() {
 
 

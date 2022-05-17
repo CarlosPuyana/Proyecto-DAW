@@ -25,6 +25,11 @@ export class AuthService {
     return this.http.get<AuthResponse>(url, {headers: httpHeaders});
   }
 
+  /**
+   * Metodo para hacer Login
+   * @param data
+   * @returns
+   */
   login(data: UserLogin) {
 
     let url = environment.baseUrl + "api/v1/auth/login";
@@ -37,6 +42,11 @@ export class AuthService {
     return this.http.post<AuthResponse>(url, body);
   }
 
+  /**
+   * Metodo para que un Admin cree usuarios
+   * @param user
+   * @returns
+   */
   createUser(user: Empleado) {
 
     let url = environment.baseUrl + "api/v1/users";
@@ -56,6 +66,11 @@ export class AuthService {
     return this.http.post<AuthResponse>(url, body, {headers: httpHeaders});
   }
 
+  /**
+   * Metodo para que un dueño cree un Empleado
+   * @param user
+   * @returns
+   */
   createEmpleado(user: Empleado) {
 
     let url = environment.baseUrl + "api/v1/duenos/empleado";
@@ -75,6 +90,10 @@ export class AuthService {
     return this.http.post<EmpleadoResponse>(url, body, {headers: httpHeaders});
   }
 
+  /**
+   * Verifica si estás autenticado
+   * @returns
+   */
   isAuthenticated(): boolean {
 
     let payload = null;
@@ -91,12 +110,20 @@ export class AuthService {
 
   }
 
+  /**
+   * Deslogea un usuario
+   */
   logout(): void {
 
     window.localStorage.clear();
     window.sessionStorage.clear();
   }
 
+  /**
+   * Comprueba si tiene un rol
+   * @param rol
+   * @returns
+   */
   hasRole(rol: string): boolean {
 
     let payload = this.jwt.decodeToken(localStorage.getItem('token')!);
