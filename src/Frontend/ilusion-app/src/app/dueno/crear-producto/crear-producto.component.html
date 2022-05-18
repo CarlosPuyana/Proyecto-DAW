@@ -8,7 +8,7 @@
         <h3>Crear Producto</h3>
       </div>
 
-      <form autocomplete="off" [formGroup]="formCreate">
+      <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="registerProducto()">
 
         <div class="form-group form-outline mb-4">
           <label>Nombre del Producto</label>

@@ -63,42 +63,48 @@ public class ProductController {
 	 * @return
 	 */
 	@PostMapping()
-	public ResponseEntity<?> createProduct(@Valid @RequestBody Productos producto, BindingResult result) {
-
-		logger.info("Creando producto");
-
-		Productos prodNuevo = null;
-
-		Map<String, Object> response = new HashMap<>();
-
-		if (result.hasErrors()) {
-
-			List<String> errors = result.getFieldErrors().stream()
-					.map(err -> "El campo '" + err.getField() + "' " + err.getDefaultMessage())
-					.collect(Collectors.toList());
-
-			response.put("errors", errors);
-
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
-
-		}
+//	public ResponseEntity<?> createProduct(@Valid @RequestBody Productos producto, BindingResult result) {
+//
+//		logger.info("Creando producto");
+//
+//		Productos prodNuevo = null;
+//
+//		Map<String, Object> response = new HashMap<>();
+//
+//		if (result.hasErrors()) {
+//
+//			List<String> errors = result.getFieldErrors().stream()
+//					.map(err -> "El campo '" + err.getField() + "' " + err.getDefaultMessage())
+//					.collect(Collectors.toList());
+//
+//			response.put("errors", errors);
+//
+//			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+//
+//		}
+//		
+//		try {
+//			
+//		prodNuevo = prodService.insertarProducto(producto);
+//		} catch (DataAccessException e) {
+//			
+//			response.put("mensaje", "Error al realizar la consulta en la base de datos");
+//			response.put("error", e.getMessage().concat(" : ").concat(e.getMostSpecificCause().getMessage()));
+//
+//			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+//		}
+//
+//		response.put("mensaje", "El producto fue insertado con éxito");
+//		response.put("producto", prodNuevo);
+//
+//		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+//	
+//	}
+	public Productos createProducto(@Valid @RequestBody Productos prod) {
 		
-		try {
-			
-		prodNuevo = prodService.insertarProducto(producto);
-		} catch (DataAccessException e) {
-			
-			response.put("mensaje", "Error al realizar la consulta en la base de datos");
-			response.put("error", e.getMessage().concat(" : ").concat(e.getMostSpecificCause().getMessage()));
-
-			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-
-		response.put("mensaje", "El producto fue insertado con éxito");
-		response.put("producto", prodNuevo);
-
-		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
-	
+		logger.info("Creando producto " + prod.getNombreProducto());
+		
+		return prodService.insertarProducto(prod);
 	}
 
 	
@@ -107,6 +113,8 @@ public class ProductController {
 		
 		Productos productActual = prodService.findProductoByNombreProducto(prod.getNombreProducto());
 		Productos prodUpdate = null;
+		
+		System.out.println(productActual);
 		
 		logger.info("Nombre del restaurante: " + nombreRestaurante);
 		

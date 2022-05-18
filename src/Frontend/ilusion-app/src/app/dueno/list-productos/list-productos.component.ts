@@ -39,6 +39,8 @@ export class ListProductosComponent implements OnInit {
 
     this.productoService.findProductsByRestaurante(id).subscribe({
       next: (resp => {
+        console.log(this.productos + " ajam");
+
         this.productos = resp;
       }), error: (err => {
         Swal.fire('Error', err.error.mensaje, 'error');

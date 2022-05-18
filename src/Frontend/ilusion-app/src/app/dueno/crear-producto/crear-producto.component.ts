@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Producto } from '../../interfaces/producto.interface';
+import { Producto, ProductoResponse } from '../../interfaces/producto.interface';
 import { ProductoService } from '../services/producto.service';
+import Swal from 'sweetalert2';
+import { EmpleadoService } from '../../admin/services/empleado.service';
+import { Index } from '../../index/index';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { RestauranteResponse } from '../../interfaces/restaurante.interface';
 
 @Component({
   selector: 'app-crear-producto',
@@ -11,7 +16,11 @@ import { ProductoService } from '../services/producto.service';
 })
 export class CrearProductoComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private router: Router, private productoService: ProductoService) { }
+  nuevoProducto!: ProductoResponse;
+  idRestaurante!: RestauranteResponse;
+  jwt:JwtHelperService = new JwtHelperService();
+
+  constructor(private formBuilder: FormBuilder, private router: Router, private productoService: ProductoService, private empleadoService: EmpleadoService) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +42,54 @@ export class CrearProductoComponent implements OnInit {
       "precio": this.formCreate.value.precio
     }
 
+    this.productoService.createProducto(data).subscribe({
+      next: racano => {
+
+        this.nuevoProducto = racano;
+        console.log("Aqui entro " + this.nuevoProducto.nombreProducto);
+
+        this.empleadoService.findRestaurante(this.jwt.decodeToken(localStorage.getItem('token')!).id).subscribe({
+          next: resp2 => {
+
+            this.idRestaurante = resp2;
+            console.log("Aqui entro " + this.idRestaurante.nombreRestaurante);
+
+            this.productoService.setRestaurant(this.nuevoProducto, this.idRestaurante.nombreRestaurante).subscribe({
+              next: resp3 => {
+
+              }, error: err => {
+
+                console.log(err);
+
+                if (err.status == 0) {
+
+                  alert('El servidor está inoperativo en estos momentos');
+                } else {
+
+                  Swal.fire('Error!', err.error.mensaje, 'error');
+                }
+
+              }
+            })
+
+          }
+        })
+
+        // Redirigimos a la lista
+        this.router.navigateByUrl("/dashboard/dueno/listProductos")
+
+      }, error: err => {
+        console.log(err);
+
+        if (err.status == 0) {
+
+          alert("El servidor está inoperativo en estos momentos");
+        } else {
+
+          Swal.fire('Error!', err.error.mensaje, 'error');
+        }
+      }
+    })
 
 
   }
