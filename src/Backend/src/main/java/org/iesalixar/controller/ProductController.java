@@ -49,8 +49,6 @@ public class ProductController {
 
 		Empleados empl = empService.findEmpleadoById(id);
 		
-		System.out.println(empl.getNombre());
-
 		if (empl == null) {
 
 			return null;

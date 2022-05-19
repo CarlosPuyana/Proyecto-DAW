@@ -1,7 +1,6 @@
 package org.iesalixar.model;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -95,22 +94,7 @@ public class Productos {
 		return id;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(nombreProducto, id);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Productos other = (Productos) obj;
-		return Objects.equals(nombreProducto, other.nombreProducto) && id == other.id;
-	}
+	
 	
 	
 	

@@ -24,6 +24,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MenubarModule} from 'primeng/menubar';
 import {AccordionModule} from 'primeng/accordion';
 import { EditProductComponent } from './dueno/edit-product/edit-product.component';
+import { CrearMesaComponent } from './dueno/crear-mesa/crear-mesa.component';
+import { ListMesaComponent } from './dueno/list-mesa/list-mesa.component';
 
 
 const routes: Routes = [
@@ -55,7 +57,9 @@ const routes: Routes = [
     ListProductosComponent,
     CrearEmpleadoComponent,
     CrearProductoComponent,
-    EditProductComponent
+    EditProductComponent,
+    CrearMesaComponent,
+    ListMesaComponent
   ],
   imports: [
     TableModule,

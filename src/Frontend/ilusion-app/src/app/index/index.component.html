@@ -72,6 +72,10 @@
         </li>
 
         <li>
+          <a [routerLink]="['/dashboard/dueno/listMesa']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista mesas </a>
+        </li>
+
+        <li>
           <a [routerLink]="['/dashboard/dueno/listProductos']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista productos </a>
           <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO' "> Lista productos </a>
           <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_COCINERO' "> Lista productos </a>

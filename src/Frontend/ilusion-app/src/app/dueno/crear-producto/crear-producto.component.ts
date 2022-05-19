@@ -5,7 +5,6 @@ import { Producto, ProductoResponse } from '../../interfaces/producto.interface'
 import { ProductoService } from '../services/producto.service';
 import Swal from 'sweetalert2';
 import { EmpleadoService } from '../../admin/services/empleado.service';
-import { Index } from '../../index/index';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { RestauranteResponse } from '../../interfaces/restaurante.interface';
 
