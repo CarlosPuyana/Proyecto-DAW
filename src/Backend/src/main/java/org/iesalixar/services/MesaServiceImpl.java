@@ -28,7 +28,7 @@ public class MesaServiceImpl implements MesaService {
 	@Override
 	public Mesa findMesaById(Long id) {
 		
-		return mesaRepo.findMesaById(id);
+		return mesaRepo.findMesaByMesaId(id);
 	}
 
 	@Override

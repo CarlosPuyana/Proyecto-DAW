@@ -1,7 +1,6 @@
 package org.iesalixar.model;
 
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -27,7 +26,7 @@ public class Mesa {
 	private String nombreMesa;
 	
 	@Column(name = "capacidad", nullable = false)
-	private int capacidad;
+	private Integer capacidad;
 	
 	@ManyToOne(targetEntity = Restaurante.class)
 	@JoinColumn( name = "restaurante_id")
@@ -56,11 +55,11 @@ public class Mesa {
 		this.nombreMesa = nombreMesa;
 	}
 
-	public int getCapacidad() {
+	public Integer getCapacidad() {
 		return capacidad;
 	}
 
-	public void setCapacidad(int capacidad) {
+	public void setCapacidad(Integer capacidad) {
 		this.capacidad = capacidad;
 	}
 
@@ -80,22 +79,6 @@ public class Mesa {
 		this.pedidos = pedidos;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(mesaId);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Mesa other = (Mesa) obj;
-		return mesaId == other.mesaId;
-	}
 	
 	
 

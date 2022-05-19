@@ -33,6 +33,7 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/api/v1/users").hasAnyRole("ROLE_ADMIN", "ROLE_DUENO")
 			.antMatchers("/api/v1/products").authenticated()
 			.antMatchers("/api/v1/dashboard").authenticated()
+			.antMatchers("/api/v1/mesas").authenticated()
 			
 			.and()
 			.userDetailsService(usuarioService)

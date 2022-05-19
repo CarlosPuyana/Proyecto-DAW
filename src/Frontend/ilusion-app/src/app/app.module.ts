@@ -41,6 +41,8 @@ const routes: Routes = [
   {path: 'dashboard/dueno/crearEmpleado', component: CrearEmpleadoComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/crearProducto', component: CrearProductoComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/editarProducto/:id', component: EditProductComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
+  {path: 'dashboard/dueno/listMesa', component: ListMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
+  {path: 'dashboard/dueno/crearMesa', component: CrearMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
 ]
 
 @NgModule({

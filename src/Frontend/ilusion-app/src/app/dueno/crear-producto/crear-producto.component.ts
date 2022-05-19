@@ -45,13 +45,11 @@ export class CrearProductoComponent implements OnInit {
       next: racano => {
 
         this.nuevoProducto = racano;
-        console.log("Aqui entro " + this.nuevoProducto.nombreProducto);
 
         this.empleadoService.findRestaurante(this.jwt.decodeToken(localStorage.getItem('token')!).id).subscribe({
           next: resp2 => {
 
             this.idRestaurante = resp2;
-            console.log("Aqui entro " + this.idRestaurante.nombreRestaurante);
 
             this.productoService.setRestaurant(this.nuevoProducto, this.idRestaurante.nombreRestaurante).subscribe({
               next: resp3 => {
