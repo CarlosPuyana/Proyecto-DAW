@@ -8,34 +8,31 @@
       </div>
 
       <p-table #dt [value]="mesas" responsiveLayout="stack" breackpoint="815px" [columns]="cols" selectionMode="single" sortMode="multiple" [(selection)]="selectedMesa"
-      dataKey="id" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,25]" [filterDelay]="0" [globalFilterFields]="['nombreProducto', 'descripcion', 'precio']">
+      dataKey="id" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,25]" [filterDelay]="0" [globalFilterFields]="['nombreMesa', 'capacidad']">
 
         <ng-template pTemplate="header" let-columns>
 
           <tr>
-            <th pSortableColumn="nombreProducto">Producto
-              <p-sortIcon field="nombreProducto"></p-sortIcon>
+            <th pSortableColumn="nombreMesa">Mesa
+              <p-sortIcon field="nombreMesa"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="descripcion">Descripción
-              <p-sortIcon field="descripcion"></p-sortIcon>
+            <th pSortableColumn="capacidad">Capacidad
+              <p-sortIcon field="capacidad"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="precio">Precio
-              <p-sortIcon field="precio"></p-sortIcon>
-            </th>
+
 
           </tr>
 
         </ng-template>
 
-        <ng-template pTemplate="body" let-producto let-columns="producto">
+        <ng-template pTemplate="body" let-mesa let-columns="mesa">
 
-          <tr  [pSelectableRow]="producto">
+          <tr  [pSelectableRow]="mesa">
 
-            <td> <span class="p-column-title" pSortableColumn="nombreProducto"><strong>Producto</strong></span> {{producto.nombreProducto}} </td>
-            <td> <span class="p-column-title" pSortableColumn="descripcion"><strong>Descripción</strong></span> {{producto.descripcion}} </td>
-            <td> <span class="p-column-title" pSortableColumn="nombre"><strong>Precio</strong></span> {{producto.precio}} </td>
+            <td> <span class="p-column-title" pSortableColumn="nombremesa"><strong>Mesa</strong></span> {{mesa.nombreMesa}} </td>
+            <td> <span class="p-column-title" pSortableColumn="capacidad"><strong>Capacidad</strong></span> {{mesa.capacidad}} </td>
 
           </tr>
 

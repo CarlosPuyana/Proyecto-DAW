@@ -23,7 +23,7 @@ export class MesaService {
    */
   findMesasByRestaurante(id: number): Observable<MesaResponse[]> {
 
-    let path = this.url + "/restaurant" + id;
+    let path = this.url + "/restaurant/" + id;
 
     const header = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('token')}`);

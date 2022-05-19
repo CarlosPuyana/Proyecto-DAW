@@ -3,6 +3,8 @@ import { MesaResponse } from '../../interfaces/mesa.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { MenuItem } from 'primeng/api';
 import { Router } from '@angular/router';
+import { MesaService } from '../services/mesa.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list-mesa',
@@ -19,9 +21,11 @@ export class ListMesaComponent implements OnInit {
   items: MenuItem[] = [];
   selectedMesa?: MesaResponse;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private mesaService: MesaService) { }
 
   ngOnInit(): void {
+
+    this.findMesas();
 
     this.items = [
       {
@@ -76,10 +80,20 @@ export class ListMesaComponent implements OnInit {
   }
 
 
+  /**
+   * Te muestra las mesas
+   */
   findMesas() {
     let id = this.findIdUser();
 
+    this.mesaService.findMesasByRestaurante(id).subscribe({
+      next: (resp => {
 
+        this.mesas = resp;
+      }), error: (err => {
+        Swal.fire('Error', err.error.mensaje, 'error');
+      })
+    })
 
   }
 
