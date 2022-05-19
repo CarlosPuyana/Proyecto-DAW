@@ -7,7 +7,9 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.iesalixar.model.Empleados;
 import org.iesalixar.model.Productos;
+import org.iesalixar.services.EmpleadoServiceImpl;
 import org.iesalixar.services.ProductServiceImpl;
 import org.iesalixar.services.RestauranteServiceImpl;
 import org.slf4j.Logger;
@@ -35,6 +37,7 @@ public class ProductController {
 
 	@Autowired ProductServiceImpl prodService;
 	@Autowired RestauranteServiceImpl restService;
+	@Autowired EmpleadoServiceImpl empService;
 
 	/**
 	 * Recoge todos los productos de un restaurante
@@ -44,14 +47,16 @@ public class ProductController {
 	@GetMapping("/restaurant/{id}")
 	public List<Productos> productsRestaurant(@PathVariable Long id) {
 
-		Productos prod = prodService.findProductoById(id);
+		Empleados empl = empService.findEmpleadoById(id);
+		
+		System.out.println(empl.getNombre());
 
-		if (prod == null) {
+		if (empl == null) {
 
 			return null;
 		}
 
-		return prodService.findAllByRestaurante(prod.getRestaurante());
+		return prodService.findAllByRestaurante(empl.getRestaurante());
 
 	}
 
