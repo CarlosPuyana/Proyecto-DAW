@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+
 @RestController
 @RequestMapping("/api/v1/products")
 public class ProductController {
@@ -53,8 +54,6 @@ public class ProductController {
 		return prodService.findAllByRestaurante(prod.getRestaurante());
 
 	}
-	
-	
 
 	/**
 	 * Crea un producto
@@ -68,6 +67,49 @@ public class ProductController {
 		logger.info("Creando producto " + prod.getNombreProducto());
 		
 		return prodService.insertarProducto(prod);
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<?> editProducto(@Valid @RequestBody Productos prod, BindingResult result, @PathVariable Long id) {
+		
+		Productos prodActual = prodService.findProductoById(id);
+		
+		Map<String,Object> response = new HashMap<>();
+		
+		if(result.hasErrors()) {
+			List<String> errors = result.getFieldErrors()
+					.stream()
+					.map(err -> "El campo '"+err.getField() +"' "+err.getDefaultMessage())
+					.collect(Collectors.toList());			
+			
+			response.put("errors", errors);
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+		}
+		
+		if(prodActual == null) {
+			response.put("mensaje", "Error: no se pudo editar. El usuario con ID: ".concat(id.toString().concat(" no existe en la base de datos")));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+		}
+		
+		logger.info("Editando producto: " + prod.getNombreProducto());try {
+			prodActual.setNombreProducto(prod.getNombreProducto());
+			prodActual.setDescripcion(prod.getDescripcion());
+			prodActual.setPrecio(prod.getPrecio());
+			
+			
+			prodService.updateProducto(prodActual);
+		
+		} catch (DataAccessException e) {
+			response.put("mensaje", "Error al actualizar en la base de datos");
+			response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		response.put("mensaje", "El usuario ha sido creado con exito!");
+		response.put("user", prodActual);
+		
+		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
+	
 	}
 
 	
@@ -128,6 +170,32 @@ public class ProductController {
 		response.put("user", prodUpdate);
 		
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getProduct(@PathVariable Long id) {
+		
+		Productos prod = null;
+		
+		Map<String,Object> response = new HashMap<>();
+		
+		try {
+			
+			prod = prodService.findProductoById(id);
+		} catch (DataAccessException e) {
+			
+			response.put("mensaje", "Error al realizar la consulta en la base de datos");
+			response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+		
+		if(prod == null) {
+			
+			response.put("mensaje", "El producto con el ID: ".concat(id.toString().concat(" no existe en la base de datos")));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<Productos>(prod, HttpStatus.OK) ;
 	}
 	
 

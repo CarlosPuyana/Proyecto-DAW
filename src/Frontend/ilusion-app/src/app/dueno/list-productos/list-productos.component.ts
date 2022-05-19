@@ -41,7 +41,8 @@ export class ListProductosComponent implements OnInit {
       },
       {
         label: 'Editar',
-        icon: 'pi pi-fw pi-user-edit'
+        icon: 'pi pi-fw pi-user-edit',
+        command: () => this.crearEditarProducto(true)
       },
       {
         label: "Eliminar",
@@ -58,7 +59,7 @@ export class ListProductosComponent implements OnInit {
 
       if (this.selectedProduct?.id != null) {
 
-        return
+        this.router.navigateByUrl('dashboard/dueno/editarProducto/' + this.selectedProduct?.id)
       } else {
 
         return;

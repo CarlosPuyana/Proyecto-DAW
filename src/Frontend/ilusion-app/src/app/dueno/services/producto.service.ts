@@ -51,6 +51,38 @@ export class ProductoService {
 
   }
 
+  /**
+   * Coge un producto a traves de una id
+   * @param id
+   * @returns
+   */
+  getProducto(id: number): Observable<ProductoResponse> {
+
+    let url = environment.baseUrl + "api/v1/products"
+
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.get<ProductoResponse>(`${url}/${id}`, { headers: header});
+
+  }
+
+  editProducto(prod: Producto, id: number) {
+    let url = environment.baseUrl + "api/v1/products";
+
+    const body = {
+      nombreProducto: prod.nombreProducto,
+      descripcion: prod.descripcion,
+      precio: prod.precio
+    }
+
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.put<ProductoResponse>(`${url}/${id}`, body, {headers: header});
+
+  }
+
 /**
  * Insertas un restaurante a un producto
  * @param prod
