@@ -3,6 +3,8 @@ import { ProductoResponse } from '../../interfaces/producto.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { ProductoService } from '../services/producto.service';
 import Swal from 'sweetalert2';
+import { MenuItem } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-productos',
@@ -14,13 +16,58 @@ export class ListProductosComponent implements OnInit {
 
   productos!: ProductoResponse[];
   producto!: ProductoResponse;
-  selected!: ProductoResponse;
   jwt:JwtHelperService = new JwtHelperService();
 
-  constructor(private productoService: ProductoService) { }
+  cols: any[] = [];
+  items: MenuItem[] = [];
+  selectedProduct?: ProductoResponse;
+
+  constructor(private productoService: ProductoService, private router: Router) { }
 
   ngOnInit(): void {
     this.findProductos();
+
+    this.cols = [
+      {field: "nombreProducto", header: "Producto"},
+      {field: "descripcion", header: "Descripción"},
+      {field: "precio", header: "Precio"},
+    ]
+
+    this.items = [
+      {
+        label: "Nuevo",
+        icon: 'pi pi-fw pi-user-plus',
+        command: () => this.crearEditarProducto(false)
+      },
+      {
+        label: 'Editar',
+        icon: 'pi pi-fw pi-user-edit'
+      },
+      {
+        label: "Eliminar",
+        icon: "pi pi-trash"
+      }
+    ]
+
+  }
+
+
+  crearEditarProducto(editar: boolean) {
+
+    if (editar) {
+
+      if (this.selectedProduct?.id != null) {
+
+        return
+      } else {
+
+        return;
+      }
+
+    } else {
+
+      this.router.navigateByUrl('dashboard/dueno/crearProducto')
+    }
   }
 
   /**

@@ -1,63 +1,53 @@
 <app-index></app-index>
 <div class="container p-5 flex text-center bg-white">
   <div class="card">
-    <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <p-table #dt [value]="productos" responsiveLayout="stack" breackpoint="815px">
+    <p-panel header="Administración de Productos">
 
-        <ng-template pTemplate="caption">
-          <div style="text-align: right">
-            <button class="btn float-left edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Añadir usuario</button>
-            <i class="bi bi-search-heart"></i>
+      <div style="margin-bottom: 20px;">
+        <p-menubar [model]="items"></p-menubar>
+      </div>
 
-            <button class="btn float-right edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Excel</button>
-            <i class="bi bi-search-heart"></i>
-          </div>
-        </ng-template>
+      <p-table #dt [value]="productos" responsiveLayout="stack" breackpoint="815px" [columns]="cols" selectionMode="single" sortMode="multiple" [(selection)]="selectedProduct"
+      dataKey="id" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,25]" [filterDelay]="0" [globalFilterFields]="['nombreProducto', 'descripcion', 'precio']">
 
         <ng-template pTemplate="header" let-columns>
+
           <tr>
-
-            <th pSortableColumn="usuario">Usuario
-              <p-sortIcon field="usuario"></p-sortIcon>
+            <th pSortableColumn="nombreProducto">Producto
+              <p-sortIcon field="nombreProducto"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="email">Email
-              <p-sortIcon field="email"></p-sortIcon>
+            <th pSortableColumn="descripcion">Descripción
+              <p-sortIcon field="descripcion"></p-sortIcon>
             </th>
 
-            <th pSortableColumn="nombre">Nombre
-              <p-sortIcon field="nombre"></p-sortIcon>
-            </th>
-
-
-            <th pSortableColumn="apellidos">Apellidos
-              <p-sortIcon field="apellidos"></p-sortIcon>
-            </th>
-
-
-            <th pSortableColumn="role">Role
-              <p-sortIcon field="role"></p-sortIcon>
+            <th pSortableColumn="precio">Precio
+              <p-sortIcon field="precio"></p-sortIcon>
             </th>
 
           </tr>
 
         </ng-template>
 
-        <ng-template pTemplate="body" let-user let-columns="user">
+        <ng-template pTemplate="body" let-producto let-columns="producto">
 
-          <tr>
+          <tr  [pSelectableRow]="producto">
 
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{user.userName}} </td>
-            <td> <span class="p-column-title" pSortableColumn="email"><strong>Email</strong></span> {{user.email}} </td>
-            <td> <span class="p-column-title" pSortableColumn="nombre"><strong>Nombre</strong></span> {{user.nombre}} </td>
-            <td> <span class="p-column-title" pSortableColumn="apellidos"><strong>Apellidos</strong></span> {{user.apellidos}} </td>
-            <td> <span class="p-column-title" pSortableColumn="role"><strong>Rol</strong></span> {{user.role}} </td>
+            <td> <span class="p-column-title" pSortableColumn="nombreProducto"><strong>Producto</strong></span> {{producto.nombreProducto}} </td>
+            <td> <span class="p-column-title" pSortableColumn="descripcion"><strong>Descripción</strong></span> {{producto.descripcion}} </td>
+            <td> <span class="p-column-title" pSortableColumn="nombre"><strong>Precio</strong></span> {{producto.precio}} </td>
 
           </tr>
 
+        </ng-template>
+
+        <ng-template pTemplate="footer" >
+          <th style="position: relative; left: 70%;">
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar" />
+          </th>
         </ng-template>
 
       </p-table>
-    </div>
+    </p-panel>
   </div>
 </div>

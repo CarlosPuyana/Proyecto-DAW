@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -10,7 +9,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { IndexComponent } from './index/index.component';
 import { AdminComponent } from './admin/createUser/admin.component';
 import { ListUserComponent } from './admin/listUser/list-user.component';
-import {TableModule} from 'primeng/table';
 import { ListRestComponent } from './admin/listRestaurant/list-rest.component';
 import { CreateRestaurantComponent } from './admin/create-restaurant/create-restaurant.component';
 import { ListEmpleadosComponent } from './dueno/list-empleados/list-empleados.component';
@@ -19,6 +17,12 @@ import { AuthGuard } from './guards/auth.guard';
 import { RoleGuard } from './guards/role.guard';
 import { CrearEmpleadoComponent } from './dueno/crear-empleado/crear-empleado.component';
 import { CrearProductoComponent } from './dueno/crear-producto/crear-producto.component';
+
+import {TableModule} from 'primeng/table';
+import {PanelModule} from 'primeng/panel';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MenubarModule} from 'primeng/menubar';
+import {AccordionModule} from 'primeng/accordion';
 
 
 const routes: Routes = [
@@ -56,6 +60,10 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PanelModule,
+    BrowserAnimationsModule,
+    MenubarModule,
+    AccordionModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],
