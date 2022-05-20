@@ -1,48 +1,35 @@
-  <div class="body">
-  <div>
-      <h1>La Ilusión</h1>
-    </div>
 
-    <div class="w-100">
+<div class="container-fluid">
+  <div class="row no-gutter">
+      <div class="col-md-6 d-none d-md-flex bg-image"></div>
 
-      <div class="row  justify-content-center vh-100">
-        <div class="col-3 text-center bg-black bg-opacity-75" style="height: 550px;">
+      <div class="col-md-6 bg-light">
+          <div class="login d-flex align-items-center py-5">
 
-          <div class="formulario">
-            <div class="form-titulo">
-              <h3 class="text-light">Iniciar sesión</h3>
-            </div>
-
-            <form [formGroup]="dataLogin" (ngSubmit)="login()" >
-
-              <div class="form-grupo">
-                <input formControlName="email" type="text" name="correo" placeholder="Correo" class="rounded p-2" id="correo " name="correo" autofocus required /> <!-- [(ngModel)]="empleado.email" -->
-              </div>
-
-              <div class="form-grupo">
-                <input formControlName="password" type="password" name="password" placeholder="Contraseña" class="rounded p-2" id="password" name="password" required  /> <!-- [(ngModel)]="empleado.password" -->
-              </div>
-
-              <div class="form-boton">
-                <input (click)="login()" type="submit" value="Iniciar sesión" class="boton btn btn-danger" />
-              </div>
-
-              <div class="form-grupo">
-                <input type="checkbox" id="gridCheck" checked> <label class="text-light" id="check-label">Recuérdame</label>
-                <label class="text-light" id="help-label">¿Necesitas ayuda?</label>
-              </div>
-
-              <div class="form-grupo" style="width: 300px; text-align: center;">
-
-                <label id="label-registro">¿Todavía sin cuenta? </label> <a class="text-light" style="text-decoration: none; font-size: 13px;">Contácta con un administrador</a>
-
-              </div>
-
-            </form>
+              <div class="container">
+                  <div class="row">
+                      <div class="col-lg-10 col-xl-7 mx-auto">
+                          <img src="./assets/img/Logo-PhotoRoom.png" alt="" style="position: relative; bottom: 10%;">
+                          <h3 class="display-4" style="margin-bottom: 10%; ">Iniciar Sesión</h3>
+                          <form [formGroup]="dataLogin" (ngSubmit)="login()">
+                              <div class="form-group mb-3">
+                                  <input formControlName="email" id="inputEmail" type="email" placeholder="Correo electrónico" class="form-control rounded-pill border-0 shadow-sm px-4" autofocus required>
+                              </div>
+                              <div class="form-group mb-3">
+                                  <input formControlName="password" id="inputPassword" type="password" placeholder="Contraseña" class="form-control rounded-pill border-0 shadow-sm px-4 text-primary" autofocus required>
+                              </div>
+                              <div class="custom-control custom-checkbox mb-3">
+                                  <input id="customCheck1" type="checkbox" checked class="custom-control-input">
+                                  <label for="customCheck1" class="custom-control-label">Recuérdame</label>
+                              </div>
+                              <button type="submit" class="btn btn-primary btn-block text-uppercase mb-2 rounded-pill shadow-sm" style="background-color: #3768F3;">Iniciar sesión</button>
+                              <div class="text-center d-flex justify-content-center mt-4"><p class="text-center"><a href="#" class="font-italic text-muted">¿Necesitas ayuda?
+                                      </a> <br> ¿Todavía sin cuenta? <a class="font-italic text-muted">Contácta con un administrador</a> </p></div>
+                          </form>
+                      </div>
+                  </div>
 
           </div>
-        </div>
-      </div>
 
-    </div>
+  </div>
 </div>

@@ -108,7 +108,7 @@ public class ProductController {
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		
-		response.put("mensaje", "El usuario ha sido creado con exito!");
+		response.put("mensaje", "El producto ha sido creado con exito!");
 		response.put("user", prodActual);
 		
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);

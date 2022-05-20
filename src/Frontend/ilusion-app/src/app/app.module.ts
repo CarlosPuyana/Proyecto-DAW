@@ -26,6 +26,7 @@ import {AccordionModule} from 'primeng/accordion';
 import { EditProductComponent } from './dueno/edit-product/edit-product.component';
 import { CrearMesaComponent } from './dueno/crear-mesa/crear-mesa.component';
 import { ListMesaComponent } from './dueno/list-mesa/list-mesa.component';
+import { EditUserComponent } from './admin/edit-user/edit-user.component';
 
 
 const routes: Routes = [
@@ -33,6 +34,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'dashboard', component: IndexComponent, canActivate: [AuthGuard]},
   {path: 'dashboard/admin/createUser', component: AdminComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
+  {path: 'dashboard/admin/editarUser/:id', component: EditUserComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
   {path: 'dashboard/admin/listUsers', component: ListUserComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
   {path: 'dashboard/admin/listRestaurants', component: ListRestComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
   {path: 'dashboard/admin/createRestaurant', component: CreateRestaurantComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
@@ -61,7 +63,8 @@ const routes: Routes = [
     CrearProductoComponent,
     EditProductComponent,
     CrearMesaComponent,
-    ListMesaComponent
+    ListMesaComponent,
+    EditUserComponent
   ],
   imports: [
     TableModule,

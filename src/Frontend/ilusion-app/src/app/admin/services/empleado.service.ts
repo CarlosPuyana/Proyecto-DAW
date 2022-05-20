@@ -131,4 +131,21 @@ export class EmpleadoService {
     return this.http.put<AuthResponse>(path, body, {headers: header});
   }
 
+  editUser(user: Empleado, id: number) {
+    let path = this.url
+
+    const body = {
+
+      nombre: user.nombre,
+      apellidos: user.apellidos,
+      role: user.role
+    }
+
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.put<EmpleadoResponse>(`${path}/${id}`, body, {headers: header});
+
+  }
+
 }
