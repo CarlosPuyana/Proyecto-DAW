@@ -28,6 +28,8 @@ import { CrearMesaComponent } from './dueno/crear-mesa/crear-mesa.component';
 import { ListMesaComponent } from './dueno/list-mesa/list-mesa.component';
 import { EditUserComponent } from './admin/edit-user/edit-user.component';
 import { EditMesaComponent } from './dueno/edit-mesa/edit-mesa.component';
+import { ListPedidosComponent } from './camarero/list-pedidos/list-pedidos.component';
+import { ListarProductosComponent } from './camarero/listar-productos/listar-productos.component';
 
 
 const routes: Routes = [
@@ -39,6 +41,7 @@ const routes: Routes = [
   {path: 'dashboard/admin/listUsers', component: ListUserComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
   {path: 'dashboard/admin/listRestaurants', component: ListRestComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
   {path: 'dashboard/admin/createRestaurant', component: CreateRestaurantComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_ADMIN'}},
+
   {path: 'dashboard/dueno/listEmpleados', component: ListEmpleadosComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/listProductos', component: ListProductosComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/crearEmpleado', component: CrearEmpleadoComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
@@ -47,6 +50,8 @@ const routes: Routes = [
   {path: 'dashboard/dueno/listMesa', component: ListMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/crearMesa', component: CrearMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/editarMesa/:id', component: EditMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
+
+  {path: 'dashboard/camarero/listProductos', component: ListarProductosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
 ]
 
 @NgModule({
@@ -67,7 +72,9 @@ const routes: Routes = [
     CrearMesaComponent,
     ListMesaComponent,
     EditUserComponent,
-    EditMesaComponent
+    EditMesaComponent,
+    ListPedidosComponent,
+    ListarProductosComponent
   ],
   imports: [
     TableModule,
