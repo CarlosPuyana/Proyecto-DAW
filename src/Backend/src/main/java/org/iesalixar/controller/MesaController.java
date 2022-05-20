@@ -60,6 +60,89 @@ public class MesaController {
 	}
 	
 	/**
+	 * Coge una mesa
+	 * @param id
+	 * @return
+	 */
+	@GetMapping("/{id}")
+	public ResponseEntity<?> getMesa(@PathVariable Long id) {
+		
+		Mesa mesa = null;
+		
+		Map<String,Object> response = new HashMap<>();
+		
+		try {
+			
+			logger.info("Buscando la mesa con id: " + id);
+			mesa = mesaService.findMesaById(id);
+		} catch (DataAccessException e) {
+			
+			response.put("mensaje", "Error al realizar la consulta en la base de datos");
+			response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+		
+		if(mesa == null) {
+			
+			response.put("mensaje", "La mesa con el ID: ".concat(id.toString().concat(" no existe en la base de datos")));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<Mesa>(mesa, HttpStatus.OK) ;
+	}
+	
+	/**
+	 * Editar una mesa en concreto
+	 * @param prod
+	 * @param result
+	 * @param id
+	 * @return
+	 */
+	@PutMapping("/{id}")
+	public ResponseEntity<?> editMesa(@Valid @RequestBody Mesa mesa, BindingResult result, @PathVariable Long id) {
+		
+		Mesa mesaActual = mesaService.findMesaById(id);
+		
+		Map<String,Object> response = new HashMap<>();
+		
+		if(result.hasErrors()) {
+			List<String> errors = result.getFieldErrors()
+					.stream()
+					.map(err -> "El campo '"+err.getField() +"' "+err.getDefaultMessage())
+					.collect(Collectors.toList());			
+			
+			response.put("errors", errors);
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.BAD_REQUEST);
+		}
+		
+		if(mesaActual == null) {
+			response.put("mensaje", "Error: no se pudo editar. La mesa con ID: ".concat(id.toString().concat(" no existe en la base de datos")));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+		}
+		
+		logger.info("Editando producto: " + mesa.getNombreMesa());
+		
+		try {
+			mesaActual.setNombreMesa(mesa.getNombreMesa());
+			mesaActual.setCapacidad(mesa.getCapacidad());
+			
+			
+			mesaService.updateMesa(mesaActual);
+		
+		} catch (DataAccessException e) {
+			response.put("mensaje", "Error al actualizar en la base de datos");
+			response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		response.put("mensaje", "La mesa ha sido editado con exito!");
+		response.put("user", mesaActual);
+		
+		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
+	
+	}
+	
+	/**
 	 * Crea un mesa
 	 * @param mesa
 	 * @return

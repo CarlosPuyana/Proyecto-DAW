@@ -1,0 +1,32 @@
+<app-index></app-index>
+
+<div class="container p-4 bg-white">
+
+  <div class="rounded d-flex justify-content-center">
+    <div class="col-md-4 col-sm-12 col-xl-5 shadow-lg p-5 bg-light">
+      <div class="text-center">
+        <h3>Editar Mesa</h3>
+      </div>
+
+      <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="editMesa()">
+
+        <div class="form-group form-outline mb-4">
+          <label>Nombre de la Mesa</label>
+          <input type="text" placeholder={{mesa.nombreMesa}} class="form-control" formControlName="nombreMesa">
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label>Capacidad de la mesa</label>
+          <input type="number" placeholder={{mesa.capacidad}} class="form-control" formControlName="capacidad">
+        </div>
+
+        <br>
+        <button class="btn btn-primary" type="submit" >Añadir</button>
+
+      </form>
+
+    </div>
+
+
+  </div>
+</div>

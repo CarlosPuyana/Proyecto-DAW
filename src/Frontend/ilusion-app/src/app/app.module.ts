@@ -27,6 +27,7 @@ import { EditProductComponent } from './dueno/edit-product/edit-product.componen
 import { CrearMesaComponent } from './dueno/crear-mesa/crear-mesa.component';
 import { ListMesaComponent } from './dueno/list-mesa/list-mesa.component';
 import { EditUserComponent } from './admin/edit-user/edit-user.component';
+import { EditMesaComponent } from './dueno/edit-mesa/edit-mesa.component';
 
 
 const routes: Routes = [
@@ -45,6 +46,7 @@ const routes: Routes = [
   {path: 'dashboard/dueno/editarProducto/:id', component: EditProductComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/listMesa', component: ListMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
   {path: 'dashboard/dueno/crearMesa', component: CrearMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
+  {path: 'dashboard/dueno/editarMesa/:id', component: EditMesaComponent, canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_DUENO'}},
 ]
 
 @NgModule({
@@ -64,7 +66,8 @@ const routes: Routes = [
     EditProductComponent,
     CrearMesaComponent,
     ListMesaComponent,
-    EditUserComponent
+    EditUserComponent,
+    EditMesaComponent
   ],
   imports: [
     TableModule,

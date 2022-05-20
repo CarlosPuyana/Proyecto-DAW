@@ -72,6 +72,13 @@ public class ProductController {
 		return prodService.insertarProducto(prod);
 	}
 	
+	/**
+	 * Editar un producto en concreto
+	 * @param prod
+	 * @param result
+	 * @param id
+	 * @return
+	 */
 	@PutMapping("/{id}")
 	public ResponseEntity<?> editProducto(@Valid @RequestBody Productos prod, BindingResult result, @PathVariable Long id) {
 		
@@ -90,11 +97,13 @@ public class ProductController {
 		}
 		
 		if(prodActual == null) {
-			response.put("mensaje", "Error: no se pudo editar. El usuario con ID: ".concat(id.toString().concat(" no existe en la base de datos")));
+			response.put("mensaje", "Error: no se pudo editar. El producto con ID: ".concat(id.toString().concat(" no existe en la base de datos")));
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
 		}
 		
-		logger.info("Editando producto: " + prod.getNombreProducto());try {
+		logger.info("Editando producto: " + prod.getNombreProducto());
+		
+		try {
 			prodActual.setNombreProducto(prod.getNombreProducto());
 			prodActual.setDescripcion(prod.getDescripcion());
 			prodActual.setPrecio(prod.getPrecio());

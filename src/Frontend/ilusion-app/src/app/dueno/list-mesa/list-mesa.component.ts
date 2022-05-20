@@ -27,6 +27,9 @@ export class ListMesaComponent implements OnInit {
 
     this.findMesas();
 
+
+
+
     this.items = [
       {
         label: "Nuevo",
@@ -63,7 +66,7 @@ export class ListMesaComponent implements OnInit {
         return;
       }
     } else {
-
+      console.log(this.selectedMesa);
       this.router.navigateByUrl('dashboard/dueno/crearMesa')
     }
   }

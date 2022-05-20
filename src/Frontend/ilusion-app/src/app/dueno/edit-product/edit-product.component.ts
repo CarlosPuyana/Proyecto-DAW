@@ -5,7 +5,6 @@ import { EmpleadoService } from '../../admin/services/empleado.service';
 import { ProductoService } from '../services/producto.service';
 import { ProductoResponse, Producto } from '../../interfaces/producto.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { RestauranteResponse } from '../../interfaces/restaurante.interface';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -16,7 +15,6 @@ import Swal from 'sweetalert2';
 export class EditProductComponent implements OnInit {
 
   producto!: ProductoResponse;
-  idRestaurante!: RestauranteResponse;
   jwt:JwtHelperService = new JwtHelperService();
   errores:string[]=[];
   id!: number;
@@ -26,6 +24,10 @@ export class EditProductComponent implements OnInit {
   ngOnInit(): void {
   this.cargarProducto();
   }
+
+  /**
+   * Carga la info del producto a editar
+   */
   cargarProducto() {
 
     this.activatedRoute.params.subscribe(params => {
@@ -47,9 +49,6 @@ export class EditProductComponent implements OnInit {
 
   editProducto(){
 
-    console.log(this.formCreate.value.nombreProducto);
-
-
     const data: Producto = {
       "nombreProducto": this.formCreate.value.nombreProducto,
       "descripcion": this.formCreate.value.descripcion,
@@ -61,7 +60,7 @@ export class EditProductComponent implements OnInit {
       next: producto => {
 
         this.router.navigateByUrl('dashboard/dueno/listProductos');
-        Swal.fire('Usuario Actualizado', `Usuario ${this.producto.nombreProducto} actualizado con éxtio!`, 'success')
+        Swal.fire('Producto Actualizado', `Producto ${this.producto.nombreProducto} actualizado con éxtio!`, 'success')
       }, error: err => {
 
         this.errores=err.error.errors as string[];

@@ -65,4 +65,36 @@ export class MesaService {
     return this.http.put<AuthResponse>(path, body);
   }
 
+  /**
+   * Coge una mesa
+   * @param id
+   */
+  getMesa(id: number): Observable<MesaResponse> {
+    let path = this.url;
+
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.get<MesaResponse>(`${path}/${id}`, { headers: header});
+
+  }
+
+  editMesa(mesa: Mesa, id: number) {
+
+    let path = this.url;
+
+    const body = {
+
+      nombreMesa: mesa.nombreMesa,
+      capacidad: mesa.capacidad
+    }
+
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.put<MesaResponse>(`${path}/${id}`, body, {headers: header});
+
+
+  }
+
 }
