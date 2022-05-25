@@ -6,6 +6,7 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,10 +32,10 @@ public class Productos {
 	@Column(name = "precio")
 	private Double precio;
 	
-	@OneToMany(mappedBy = "producto", cascade=CascadeType.ALL, orphanRemoval=true)
+	@OneToMany(mappedBy = "producto", cascade=CascadeType.ALL, orphanRemoval=true,  fetch = FetchType.LAZY)
 	private Set<Pedido> pedidos = new HashSet<>();
 	
-	@ManyToOne(targetEntity = Restaurante.class)
+	@ManyToOne(targetEntity = Restaurante.class,  fetch = FetchType.LAZY)
 	@JoinColumn(name = "restaurante_id")
 	private Restaurante restaurante;
 	

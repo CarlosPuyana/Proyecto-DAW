@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v1/mesas")
 public class MesaController {
@@ -39,11 +41,12 @@ public class MesaController {
 	@Autowired EmpleadoServiceImpl empService;
 	
 	/**
-	 * Recoge todos las mesas de un producto
+	 * Recoge todos las mesas de un restaurante
 	 * @param id
 	 * @return
 	 */
 	@GetMapping("/restaurant/{id}")
+	@ApiOperation(value = "Recoge todas las mesas de un restaurante", produces = "application/json", response = Mesa.class)
 	public List<Mesa> mesasRestaurant(@PathVariable Long id) {
 		
 		Empleados empl = empService.findEmpleadoById(id);
@@ -65,6 +68,7 @@ public class MesaController {
 	 * @return
 	 */
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Recoge una mesa", produces = "application/json", response = Mesa.class)
 	public ResponseEntity<?> getMesa(@PathVariable Long id) {
 		
 		Mesa mesa = null;
@@ -99,6 +103,7 @@ public class MesaController {
 	 * @return
 	 */
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Edita una mesa en concreto", produces = "application/json", response = Mesa.class)
 	public ResponseEntity<?> editMesa(@Valid @RequestBody Mesa mesa, BindingResult result, @PathVariable Long id) {
 		
 		Mesa mesaActual = mesaService.findMesaById(id);
@@ -148,6 +153,7 @@ public class MesaController {
 	 * @return
 	 */
 	@PostMapping()
+	@ApiOperation(value = "Crear una mesa", produces = "application/json", response = Mesa.class)
 	public Mesa createMesa(@Valid @RequestBody Mesa mesa) {
 		
 		logger.info("Creando mesa " + mesa.getNombreMesa());
@@ -155,15 +161,22 @@ public class MesaController {
 		return mesaService.insertarMesa(mesa);
 		
 	}
-	
+	/**
+	 * Inserta una mesa a un restaurante
+	 * @param mesa
+	 * @param nombreRestaurante
+	 * @param result
+	 * @return
+	 */
 	@PutMapping("/restaurant")
+	@ApiOperation(value = "Inserta una mesa a un restaurante", produces = "application/json", response = Mesa.class)
 	public ResponseEntity<?> updateRestaurante(@Valid @RequestBody Mesa mesa, @RequestParam String nombreRestaurante , BindingResult result) {
 		
 		Mesa mesaActual = mesaService.findProductoByNombreMesa(mesa.getNombreMesa());
 		Mesa mesaUpdate = null;
 		
 		logger.info("Nombre del restaurante: " + nombreRestaurante);
-Map<String, Object> response = new HashMap<>();
+		Map<String, Object> response = new HashMap<>();
 		
 		if (result.hasErrors()) {
 			
@@ -178,7 +191,7 @@ Map<String, Object> response = new HashMap<>();
 		
 		if (mesaActual == null ) {
 			
-			response.put("mensaje", "Error: no se pudo editar. El producto  no existe en la base de datos");
+			response.put("mensaje", "Error: no se pudo editar. La mesa  no existe en la base de datos");
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
 		}
 		

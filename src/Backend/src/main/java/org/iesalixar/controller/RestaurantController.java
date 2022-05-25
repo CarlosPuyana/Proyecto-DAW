@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v1/restaurants")
 public class RestaurantController {
@@ -29,6 +31,7 @@ public class RestaurantController {
 	
 	
 	@GetMapping()
+	@ApiOperation(value = "Recoge todos los restaurantes", produces = "application/json", response = Restaurante.class)
 	public List<Restaurante> restaurants() {
 		
 		return restService.findAll();
@@ -42,6 +45,7 @@ public class RestaurantController {
 	 */
 	@PostMapping()
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@ApiOperation(value = "Crea un restaurante", produces = "application/json", response = Restaurante.class)
 	public ResponseEntity<?> crearRestaurante(@Valid @RequestBody Restaurante restaurante, BindingResult result) {
 		
 		System.out.println("Creando Restaurante");

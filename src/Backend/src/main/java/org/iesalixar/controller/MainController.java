@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v1/auth")
 public class MainController {
@@ -32,6 +34,7 @@ public class MainController {
 	 * @return
 	 */
 	@PostMapping("/login")
+	@ApiOperation(value = "Logea un usuario", produces = "application/json")
 	public Map<String, Object> loginHandler(@RequestBody LoginCredentials body) {
 
 		

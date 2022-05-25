@@ -27,6 +27,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v1/users")
 public class UserController {
@@ -44,6 +46,7 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping()
+	@ApiOperation(value = "Recoge todos los empleados", produces = "application/json", response = Empleados.class)
 	public List<Empleados> users() {
 
 		return empleadoService.findAll();
@@ -58,6 +61,7 @@ public class UserController {
 	 */
 	@PostMapping()
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@ApiOperation(value = "Crea un empleado", produces = "application/json", response = Empleados.class)
 	public ResponseEntity<?> crearUsuario(@Valid @RequestBody Empleados empleado, BindingResult result) {
 
 		logger.info("Creando usuario");
@@ -103,6 +107,7 @@ public class UserController {
 	 * @return
 	 */
 	@GetMapping("/roles")
+	@ApiOperation(value = "Recoge una lista de empleados segun el rol", produces = "application/json", response = Empleados.class)
 	public List<Empleados> duenos(@RequestParam String role) {
 
 		logger.info("Buscando empleados por rol: " + role);
@@ -119,6 +124,7 @@ public class UserController {
 	 * @return
 	 */
 	@PutMapping("/restaurant")
+	@ApiOperation(value = "Inserta un restaurante a un usuario", produces = "application/json", response = Empleados.class)
 	public ResponseEntity<?> updateRestaurante(@Valid @RequestBody Empleados user,
 			@RequestParam String nombreRestaurante, BindingResult result) {
 
@@ -177,7 +183,13 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 	}
 
+	/**
+	 * Recoge todos los empleados de un restaurante
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/restaurant/{id}")
+	@ApiOperation(value = "Recoge los empleados de un restaurante", produces = "application/json", response = Empleados.class)
 	public List<Empleados> usersRestaurant(@PathVariable Long id) {
 
 		Empleados empl = empleadoService.findEmpleadoById(id);
@@ -185,7 +197,13 @@ public class UserController {
 		return empleadoService.findAllByRestaurante(empl.getRestaurante());
 	}
 
+	/**
+	 * Recoge un empleado en concreto
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Recoge un empleado en concreto", produces = "application/json", response = Empleados.class)
 	public Empleados getEmpleado(@PathVariable Long id) {
 
 		return empleadoService.findEmpleadoById(id);
@@ -199,6 +217,7 @@ public class UserController {
 	 * @return
 	 */
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Edita un usuario", produces = "application/json", response = Empleados.class)
 	public ResponseEntity<?> editUser(@Valid @RequestBody Empleados empl, BindingResult result, @PathVariable Long id) {
 
 		Empleados emplActual = empleadoService.findEmpleadoById(id);

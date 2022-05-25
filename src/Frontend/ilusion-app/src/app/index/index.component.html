@@ -88,7 +88,7 @@
         </li>
 
         <li>
-          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO'"> Crear pedido </a>
+          <a [routerLink]="['/dashboard/camarero/crearPedido']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO'"> Crear pedido </a>
         </li>
 
       </ul>

@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 @RestController
 @RequestMapping("/api/v1/duenos")
 public class DuenoController {
@@ -46,6 +48,7 @@ public class DuenoController {
 	 */
 	@PostMapping()
 	@ResponseStatus(code = HttpStatus.CREATED)
+	@ApiOperation(value = "Crear un empleado", produces = "application/json", response = Empleados.class)
 	public ResponseEntity<?> crearEmpleado(@Valid @RequestBody Empleados empleado, BindingResult result) {
 		
 		logger.info("Creando empleado");
@@ -95,6 +98,7 @@ public class DuenoController {
 	 * @return
 	 */
 	@PutMapping("/restaurant")
+	@ApiOperation(value = "Inserta un restaurante a un empleado", produces = "application/json", response = Empleados.class)
 	public ResponseEntity<?> updateRestaurante(@Valid @RequestBody Empleados user, @RequestParam String nombreRestaurante , BindingResult result) {
 		
 		System.out.println(user);
@@ -155,7 +159,13 @@ public class DuenoController {
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 	}
 	
+	/**
+	 * Recoge el restaurante de un empleado
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/restaurant/{id}")
+	@ApiOperation(value = "Recoge el restaurante de un empleado", produces = "application/json", response = Restaurante.class)
 	public Restaurante getRestaurante(@PathVariable Long id) {
 		
 		Empleados nuevo = empleadoService.findEmpleadoById(id);
@@ -167,7 +177,13 @@ public class DuenoController {
 		return rest;
 	}
 	
+	/**
+	 * Usuario con Rol Dueño crea un empleado
+	 * @param empleado
+	 * @return
+	 */
 	@PostMapping("/empleado")
+	@ApiOperation(value = "Usuario con Rol Dueño crea un empleado", produces = "application/json", response = Empleados.class)
 	public Empleados createEmpleado(@Valid @RequestBody Empleados empleado) {
 		
 		logger.info("Creando empleado");

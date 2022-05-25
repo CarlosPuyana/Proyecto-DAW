@@ -28,6 +28,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+
 
 @RestController
 @RequestMapping("/api/v1/products")
@@ -45,6 +47,7 @@ public class ProductController {
 	 * @return
 	 */
 	@GetMapping("/restaurant/{id}")
+	@ApiOperation(value = "Recoge todos los productos de un restaurante", produces = "application/json", response = Productos.class)
 	public List<Productos> productsRestaurant(@PathVariable Long id) {
 
 		Empleados empl = empService.findEmpleadoById(id);
@@ -65,6 +68,7 @@ public class ProductController {
 	 * @return
 	 */
 	@PostMapping()
+	@ApiOperation(value = "Crea un producto", produces = "application/json", response = Productos.class)
 	public Productos createProducto(@Valid @RequestBody Productos prod) {
 		
 		logger.info("Creando producto " + prod.getNombreProducto());
@@ -80,6 +84,7 @@ public class ProductController {
 	 * @return
 	 */
 	@PutMapping("/{id}")
+	@ApiOperation(value = "Edita un producto en concreto", produces = "application/json", response = Productos.class)
 	public ResponseEntity<?> editProducto(@Valid @RequestBody Productos prod, BindingResult result, @PathVariable Long id) {
 		
 		Productos prodActual = prodService.findProductoById(id);
@@ -124,8 +129,15 @@ public class ProductController {
 	
 	}
 
-	
+	/**
+	 * Inserta un producto a un restaurante
+	 * @param prod
+	 * @param nombreRestaurante
+	 * @param result
+	 * @return
+	 */
 	@PutMapping("/restaurant")
+	@ApiOperation(value = "Inserta un producto a un restaurante", produces = "application/json", response = Productos.class)
 	public ResponseEntity<?> updateRestaurante(@Valid @RequestBody Productos prod, @RequestParam String nombreRestaurante , BindingResult result) {
 		
 		Productos productActual = prodService.findProductoByNombreProducto(prod.getNombreProducto());
@@ -184,7 +196,13 @@ public class ProductController {
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 	}
 	
+	/**
+	 * Recoge un producto en concreto
+	 * @param id
+	 * @return
+	 */
 	@GetMapping("/{id}")
+	@ApiOperation(value = "Recoge un producto en concreto", produces = "application/json", response = Productos.class)
 	public ResponseEntity<?> getProduct(@PathVariable Long id) {
 		
 		Productos prod = null;
