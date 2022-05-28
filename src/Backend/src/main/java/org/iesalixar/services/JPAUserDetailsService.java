@@ -4,7 +4,6 @@ import java.util.Collections;
 import java.util.Optional;
 
 import org.iesalixar.model.Empleados;
-import org.iesalixar.model.JPAUserDetails;
 import org.iesalixar.repositories.EmpleadoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

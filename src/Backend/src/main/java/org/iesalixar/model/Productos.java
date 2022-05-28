@@ -1,9 +1,7 @@
 package org.iesalixar.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.io.Serializable;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,12 +10,16 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import lombok.Data;
 
 @Entity
 @Table(name = "productos")
-public class Productos {
+@Data
+public class Productos implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,9 +34,6 @@ public class Productos {
 	@Column(name = "precio")
 	private Double precio;
 	
-	@OneToMany(mappedBy = "producto", cascade=CascadeType.ALL, orphanRemoval=true,  fetch = FetchType.LAZY)
-	private Set<Pedido> pedidos = new HashSet<>();
-	
 	@ManyToOne(targetEntity = Restaurante.class,  fetch = FetchType.LAZY)
 	@JoinColumn(name = "restaurante_id")
 	private Restaurante restaurante;
@@ -42,61 +41,5 @@ public class Productos {
 	public Productos() {
 		// TODO Auto-generated constructor stub
 	}
-
-	public String getNombreProducto() {
-		return nombreProducto;
-	}
-
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
-	}
-
-	public String getDescripcion() {
-		return descripcion;
-	}
-
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
-
-	public Double getPrecio() {
-		return precio;
-	}
-
-	public void setPrecio(Double precio) {
-		this.precio = precio;
-	}
-
-	public Set<Pedido> getPedidos() {
-		return pedidos;
-	}
-
-	public void setPedidos(Set<Pedido> pedidos) {
-		this.pedidos = pedidos;
-	}
-
-	
-	
-	public Restaurante getRestaurante() {
-		return restaurante;
-	}
-
-
-	public void setRestaurante(Restaurante restaurante) {
-		this.restaurante = restaurante;
-	}
-
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-	
-	public Long getId() {
-		return id;
-	}
-
-	
-	
-	
 	
 }

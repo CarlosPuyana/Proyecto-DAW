@@ -1,35 +1,49 @@
 package org.iesalixar.model;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import lombok.Data;
+
 @Entity
-@IdClass(MesaProductosId.class)
-public class Pedido {
+@Table(name = "pedidos")
+@Data
+public class Pedido implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
-	@ManyToOne
-	@JoinColumn(name="mesa_id", insertable = false, updatable = false)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	
+	private String descripcion;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="mesa_id")
 	private Mesa mesa;
 	
-	@Id
-	@ManyToOne
-	@JoinColumn(name="producto_id", insertable = false, updatable = false)
-	private Productos producto;
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "factura_id")
+	private List<ItemPedido> items = new ArrayList<>();
 	
-	private Integer cantidad;
-	
-	@Column(name = "create_at")
+	@Column(name = "create_at")	
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 	
@@ -39,73 +53,20 @@ public class Pedido {
 		this.createAt = new Date(); 
 	}
 	
+	public Pedido() {
+		// TODO Auto-generated constructor stub
+	}	
+	
 	public Double getTotal() {
+		
 		Double total = 0.00;
 		
+		for(ItemPedido item : items) {
+			
+			total += item.getImporte();
+		}
 		
 		return total;
 	}
-	
-	public Pedido() {
-		// TODO Auto-generated constructor stub
-	}
-
-	public Pedido(Mesa mesa, Productos producto) {
-		super();
-		this.mesa = mesa;
-		this.producto = producto;
-	}
-
-	public Pedido(Mesa mesa, Productos producto, Integer cantidad) {
-		super();
-		this.mesa = mesa;
-		this.producto = producto;
-		this.cantidad = cantidad;
-	}
-
-	public Mesa getMesa() {
-		return mesa;
-	}
-
-	public void setMesa(Mesa mesa) {
-		this.mesa = mesa;
-	}
-
-	public Productos getProducto() {
-		return producto;
-	}
-
-	public void setProducto(Productos producto) {
-		this.producto = producto;
-	}
-
-	public Integer getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(cantidad, mesa, producto);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Pedido other = (Pedido) obj;
-		return Objects.equals(cantidad, other.cantidad) && Objects.equals(mesa, other.mesa)
-				&& Objects.equals(producto, other.producto);
-	}
-	
-	
-	
 	
 }
