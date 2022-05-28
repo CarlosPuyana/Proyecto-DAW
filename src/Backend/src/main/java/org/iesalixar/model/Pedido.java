@@ -20,11 +20,14 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Entity
 @Table(name = "pedidos")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Pedido implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -37,6 +40,7 @@ public class Pedido implements Serializable {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name="mesa_id")
+	@JsonIgnoreProperties({"pedidos"})
 	private Mesa mesa;
 	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

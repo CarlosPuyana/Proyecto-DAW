@@ -12,11 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Data;
 
 @Entity
 @Table(name = "productos")
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 public class Productos implements Serializable {
 
 	private static final long serialVersionUID = 1L;

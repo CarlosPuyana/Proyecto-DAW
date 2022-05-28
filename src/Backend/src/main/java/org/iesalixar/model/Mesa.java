@@ -1,5 +1,6 @@
 package org.iesalixar.model;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,9 +16,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "mesas")
-public class Mesa {
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
+public class Mesa implements Serializable {
+
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,9 +37,11 @@ public class Mesa {
 	
 	@ManyToOne(targetEntity = Restaurante.class, fetch = FetchType.LAZY)
 	@JoinColumn( name = "restaurante_id")
+	@JsonIgnoreProperties({"restaurante_id"})
 	private Restaurante restaurante;
 	
 	@OneToMany(mappedBy = "mesa", cascade = CascadeType.ALL, orphanRemoval = true,  fetch = FetchType.LAZY)
+	@JsonIgnoreProperties({"mesa_id"})
 	private Set<Pedido> pedidos = new HashSet<>();
 	
 	public Mesa() {
