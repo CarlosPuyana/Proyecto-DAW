@@ -54,7 +54,7 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 
 	@Override
 	public List<Empleados> findAllByRestaurante(Restaurante restaurante) {
-		// TODO Auto-generated method stub
+		
 		return emplRepo.findAllByRestaurante(restaurante);
 	}
 

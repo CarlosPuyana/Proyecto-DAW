@@ -28,12 +28,11 @@ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
 			.cors()
 			.and()
 			.authorizeHttpRequests()
-			
 			.antMatchers("/api/v1/auth/login").permitAll()
-			.antMatchers("/api/v1/users/*").hasAnyRole("ROLE_ADMIN", "ROLE_DUENO")
-			.antMatchers("/api/v1/products/*").authenticated()
+			.antMatchers("/api/v1/users").hasAnyRole("ROLE_ADMIN", "ROLE_DUENO")
+			.antMatchers("/api/v1/products").authenticated()
 			.antMatchers("/api/v1/dashboard").authenticated()
-			.antMatchers("/api/v1/mesas/*").authenticated()
+			.antMatchers("/api/v1/mesas").hasAnyRole("ROLE_ADMIN", "ROLE_DUENO")
 			
 			.and()
 			.userDetailsService(usuarioService)

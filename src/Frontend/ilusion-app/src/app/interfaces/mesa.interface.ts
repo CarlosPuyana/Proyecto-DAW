@@ -1,7 +1,7 @@
 export interface Mesa {
-  mesaId?: number,
-  nombreMesa: string,
-  capacidad: number
+  mesaId?: number;
+  nombreMesa: string;
+  capacidad: number;
 }
 
 export interface MesaResponse {

@@ -54,6 +54,7 @@ const routes: Routes = [
 
   {path: 'dashboard/camarero/listProductos', component: ListarProductosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/crearPedido', component: CrearPedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
+  {path: 'dashboard/camarero/listPedido', component: ListPedidosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
 ]
 
 @NgModule({

@@ -83,7 +83,7 @@
 
         <li>
           <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista pedidos </a>
-          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO' "> Lista pedidos </a>
+          <a [routerLink]="['/dashboard/camarero/listPedido']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_CAMARERO' "> Lista pedidos </a>
           <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_COCINERO' "> Lista pedidos </a>
         </li>
 
