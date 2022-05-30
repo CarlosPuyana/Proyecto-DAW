@@ -27,6 +27,18 @@ export class ListPedidosComponent implements OnInit {
 
   ngOnInit(): void {
     this.findPedidos();
+
+    this.items = [
+      {
+        label: "Ver",
+        icon: 'pi pi-fw pi-user-plus',
+        command: () => this.verPedido()
+      }
+    ]
+  }
+
+  verPedido() {
+    this.router.navigateByUrl('dashboard/camarero/verDetalle/' + this.selectedPedido?.id)
   }
 
   findIdUser() {

@@ -31,6 +31,7 @@ import { EditMesaComponent } from './dueno/edit-mesa/edit-mesa.component';
 import { ListPedidosComponent } from './camarero/list-pedidos/list-pedidos.component';
 import { ListarProductosComponent } from './camarero/listar-productos/listar-productos.component';
 import { CrearPedidoComponent } from './camarero/crear-pedido/crear-pedido.component';
+import { DetallePedidoComponent } from './camarero/detallepedido/detalle-pedido.component';
 
 
 const routes: Routes = [
@@ -55,6 +56,8 @@ const routes: Routes = [
   {path: 'dashboard/camarero/listProductos', component: ListarProductosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/crearPedido', component: CrearPedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/listPedido', component: ListPedidosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
+  {path: 'dashboard/camarero/verDetalle/:id', component: DetallePedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
+
 ]
 
 @NgModule({
@@ -78,7 +81,8 @@ const routes: Routes = [
     EditMesaComponent,
     ListPedidosComponent,
     ListarProductosComponent,
-    CrearPedidoComponent
+    CrearPedidoComponent,
+    DetallePedidoComponent
   ],
   imports: [
     TableModule,

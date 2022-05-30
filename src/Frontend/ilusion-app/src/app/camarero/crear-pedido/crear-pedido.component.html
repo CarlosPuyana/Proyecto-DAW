@@ -10,6 +10,11 @@
 
       <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="registerProducto()">
 
+        <div class="form-group form-outline mb-4">
+          <label>Descripción</label>
+          <input type="text" class="form-control" formControlName="descripcion">
+        </div>
+
       </form>
 
     </div>

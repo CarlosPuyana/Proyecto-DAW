@@ -13,15 +13,34 @@ export class PedidoService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * Coge los pedidos de un restaurante
+   * @param id
+   * @returns
+   */
   findPedidosByRestaurante(id: number): Observable<PedidoResponse[]> {
 
-    let path = this.url + "/" + id
+    let path = this.url + "/restaurante/" + id
 
     const header = new HttpHeaders()
     .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
     return this.http.get<PedidoResponse[]>(path, {headers: header});
+  }
 
+  /**
+   * Coge un pedido en concreto
+   * @param id
+   * @returns
+   */
+  getPedidoById(id: number): Observable<PedidoResponse> {
+
+    let path = this.url + "/" + id;
+
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.get<PedidoResponse>(path, {headers: header});
   }
 
 }

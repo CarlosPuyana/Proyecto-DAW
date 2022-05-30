@@ -27,9 +27,6 @@ export class ListMesaComponent implements OnInit {
 
     this.findMesas();
 
-
-
-
     this.items = [
       {
         label: "Nuevo",
