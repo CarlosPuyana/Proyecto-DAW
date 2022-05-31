@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { ProductoService } from '../../dueno/services/producto.service';
 import { ItemPedido } from '../itemPedido';
 import { ProductoClass } from '../producto';
+import { PedidoService } from '../services/pedido.service';
 
 @Component({
   selector: 'app-crear-pedido',
@@ -28,7 +29,7 @@ export class CrearPedidoComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder,private productoService: ProductoService, private mesaService: MesaService) { }
+  constructor(private formBuilder: FormBuilder,private productoService: ProductoService, private mesaService: MesaService, private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
 
@@ -76,6 +77,12 @@ export class CrearPedidoComponent implements OnInit {
   registerPedido(): void {
 
     console.log(this.formCreate.value.mesa);
+
+    console.log(this.nuevoPedido);
+
+    this.pedidoService.create(this.nuevoPedido).subscribe(pedido => {
+      Swal.fire('Creado', 'Nueva factura creada con éxito', 'success')
+    });
 
 
   }
@@ -166,5 +173,7 @@ export class CrearPedidoComponent implements OnInit {
   eliminarItemFactura(nombre: string): void {
     this.nuevoPedido.items = this.nuevoPedido.items.filter((item: ItemPedido) => nombre !== item.producto.nombreProducto)
   }
+
+
 
 }
