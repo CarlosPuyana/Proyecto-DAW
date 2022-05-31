@@ -45,7 +45,7 @@
             <tr *ngFor="let item of nuevoPedido.items">
               <td>{{item.producto.nombreProducto}}</td>
               <td>{{item.producto.precio}}</td>
-              <td>{{item.cantidad}}</td>
+              <td><input type="number" value="{{item.cantidad}}" class="form-control w-10" (change)="actualizarCantidad(item.producto.nombreProducto, $event)"></td>
               <td>{{item.calcularImporte()}}</td>
             </tr>
           </tbody>

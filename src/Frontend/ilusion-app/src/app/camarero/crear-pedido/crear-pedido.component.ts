@@ -102,24 +102,59 @@ export class CrearPedidoComponent implements OnInit {
         this.productoSelected = resp;
         console.log(this.productoSelected);
 
+        if (this.existeItem(resp.nombreProducto)) {
+          this.incremenntarCantidad(resp.nombreProducto);
+        } else {
+
+
+
         let nuevoItem = new ItemPedido();
         nuevoItem.producto = resp;
 
       this.nuevoPedido.items.push(nuevoItem)
+    }
 
     console.log(this.nuevoPedido.items);
       }
     })
+  }
 
+  actualizarCantidad(nombreProducto: string, event: any): void {
 
-    //this.productoSelected = producto;
+    let cantidad: number = event.target.value as number;
+    console.log(cantidad);
 
+    this.nuevoPedido.items = this.nuevoPedido.items.map((item: ItemPedido) => {
+      if (nombreProducto === item.producto.nombreProducto) {
+        item.cantidad = cantidad;
+      }
 
+      return item;
+    });
 
+  }
 
+  existeItem(nombreProducto: string): boolean {
 
+    let existe = false;
+    this.nuevoPedido.items.forEach((item: ItemPedido) => {
+      if (nombreProducto === item.producto.nombreProducto) {
+        existe = true;
+      }
+    })
 
+    return existe;
+  }
 
+  incremenntarCantidad(nombreProducto: string): void {
+
+    this.nuevoPedido.items = this.nuevoPedido.items.map((item: ItemPedido) => {
+      if (nombreProducto === item.producto.nombreProducto) {
+        ++item.cantidad;
+      }
+
+      return item;
+    });
   }
 
 }
