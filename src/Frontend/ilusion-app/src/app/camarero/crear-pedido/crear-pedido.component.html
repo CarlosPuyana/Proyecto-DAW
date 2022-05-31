@@ -31,13 +31,19 @@
           <input type="text" class="form-control" formControlName="descripcion">
         </div>
 
-        <table class="table table-striped table-hover table-sm">
+
+        <div class="alert alert-info my-4" *ngIf="nuevoPedido.items.length == 0">
+          No hay lineas asignadas para el pedido. Debe agrregar al menos una!
+        </div>
+
+        <table class="table table-striped table-hover table-sm" *ngIf="nuevoPedido.items.length > 0">
           <thead>
             <tr>
               <th> Producto </th>
               <th> Precio </th>
               <th> Cantidad </th>
               <th> Importe </th>
+              <th> Eliminar </th>
             </tr>
           </thead>
 
@@ -47,9 +53,12 @@
               <td>{{item.producto.precio}}</td>
               <td><input type="number" value="{{item.cantidad}}" class="form-control w-10" (change)="actualizarCantidad(item.producto.nombreProducto, $event)"></td>
               <td>{{item.calcularImporte()}}</td>
+              <td><button class="btn btn-danger btn-sm" type="button" (click)="eliminarItemFactura(item.producto.nombreProducto)">X</button></td>
             </tr>
           </tbody>
         </table>
+
+        <h5 class="float-right">Gran Total: <span>{{nuevoPedido.calcularGranTotal()}}</span></h5>
 
         <button class="btn btn-primary" type="submit" >Añadir</button>
 

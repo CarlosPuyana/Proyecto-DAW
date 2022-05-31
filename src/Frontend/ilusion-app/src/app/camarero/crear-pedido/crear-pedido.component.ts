@@ -122,6 +122,12 @@ export class CrearPedidoComponent implements OnInit {
   actualizarCantidad(nombreProducto: string, event: any): void {
 
     let cantidad: number = event.target.value as number;
+
+    if (cantidad == 0) {
+
+      return this.eliminarItemFactura(nombreProducto);
+    }
+
     console.log(cantidad);
 
     this.nuevoPedido.items = this.nuevoPedido.items.map((item: ItemPedido) => {
@@ -141,7 +147,7 @@ export class CrearPedidoComponent implements OnInit {
       if (nombreProducto === item.producto.nombreProducto) {
         existe = true;
       }
-    })
+    });
 
     return existe;
   }
@@ -155,6 +161,10 @@ export class CrearPedidoComponent implements OnInit {
 
       return item;
     });
+  }
+
+  eliminarItemFactura(nombre: string): void {
+    this.nuevoPedido.items = this.nuevoPedido.items.filter((item: ItemPedido) => nombre !== item.producto.nombreProducto)
   }
 
 }
