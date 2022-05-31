@@ -228,5 +228,36 @@ public class ProductController {
 		return new ResponseEntity<Productos>(prod, HttpStatus.OK) ;
 	}
 	
+	/**
+	 * Recoge un producto en concreto a través del nombre
+	 * @param nombre
+	 * @return
+	 */
+	@GetMapping()
+	@ApiOperation(value = "Recoge un producto en concreto", produces = "application/json", response = Productos.class)
+	public ResponseEntity<?> getProducto(@RequestParam String nombre) {
+		
+		Productos prod = null;
+		
+		Map<String,Object> response = new HashMap<>();
+		
+		try {
+			
+			prod = prodService.findProductoByNombreProducto(nombre);
+		} catch (DataAccessException e) {
+			
+			response.put("mensaje", "Error al realizar la consulta en la base de datos");
+			response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.INTERNAL_SERVER_ERROR);
+		}		
+		
+		if(prod == null) {
+			
+			response.put("mensaje", "El producto con el nombre: ".concat(nombre.concat(" no existe en la base de datos")));
+			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<Productos>(prod, HttpStatus.OK) ;
+	}
 
 }

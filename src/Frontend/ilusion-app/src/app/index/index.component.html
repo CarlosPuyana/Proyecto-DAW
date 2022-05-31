@@ -23,7 +23,7 @@
 
       <p><i class="bi bi-person-circle" style="font-size: 60px"></i></p>
 
-      <div id="nombre-perfil">
+      <div id="nombre-perfil" *ngIf="user">
         <h5 class="text-light">{{user.userName}}</h5>
         <p class="text-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> ADMINISTRADOR </p>
         <p class="text-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> DUEÑO LOCAL </p>

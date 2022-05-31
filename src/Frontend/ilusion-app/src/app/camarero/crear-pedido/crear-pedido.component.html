@@ -1,5 +1,5 @@
-<app-index></app-index>
 
+<app-index></app-index>
 <div class="container p-4 bg-white">
 
   <div class="rounded d-flex justify-content-center">
@@ -8,14 +8,54 @@
         <h3>Crear Pedido</h3>
       </div>
 
-      <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="registerProducto()">
+      <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="registerPedido()">
+
+        <div class="form-group form-outline mb-4">
+          <label> Mesa </label>
+          <select name="role" id="role" formControlName="mesa" class="form-control">
+            <option selected="selected" disabled> {{optionDefault}}</option>
+            <option *ngFor="let item of mesas" value="{{item.mesaId}}">{{item.nombreMesa}}</option>
+        </select>
+        </div>
+
+        <div class="form-group form-outline mb-4">
+          <label> Producto </label>
+          <select name="role" id="role" formControlName="producto" class="form-control" (change)="seleccionarProducto($event)">
+            <option [selected]="optionDefault" disabled> {{optionDefault2}}</option>
+            <option *ngFor="let item of productos" value="{{item.nombreProducto}}" >{{item.nombreProducto}}</option>
+        </select>
+        </div>
 
         <div class="form-group form-outline mb-4">
           <label>Descripción</label>
           <input type="text" class="form-control" formControlName="descripcion">
         </div>
 
+        <table class="table table-striped table-hover table-sm">
+          <thead>
+            <tr>
+              <th> Producto </th>
+              <th> Precio </th>
+              <th> Cantidad </th>
+              <th> Importe </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of nuevoPedido.items">
+              <td>{{item.producto.nombreProducto}}</td>
+              <td>{{item.producto.precio}}</td>
+              <td>{{item.cantidad}}</td>
+              <td>{{item.calcularImporte()}}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button class="btn btn-primary" type="submit" >Añadir</button>
+
       </form>
 
     </div>
-</div>
+<!--     <button class="btn btn-primary" (click)="addProd()">Añadir Producto</button>
+ --></div>
+

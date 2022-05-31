@@ -94,6 +94,7 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MenubarModule,
     AccordionModule,
+
     RouterModule.forRoot(routes)
   ],
   providers: [],

@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { Producto, ProductoResponse } from 'src/app/interfaces/producto.interface';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthResponse } from 'src/app/interfaces/auth-response.interface';
+import { ProductoClass } from 'src/app/camarero/producto';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,25 @@ export class ProductoService {
 
   constructor(private http: HttpClient) { }
 
+  findProductByNombre(nombre: string): Observable<ProductoClass> {
+
+    let path = this.url + "?nombre=" + nombre;
+
+    const header = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+
+    return this.http.get<ProductoClass>(path, {headers: header});
+  }
+
+  /**
+   * Te da los productos del restaurante del usuario
+   * @param id
+   * @returns
+   */
   findProductsByRestaurante(id: number): Observable<ProductoResponse[]> {
 
     let path = this.url + "/restaurant/" + id;
-
-    console.log(id);
 
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${localStorage.getItem('token')}`);

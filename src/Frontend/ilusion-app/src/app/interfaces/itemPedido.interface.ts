@@ -6,8 +6,8 @@ export interface ItemPedido {
   cantidad: number;
   importe: number;
 
-}
 
+}
 export interface ItemPedidoResponse {
 
   id: number;
