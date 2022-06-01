@@ -47,9 +47,7 @@
           <a [routerLink]="['/dashboard/admin/createRestaurant']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación restaurante </a>
         </li>
 
-        <li>
-          <a href="#" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación de productos</a>
-        </li>
+
 
         <li>
           <a [routerLink]="['/dashboard/admin/listUsers']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Lista usuarios </a>
