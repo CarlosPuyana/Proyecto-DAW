@@ -16,7 +16,7 @@ export class Pedido {
       this.total +=  item.calcularImporte();
     });
 
-    return this.total;
+    return Number(this.total.toFixed(2));
   }
 
 }

@@ -13,6 +13,11 @@ export class PedidoService {
 
   constructor(private http: HttpClient) { }
 
+  /**
+   * It creates a new Pedido object and sends it to the server
+   * @param {Pedido} pedido - Pedido - The object that we want to send to the server.
+   * @returns An observable of Pedido
+   */
   create(pedido: Pedido): Observable<Pedido> {
 
     const header = new HttpHeaders()
@@ -21,5 +26,7 @@ export class PedidoService {
 
     return this.http.post<Pedido>(this.url, pedido, {headers: header})
   }
+
+
 
 }
