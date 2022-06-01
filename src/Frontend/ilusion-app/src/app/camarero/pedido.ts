@@ -9,6 +9,7 @@ export class Pedido {
   total!: number;
   createAt!: string;
 
+
   calcularGranTotal(): number {
     this.total = 0;
     this.items.forEach((item: ItemPedido) => {
