@@ -22,6 +22,7 @@ export class CrearPedidoComponent implements OnInit {
   productos: ProductoClass[] = [];
   productoSelected: ProductoClass = new ProductoClass();
   nuevoItem: ItemPedido = new ItemPedido();
+  mesa!: MesaResponse;
 
   jwt: JwtHelperService = new JwtHelperService();
   optionDefault: string = "Seleccione una mesa";
@@ -74,15 +75,28 @@ export class CrearPedidoComponent implements OnInit {
     producto: [, [ Validators.required] ]
   })
 
+  /**
+   * I'm trying to get the value of the formCreate.mesa and then assign it to the nuevoPedido.mesa
+   */
   registerPedido(): void {
 
     console.log(this.formCreate.value.mesa);
-
     console.log(this.nuevoPedido);
 
-    this.pedidoService.create(this.nuevoPedido).subscribe(pedido => {
-      Swal.fire('Creado', 'Nueva factura creada con éxito', 'success')
-    });
+    this.mesaService.getMesa(this.formCreate.value.mesa).subscribe({
+      next: resp => {
+        this.mesa = resp;
+
+        this.nuevoPedido.mesa = this.mesa;
+        console.log(this.nuevoPedido);
+        this.pedidoService.create(this.nuevoPedido).subscribe(pedido => {
+          Swal.fire('Creado', 'Nueva factura creada con éxito', 'success')
+        });
+
+      }
+    })
+
+
 
 
   }
