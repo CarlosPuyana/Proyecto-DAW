@@ -69,6 +69,10 @@ export class ListPedidosComponent implements OnInit {
         this.pedidoService.findPedidosByRestaurante(resp.id).subscribe({
           next: (resp) => {
             this.pedidos = resp;
+            for(let i = 0; i < 10; i++) {
+
+              this.pedidos[i].total = Number(this.pedidos[i].total.toFixed(2));
+            }
           },
           error: (err) => {
             Swal.fire('Error', err.error.mensaje, 'error');

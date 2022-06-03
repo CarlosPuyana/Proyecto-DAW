@@ -1,4 +1,4 @@
-<app-index></app-index>
+
 <div class="container p-5 flex text-center bg-white">
   <div class="card mh-100">
     <p-panel header="Administración de Pedidos">
@@ -30,9 +30,10 @@
 
         <ng-template pTemplate="body" let-pedido let-columns="pedido">
 
-          <tr  [pSelectableRow]="pedido">
+          <tr [pSelectableRow]="pedido">
 
-            <td> <span class="p-column-title" pSortableColumn="descripcion"><strong>Descripción</strong></span> {{pedido.descripcion}} </td>
+            <td *ngIf="pedido.descripcion"> <span class="p-column-title" pSortableColumn="descripcion"><strong>Observación</strong></span> {{pedido.descripcion}} </td>
+            <td *ngIf="!pedido.descripcion"> <span class="p-column-title" pSortableColumn="descripcion"><strong>Observación</strong></span> Sin Observación </td>
             <td> <span class="p-column-title" pSortableColumn="total"><strong>Total</strong></span> {{pedido.total}} € </td>
             <td> <span class="p-column-title" pSortableColumn="mesa"><strong>Mesa</strong></span> {{pedido.mesa.nombreMesa}} </td>
 
