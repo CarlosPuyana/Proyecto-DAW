@@ -32,6 +32,15 @@ import { ListPedidosComponent } from './camarero/list-pedidos/list-pedidos.compo
 import { ListarProductosComponent } from './camarero/listar-productos/listar-productos.component';
 import { CrearPedidoComponent } from './camarero/crear-pedido/crear-pedido.component';
 import { DetallePedidoComponent } from './camarero/detallepedido/detalle-pedido.component';
+import { HeaderComponent } from './header/header.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
 
 
 const routes: Routes = [
@@ -82,7 +91,9 @@ const routes: Routes = [
     ListPedidosComponent,
     ListarProductosComponent,
     CrearPedidoComponent,
-    DetallePedidoComponent
+    DetallePedidoComponent,
+    HeaderComponent,
+    SidenavComponent
   ],
   imports: [
     TableModule,
@@ -94,6 +105,12 @@ const routes: Routes = [
     BrowserAnimationsModule,
     MenubarModule,
     AccordionModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatListModule,
 
     RouterModule.forRoot(routes)
   ],

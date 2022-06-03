@@ -1,0 +1,51 @@
+<mat-nav-list>
+  <div class="logo py-4">
+    <img src="./assets/img/Logo-PhotoRoom.png" alt="Company">
+  </div>
+  <mat-divider></mat-divider>
+  <h2 matSubheader class="mt-2">Menu principal</h2>
+  <a [routerLink]="['/dashboard/admin/createUser']" *ngIf="findRolUser() === 'ROLE_ADMIN' " mat-list-item routerLinkActive="list-item-active">
+    <mat-icon>group_add</mat-icon> Creación usuarios
+  </a>
+  <a [routerLink]="['/dashboard/admin/createRestaurant']" *ngIf="findRolUser() === 'ROLE_ADMIN' " mat-list-item routerLinkActive="list-item-active">
+    <mat-icon>restaurant</mat-icon> Creación restaurante
+  </a>
+  <a [routerLink]="['/dashboard/admin/listUsers']" *ngIf="findRolUser() === 'ROLE_ADMIN' " mat-list-item>
+    <mat-icon>supervisor_account</mat-icon> Lista usuarios
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_ADMIN' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista restaurantes
+  </a>
+
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Creación empleados
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista empleados
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Creación productos
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista mesas
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista productos
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista productos
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_COCINERO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista productos
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista pedidos
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Crear pedido
+  </a>
+  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista productos
+  </a>
+
+</mat-nav-list>

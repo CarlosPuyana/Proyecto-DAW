@@ -1,5 +1,5 @@
-
-  <div class="border-bottom border-dark w-100" id="barra-top">
+<!--
+   <div class="border-bottom border-dark w-100" id="barra-top">
     <p id="nav-perfil"><i class="bi bi-person-circle fs-2"></i></p>
     <div id="nav-perfil-arrow">
       <div class="dropdown">
@@ -9,14 +9,14 @@
 
         <ul class="dropdown-menu">
           <li><a href="#" class="dropdown-item">Perfil</a></li>
-          <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li> <!--  -->
+          <li><a class="dropdown-item" (click)="logout()">Cerrar Sesión</a></li>
         </ul>
       </div>
     </div>
   </div>
 
-  <div class="d-flex flex-column flex-shrink-0 p-3 mh-100" id="barra-lat">
-
+  <div class="menu-collapse">
+  <nav class="sidebar d-flex flex-column flex-shrink-0 p-3 mh-100" id="barra-lat">
     <br>
 
     <div class="border border-light rounded" id="barra-perfil">
@@ -37,40 +37,37 @@
           <span class="fs-4">Menú principal</span>
       </a>
     <hr>
-    <ul class="nav nav-pills flex-column mb-auto">
+    <ul class="nav nav-pills flex-column mb-auto list-unstyled sidebar-list">
 
         <li class="nav-item">
-          <a [routerLink]="['/dashboard/admin/createUser']" class="nav-link link-light" aria-current="page" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación usuarios </a>
+          <a [routerLink]="['/dashboard/admin/createUser']" class="nav-link link-light sidebar-link" aria-current="page" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación usuarios </a>
         </li>
 
         <li>
-          <a [routerLink]="['/dashboard/admin/createRestaurant']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación restaurante </a>
+          <a [routerLink]="['/dashboard/admin/createRestaurant']" class="nav-link link-light sidebar-link" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Creación restaurante </a>
         </li>
-
-
-
         <li>
-          <a [routerLink]="['/dashboard/admin/listUsers']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Lista usuarios </a>
+          <a [routerLink]="['/dashboard/admin/listUsers']" class="nav-link link-light sidebar-link" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Lista usuarios </a>
         </li>
 
         <li>
-          <a [routerLink]="['/dashboard/admin/listRestaurants']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Lista restaurantes </a>
+          <a [routerLink]="['/dashboard/admin/listRestaurants']" class="nav-link link-light sidebar-link" *ngIf="findRolUser() === 'ROLE_ADMIN' "> Lista restaurantes </a>
         </li>
 
         <li>
-          <a [routerLink]="['/dashboard/dueno/crearEmpleado']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación empleados </a>
+          <a [routerLink]="['/dashboard/dueno/crearEmpleado']" class="nav-link link-light sidebar-link" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación empleados </a>
         </li>
 
         <li>
-          <a [routerLink]="['/dashboard/dueno/listEmpleados']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista empleados </a>
+          <a [routerLink]="['/dashboard/dueno/listEmpleados']" class="nav-link link-light sidebar-link" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista empleados </a>
         </li>
 
         <li>
-          <a [routerLink]="['/dashboard/dueno/crearProducto']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación productos </a>
+          <a [routerLink]="['/dashboard/dueno/crearProducto']" class="nav-link link-light sidebar-link" *ngIf="findRolUser() === 'ROLE_DUENO' "> Creación productos </a>
         </li>
 
         <li>
-          <a [routerLink]="['/dashboard/dueno/listMesa']" class="nav-link link-light" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista mesas </a>
+          <a [routerLink]="['/dashboard/dueno/listMesa']" class="nav-link link-light sidebar-link" *ngIf="findRolUser() === 'ROLE_DUENO' "> Lista mesas </a>
         </li>
 
         <li>
@@ -90,7 +87,8 @@
         </li>
 
       </ul>
-  </div>
+  </nav>
+</div>
 
 
-
+ -->
