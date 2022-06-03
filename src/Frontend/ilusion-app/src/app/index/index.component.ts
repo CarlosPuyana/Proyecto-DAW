@@ -14,7 +14,7 @@ import { EmpleadoResponse } from '../interfaces/empleado.interface';
 })
 export class IndexComponent implements OnInit {
 
-  jwt:JwtHelperService=new JwtHelperService();
+  jwt:JwtHelperService = new JwtHelperService();
 
   nombre!: string;
   apellidos!: string;
