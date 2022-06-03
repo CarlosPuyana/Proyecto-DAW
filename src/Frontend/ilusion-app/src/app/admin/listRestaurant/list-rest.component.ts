@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { RestuaranteService } from '../services/restuarante.service';
 import { Router } from '@angular/router';
 import Swal from 'sweetalert2';
+import { MenuItem } from 'primeng/api';
+import { ProductoResponse } from '../../interfaces/producto.interface';
 
 @Component({
   selector: 'app-list-rest',
@@ -19,9 +21,26 @@ export class ListRestComponent implements OnInit {
   dialogSave!: boolean;
   formGroupEdit!: FormGroup;
 
+  cols: any[] = [];
+  items: MenuItem[] = [];
+  selectedRestaurante?: ProductoResponse;
+
   constructor(private servicioRestaurante: RestuaranteService, private router: Router, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+
+    this.items = [
+      {
+        label: "Nuevo",
+        icon: 'pi pi-fw pi-user-plus',
+        command: () => this.crearRestaurante()
+      },
+
+      {
+        label: "Eliminar",
+        icon: "pi pi-trash"
+      }
+    ]
 
     this.findRestaurants();
   }
@@ -39,6 +58,12 @@ export class ListRestComponent implements OnInit {
         Swal.fire('Error!', err.error.mensaje, 'error');
       })
     })
+  }
+
+  crearRestaurante(): void {
+
+      this.router.navigateByUrl('dashboard/admin/createRestaurant')
+
   }
 
 

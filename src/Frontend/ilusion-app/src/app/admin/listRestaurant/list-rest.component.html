@@ -1,68 +1,59 @@
-<!-- <app-index></app-index> -->
 <div class="container p-5 flex text-center bg-white">
   <div class="card">
-    <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-      <p-table #dt [value]="restaurantes" responsiveLayout="stack" breackpoint="815px">
+    <p-panel header="Administración de Restaurantes">
 
-        <ng-template pTemplate="caption">
-          <div style="text-align: right">
-            <button class="btn float-left edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Añadir usuario</button>
-            <i class="bi bi-search-heart"></i>
+      <div style="margin-bottom: 20px;">
+        <p-menubar [model]="items"></p-menubar>
+      </div>
 
-            <button class="btn float-right edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Excel</button>
-            <i class="bi bi-search-heart"></i>
-          </div>
-        </ng-template>
-
-        <ng-template pTemplate="header" let-columns>
-          <tr>
-
-            <th pSortableColumn="usuario">Nombre Restaurante
-              <p-sortIcon field="usuario"></p-sortIcon>
-            </th>
-
-            <th pSortableColumn="email">TLF
-              <p-sortIcon field="email"></p-sortIcon>
-            </th>
-
-            <th pSortableColumn="nombre">Direccion
-              <p-sortIcon field="nombre"></p-sortIcon>
-            </th>
+      <p-table #dt [value]="restaurantes" responsiveLayout="stack" breackpoint="815px"  [columns]="cols" selectionMode="single" sortMode="multiple" [(selection)]="selectedRestaurante"
+      dataKey="id" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,9]" [filterDelay]="0" [globalFilterFields]="['userName', 'email', 'nombre', 'apellidos', 'role']">
 
 
-            <th pSortableColumn="apellidos">Sevilla
-              <p-sortIcon field="apellidos"></p-sortIcon>
-            </th>
+
+      <ng-template pTemplate="header" let-columns>
+        <tr>
+          <th pSortableColumn="usuario">Restaurante
+            <p-sortIcon field="usuario"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="email">Teléfono
+            <p-sortIcon field="email"></p-sortIcon>
+          </th>
+
+          <th pSortableColumn="nombre">Ciudad
+            <p-sortIcon field="nombre"></p-sortIcon>
+          </th>
 
 
-            <th pSortableColumn="cp">CP
-              <p-sortIcon field="cp"></p-sortIcon>
-            </th>
+          <th pSortableColumn="apellidos">CP
+            <p-sortIcon field="apellidos"></p-sortIcon>
+          </th>
 
-            <th> Editar </th>
-            <th> Dar de baja </th>
 
-          </tr>
+          <th pSortableColumn="role">Dirección
+            <p-sortIcon field="role"></p-sortIcon>
+          </th>
 
-        </ng-template>
+        </tr>
 
-        <ng-template pTemplate="body" let-restaurante let-columns="restaurante">
+      </ng-template>
 
-          <tr>
+      <ng-template pTemplate="body" let-user let-columns="user">
 
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.nombreRestaurante}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Email</strong></span> {{restaurante.telefono}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.direccion}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.ciudad}} </td>
-            <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Nombre</strong></span> {{restaurante.codigoPostal}} </td>
-            <td class="justify-content-evenly"><span class="p-column-title">Editar</span><a class="btn"><i class="bi bi-pencil-square"></i></a></td>
-            <td class="justify-content-evenly "><span class="p-column-title">Borrar</span><a class="btn"><i class="bi bi-person-x-fill"></i></a></td>
+        <tr [pSelectableRow]="user">
 
-          </tr>
+          <td> <span class="p-column-title" pSortableColumn="usuario"><strong>Restaurante</strong></span> {{user.nombreRestaurante}} </td>
+          <td> <span class="p-column-title" pSortableColumn="email"><strong>Teléfono</strong></span> {{user.telefono}} </td>
+          <td> <span class="p-column-title" pSortableColumn="nombre"><strong>Ciudad</strong></span> {{user.ciudad}} </td>
+          <td> <span class="p-column-title" pSortableColumn="apellidos"><strong>CP</strong></span> {{user.codigoPostal}} </td>
+          <td> <span class="p-column-title" pSortableColumn="role"><strong>Dirección</strong></span> {{user.direccion}} </td>
 
-        </ng-template>
+        </tr>
+
+      </ng-template>
 
       </p-table>
-    </div>
+  </p-panel>
   </div>
 </div>
