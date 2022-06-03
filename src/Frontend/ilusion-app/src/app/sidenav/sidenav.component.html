@@ -17,22 +17,22 @@
     <mat-icon>restaurant_menu</mat-icon> Lista restaurantes
   </a>
 
-  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+  <a [routerLink]="['/dashboard/dueno/crearEmpleado']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Creación empleados
   </a>
-  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+  <a [routerLink]="['/dashboard/dueno/listEmpleados']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Lista empleados
   </a>
-  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+  <a [routerLink]="['/dashboard/dueno/crearProducto']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Creación productos
   </a>
-  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+  <a [routerLink]="['/dashboard/dueno/listMesa']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Lista mesas
   </a>
-  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
+  <a [routerLink]="['/dashboard/dueno/listProductos']" *ngIf="findRolUser() === 'ROLE_DUENO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Lista productos
   </a>
-  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
+  <a [routerLink]="['/dashboard/camarero/listProductos']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Lista productos
   </a>
   <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_COCINERO' " mat-list-item>
