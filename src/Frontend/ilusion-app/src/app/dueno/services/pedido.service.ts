@@ -29,6 +29,36 @@ export class PedidoService {
   }
 
   /**
+   * Coge los pedidos activos de un restaurante
+   * @param id
+   * @returns
+   */
+   findPedidosByRestauranteActivos(id: number): Observable<PedidoResponse[]> {
+
+    let path = this.url + "/restaurante/activos/" + id
+
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.get<PedidoResponse[]>(path, {headers: header});
+  }
+
+  /**
+   * Coge los pedidos inactivos de un restaurante
+   * @param id
+   * @returns
+   */
+   findPedidosByRestauranteInactivos(id: number): Observable<PedidoResponse[]> {
+
+    let path = this.url + "/restaurante/inactivos/" + id
+
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.get<PedidoResponse[]>(path, {headers: header});
+  }
+
+  /**
    * Coge un pedido en concreto
    * @param id
    * @returns

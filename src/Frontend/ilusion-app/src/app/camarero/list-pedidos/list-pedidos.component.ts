@@ -21,6 +21,7 @@ export class ListPedidosComponent implements OnInit {
 
   cols: any[] = [];
   items: MenuItem[] = [];
+  items2: MenuItem[] = [];
   selectedPedido?: PedidoResponse;
 
   constructor(
@@ -31,7 +32,7 @@ export class ListPedidosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.findPedidos();
+    this.findPedidosActivos();
 
     this.items = [
       {
@@ -50,6 +51,21 @@ export class ListPedidosComponent implements OnInit {
         command: () => this.completarPedido()
       }
     ];
+
+  this.items2 = [
+    {
+      label: 'Pedidos completados',
+      icon: 'pi pi-ticket',
+      command: () => this.pedidosCompletados()
+    }
+  ]
+  }
+
+  pedidosCompletados() {
+
+    this.router.navigateByUrl(
+      'dashboard/camarero/listPedido/completados'
+    );
   }
 
   completarPedido() {
@@ -123,10 +139,10 @@ export class ListPedidosComponent implements OnInit {
     return this.jwt.decodeToken(localStorage.getItem('token')!).id;
   }
 
-  findPedidos() {
+  findPedidosActivos() {
     this.empleadoService.findRestaurante(this.findIdUser()).subscribe({
       next: (resp) => {
-        this.pedidoService.findPedidosByRestaurante(resp.id).subscribe({
+        this.pedidoService.findPedidosByRestauranteActivos(resp.id).subscribe({
           next: (resp) => {
             this.pedidos = resp;
             for(let i = 0; i < 10; i++) {
