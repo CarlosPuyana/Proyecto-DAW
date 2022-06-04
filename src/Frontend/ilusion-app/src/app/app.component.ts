@@ -39,11 +39,6 @@ export class AppComponent {
             console.log(this.esIndex);
           }
         }
-
-        if (this.currentRoute === '/dashboard') {
-          //window.location.reload();
-        }
-
       });
   }
 }

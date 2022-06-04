@@ -9,6 +9,7 @@ import { ProductoService } from '../../dueno/services/producto.service';
 import { ItemPedido } from '../itemPedido';
 import { ProductoClass } from '../producto';
 import { PedidoService } from '../services/pedido.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-crear-pedido',
@@ -30,7 +31,7 @@ export class CrearPedidoComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder,private productoService: ProductoService, private mesaService: MesaService, private pedidoService: PedidoService) { }
+  constructor(private router: Router , private formBuilder: FormBuilder,private productoService: ProductoService, private mesaService: MesaService, private pedidoService: PedidoService) { }
 
   ngOnInit(): void {
 
@@ -88,8 +89,11 @@ export class CrearPedidoComponent implements OnInit {
         this.nuevoPedido.descripcion = this.formCreate.value.descripcion;
 
         this.pedidoService.create(this.nuevoPedido).subscribe(pedido => {
+          this.router.navigateByUrl("/dashboard/camarero/listPedido");
           Swal.fire('Creado', 'Nueva factura creada con éxito', 'success')
         });
+
+
       }
     })
 
