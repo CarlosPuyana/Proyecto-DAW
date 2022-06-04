@@ -32,10 +32,19 @@ export class IndexComponent implements OnInit {
 
   }
 
+  primeraVez() {
 
+    const prm = sessionStorage.getItem('reload')
+
+    if (prm === 'true') {
+      window.location.reload()
+      sessionStorage.removeItem('reload')
+    }
+  }
 
   ngOnInit(): void {
     this.findInfoUser()
+    this.primeraVez();
   }
 
   /**

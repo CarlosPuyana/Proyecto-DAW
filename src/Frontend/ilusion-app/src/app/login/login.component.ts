@@ -27,7 +27,6 @@ export class LoginComponent implements OnInit {
 
 
     if (this.authService.isAuthenticated()) {
-      console.log("aqui tambien");
 
       Swal.fire('Login', `Ya estás autenticado`, 'info');
       this.router.navigate(['/dashboard']);
@@ -54,11 +53,13 @@ export class LoginComponent implements OnInit {
 
         console.log(resp.jwt_token);
 
-
         // Redirigir y guardar el token en el localStorage
         localStorage.setItem("token",resp.jwt_token);
         sessionStorage.setItem("token", resp.jwt_token);
+        sessionStorage.setItem('reload', 'true');
+
         this.router.navigateByUrl("/dashboard");
+
       },
 
       error: err => {
