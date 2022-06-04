@@ -93,6 +93,15 @@ export class CrearPedidoComponent implements OnInit {
           Swal.fire('Creado', 'Nueva factura creada con éxito', 'success')
         });
 
+        this.mesa.activo = false;
+
+        this.mesaService.editMesa(this.mesa, this.mesa.mesaId).subscribe({
+          next: resp => {
+            this.mesa = resp
+            console.log(this.mesa);
+
+          }
+        })
 
       }
     })

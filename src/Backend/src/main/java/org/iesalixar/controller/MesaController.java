@@ -125,11 +125,12 @@ public class MesaController {
 			return new ResponseEntity<Map<String,Object>>(response,HttpStatus.NOT_FOUND);
 		}
 		
-		logger.info("Editando producto: " + mesa.getNombreMesa());
+		logger.info("Editando mesa: " + mesa.getNombreMesa());
 		
 		try {
 			mesaActual.setNombreMesa(mesa.getNombreMesa());
 			mesaActual.setCapacidad(mesa.getCapacidad());
+			mesaActual.setActivo(mesa.isActivo());
 			
 			
 			mesaService.updateMesa(mesaActual);

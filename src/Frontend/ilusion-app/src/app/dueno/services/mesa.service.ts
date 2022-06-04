@@ -86,7 +86,8 @@ export class MesaService {
     const body = {
 
       nombreMesa: mesa.nombreMesa,
-      capacidad: mesa.capacidad
+      capacidad: mesa.capacidad,
+      activo: false
     }
 
     const header = new HttpHeaders()
