@@ -87,8 +87,11 @@ export class MesaService {
 
       nombreMesa: mesa.nombreMesa,
       capacidad: mesa.capacidad,
-      activo: false
+      activo: mesa.activo
     }
+
+    console.log(mesa.activo);
+
 
     const header = new HttpHeaders()
       .set('Authorization', `Bearer ${localStorage.getItem('token')}`);

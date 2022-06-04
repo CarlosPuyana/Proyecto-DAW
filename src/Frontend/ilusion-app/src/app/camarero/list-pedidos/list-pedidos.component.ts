@@ -7,6 +7,7 @@ import { Route, Router } from '@angular/router';
 import { PedidoService } from 'src/app/dueno/services/pedido.service';
 import Swal from 'sweetalert2';
 import { EmpleadoService } from '../../admin/services/empleado.service';
+import { MesaService } from '../../dueno/services/mesa.service';
 
 @Component({
   selector: 'app-list-pedidos',
@@ -25,7 +26,8 @@ export class ListPedidosComponent implements OnInit {
   constructor(
     private router: Router,
     private pedidoService: PedidoService,
-    private empleadoService: EmpleadoService
+    private empleadoService: EmpleadoService,
+    private mesaService: MesaService
   ) {}
 
   ngOnInit(): void {
@@ -56,7 +58,7 @@ export class ListPedidosComponent implements OnInit {
 
       Swal.fire({
         title: 'Completar pedido',
-        text: `El total del pedido es de  ${this.selectedPedido?.total}. ¿Deseas completar el pedido?`,
+        text: `El total del pedido es de  ${this.selectedPedido?.total} € en total. ¿Deseas completar el pedido?`,
         icon: 'question',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -79,6 +81,19 @@ export class ListPedidosComponent implements OnInit {
               this.pedidoService.editarPedido(resp.id, resp).subscribe({
                 next: resp => {
 
+                }
+              })
+
+              this.mesaService.getMesa(resp.mesa.mesaId!).subscribe({
+                next: resp => {
+
+                  resp.activo = true;
+
+                  this.mesaService.editMesa(resp, resp.mesaId).subscribe({
+                    next: resp => {
+
+                    }
+                  })
                 }
               })
 
