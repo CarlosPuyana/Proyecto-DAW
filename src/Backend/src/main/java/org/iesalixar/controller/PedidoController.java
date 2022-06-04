@@ -38,12 +38,32 @@ public class PedidoController {
 	private Logger logger = LoggerFactory.getLogger(PedidoController.class);
 	
 	@GetMapping("/restaurante/{id}")
-	@ApiOperation(value = "Recoge los pedido de un restaurante", produces = "application/json", response = Pedido.class)
+	@ApiOperation(value = "Recoge los pedidos de un restaurante", produces = "application/json", response = Pedido.class)
 	public List<Pedido> getPedidos(@PathVariable Long id) {
 		
 		logger.info("Buscando pedidos del restaurante " + id);
 		
 		return pedService.findPedidosByRestaurante(id);
+		
+	}
+	
+	@GetMapping("/restaurante/activos/{id}")
+	@ApiOperation(value = "Recoge los pedidos activos de un restaurante", produces = "application/json", response = Pedido.class)
+	public List<Pedido> getPedidosActivos(@PathVariable Long id) {
+		
+		logger.info("Buscando pedidos activos del restaurante " + id);
+		
+		return pedService.findPedidosByRestauranteAndActivoTrue(id);
+		
+	}
+	
+	@GetMapping("/restaurante/inactivos/{id}")
+	@ApiOperation(value = "Recoge los pedidos inactivos de un restaurante", produces = "application/json", response = Pedido.class)
+	public List<Pedido> getPedidosInactivos(@PathVariable Long id) {
+		
+		logger.info("Buscando pedidos activos del restaurante " + id);
+		
+		return pedService.findPedidosByRestauranteAndActivoFalse(id);
 		
 	}
 	
