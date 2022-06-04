@@ -70,6 +70,9 @@ export class ListRestComponent implements OnInit {
 
   }
 
+  /**
+   * It deletes the selected restaurant
+   */
   deleteRestaurante() {
 
     if (this.selectedRestaurante?.id != null) {

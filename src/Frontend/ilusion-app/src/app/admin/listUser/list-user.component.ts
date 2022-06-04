@@ -63,7 +63,7 @@ export class ListUserComponent implements OnInit {
 
       Swal.fire({
         title: 'Completar pedido',
-        text: `Deseas eliminar a ${this.selectedUser?.nombre} ${this.selectedUser.apellidos}. ¿Deseas completar el pedido?`,
+        text: `Deseas eliminar a ${this.selectedUser?.nombre} ${this.selectedUser.apellidos}. ¿Deseas eliminar el usuario?`,
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',

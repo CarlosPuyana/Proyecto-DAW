@@ -43,6 +43,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { ListPedidosCompletadosComponent } from './camarero/list-pedidos/list-pedidos-completados/list-pedidos-completados.component';
 import { ListarPedidosComponent } from './cocinero/listar-pedidos/listar-pedidos.component';
+import { PerfilComponent } from './perfil/perfil.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -73,6 +74,7 @@ const routes: Routes = [
   {path: 'dashboard/cocinero/listPedido', component: ListarPedidosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_COCINERO'}},
   {path: 'dashboard/cocinero/verDetalle/:id', component: DetallePedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_COCINERO'}},
 
+  {path: 'perfil', component: PerfilComponent , canActivate: [AuthGuard]},
 
 ]
 
@@ -102,7 +104,8 @@ const routes: Routes = [
     HeaderComponent,
     SidenavComponent,
     ListPedidosCompletadosComponent,
-    ListarPedidosComponent
+    ListarPedidosComponent,
+    PerfilComponent
   ],
   imports: [
     TableModule,

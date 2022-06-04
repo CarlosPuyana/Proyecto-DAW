@@ -25,6 +25,11 @@ export class HeaderComponent implements OnInit {
     this.findInfoUser();
   }
 
+  perfil() {
+
+    this.router.navigate(['perfil'])
+  }
+
 /**
    * Obtiene la id del usuario a través del token
    * @returns
