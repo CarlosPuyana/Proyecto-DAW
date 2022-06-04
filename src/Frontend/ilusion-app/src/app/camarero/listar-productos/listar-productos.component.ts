@@ -18,7 +18,6 @@ export class ListarProductosComponent implements OnInit {
   jwt:JwtHelperService = new JwtHelperService();
 
   cols: any[] = [];
-  items: MenuItem[] = [];
   selectedProduct?: ProductoResponse;
 
   constructor(private productoService: ProductoService, private router: Router) { }
@@ -26,6 +25,7 @@ export class ListarProductosComponent implements OnInit {
   ngOnInit(): void {
 
     this.findProductos();
+
   }
 
 

@@ -35,6 +35,8 @@ public class Mesa implements Serializable {
 	@Column(name = "capacidad", nullable = false)
 	private Integer capacidad;
 	
+	private boolean activo;
+	
 	@ManyToOne(targetEntity = Restaurante.class, fetch = FetchType.LAZY)
 	@JoinColumn( name = "restaurante_id")
 	@JsonIgnoreProperties({"restaurante_id"})
@@ -45,8 +47,21 @@ public class Mesa implements Serializable {
 	private Set<Pedido> pedidos = new HashSet<>();
 	
 	public Mesa() {
-		// TODO Auto-generated constructor stub
+		
+		this.activo = true;
 	}
+
+	public boolean isActivo() {
+		return activo;
+	}
+
+
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+
 
 	public Long getMesaId() {
 		return mesaId;

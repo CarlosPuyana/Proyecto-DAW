@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MesaRepository  extends JpaRepository<Mesa,Long> {
 
-	public List<Mesa> findAllByRestaurante(Restaurante restaurante);
+	public List<Mesa> findAllByRestauranteAndActivoTrue(Restaurante restaurante);
 
 	public Mesa findMesaByMesaId(Long id);
 

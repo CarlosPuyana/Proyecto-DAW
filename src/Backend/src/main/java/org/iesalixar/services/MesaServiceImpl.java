@@ -22,7 +22,7 @@ public class MesaServiceImpl implements MesaService {
 	@Override
 	public List<Mesa> findAllByRestaurante(Restaurante restaurante) {
 		
-		return mesaRepo.findAllByRestaurante(restaurante);
+		return mesaRepo.findAllByRestauranteAndActivoTrue(restaurante);
 	}
 
 	@Override
