@@ -62,6 +62,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	public Restaurante findRestaurante(Empleados empleado) {
 		return null;
 	}
+
+	@Override
+	public void delete(Empleados empleado) {
+		
+		emplRepo.delete(empleado);
+	}
 	
 	
 }

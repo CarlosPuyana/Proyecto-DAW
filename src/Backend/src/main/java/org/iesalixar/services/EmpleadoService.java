@@ -18,4 +18,6 @@ public interface EmpleadoService {
 	
 	public Restaurante findRestaurante(Empleados empleado);
 	
+	public void delete(Empleados empleado);
+	
 }

@@ -17,6 +17,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -98,6 +99,33 @@ public class UserController {
 		response.put("cliente", empleadoNuevo);
 
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+	}
+	
+	/**
+	 * Elimina un usuario
+	 * @param id
+	 * @return
+	 */
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deleteUsuario(@PathVariable Long id) {
+		
+		Map<String, Object> response = new HashMap<>();
+		
+		Empleados empl = empleadoService.findEmpleadoById(id);
+		
+		try {
+			
+			empleadoService.delete(empl);
+		} catch (DataAccessException e) {
+			
+			response.put("mensaje", "Error al eliminar en la base de datos");
+			response.put("error", e.getMessage().concat(": ".concat(e.getMostSpecificCause().getMessage())));
+			return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		
+		response.put("mensaje", "El usuario ha sido eliminado con exito");
+		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+		
 	}
 
 	/**

@@ -23,7 +23,7 @@ export class ListRestComponent implements OnInit {
 
   cols: any[] = [];
   items: MenuItem[] = [];
-  selectedRestaurante?: ProductoResponse;
+  selectedRestaurante?: RestauranteResponse;
 
   constructor(private servicioRestaurante: RestuaranteService, private router: Router, private formBuilder: FormBuilder) { }
 
@@ -38,7 +38,8 @@ export class ListRestComponent implements OnInit {
 
       {
         label: "Eliminar",
-        icon: "pi pi-trash"
+        icon: "pi pi-trash",
+        command: () => this.deleteRestaurante()
       }
     ]
 
@@ -60,11 +61,41 @@ export class ListRestComponent implements OnInit {
     })
   }
 
+  /**
+   * This function navigates to the createRestaurant component
+   */
   crearRestaurante(): void {
 
       this.router.navigateByUrl('dashboard/admin/createRestaurant')
 
   }
 
+  deleteRestaurante() {
+
+    if (this.selectedRestaurante?.id != null) {
+
+      Swal.fire({
+        title: 'Completar pedido',
+        text: `Deseas eliminar a ${this.selectedRestaurante?.nombreRestaurante}. ¿Deseas eliminar el restaurante?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar restaurante!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Restaurante eliminado!',
+            'El restaurante ha sido eliminado.',
+            'success'
+          )
+
+          this.servicioRestaurante.deleteRestaurante(this.selectedRestaurante!.id).subscribe();
+        }
+      })
+    }
+
+  }
 
 }

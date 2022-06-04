@@ -26,7 +26,7 @@ export class ListUserComponent implements OnInit {
 
   cols: any[] = [];
   items: MenuItem[] = [];
-  selectedUser?: ProductoResponse;
+  selectedUser?: EmpleadoResponse;
 
   constructor(private serviceEmpleado: EmpleadoService,
     private primengConfig: PrimeNGConfig, private router: Router, private formBuilder: FormBuilder) { }
@@ -47,11 +47,49 @@ export class ListUserComponent implements OnInit {
       },
       {
         label: "Eliminar",
-        icon: "pi pi-trash"
+        icon: "pi pi-trash",
+        command: () => this.eliminarUser()
       }
     ]
 
   }
+
+  /**
+   * It deletes a user from the database.
+   */
+  eliminarUser() {
+
+    if (this.selectedUser?.id != null) {
+
+      Swal.fire({
+        title: 'Completar pedido',
+        text: `Deseas eliminar a ${this.selectedUser?.nombre} ${this.selectedUser.apellidos}. ¿Deseas completar el pedido?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, eliminar usuario!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Usuario eliminado!',
+            'El usuario ha sido eliminado.',
+            'success'
+          )
+
+          this.serviceEmpleado.deleteUser(this.selectedUser!.id).subscribe();
+        }
+      })
+    }
+  }
+
+  /**
+   * If the user is editing, then navigate to the edit user page, otherwise navigate to the create user
+   * page
+   * @param {boolean} editar - boolean
+   * @returns the selected user's id.
+   */
   crearEditarUser(editar: boolean): void {
 
     if (editar) {

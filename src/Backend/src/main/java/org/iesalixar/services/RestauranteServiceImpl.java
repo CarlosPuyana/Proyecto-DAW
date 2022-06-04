@@ -36,4 +36,10 @@ public class RestauranteServiceImpl implements RestauranteService {
 		return restRepo.findRestauranteByNombreRestaurante(nombreRestaurante);
 	}
 
+	@Override
+	public void delete(Restaurante restaurante) {
+		
+		restRepo.delete(restaurante);
+	}
+
 }

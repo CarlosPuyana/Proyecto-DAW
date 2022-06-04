@@ -27,6 +27,11 @@ export class RestuaranteService {
     return this.http.get<RestauranteResponse[]>(path);
   }
 
+  /**
+   * It sends a POST request to the server with the restaurant's data, and returns the response
+   * @param {Restaurante} restaurante - Restaurante is the object that we are sending to the backend.
+   * @returns A promise of type RestauranteResponse
+   */
   createRestaurant(restaurante: Restaurante) {
 
     let path = this.url;
@@ -45,5 +50,16 @@ export class RestuaranteService {
     return this.http.post<RestauranteResponse>(path, body, {headers: header});
 
   }
+
+  deleteRestaurante(id: number) {
+
+    let path = this.url + "/" + id;
+
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.delete(path, {headers: header});
+  }
+
 
 }

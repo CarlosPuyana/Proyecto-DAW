@@ -11,4 +11,6 @@ public interface RestauranteService {
 	public Restaurante insertarRestaurante(Restaurante restaurante);
 	public Restaurante findRestauranteById(Long id);
 	public Restaurante findRestauranteByNombreRestaurante(String nombreRestaurante);
+	
+	public void delete(Restaurante restaurante);
 }

@@ -131,6 +131,13 @@ export class EmpleadoService {
     return this.http.put<AuthResponse>(path, body, {headers: header});
   }
 
+  /**
+   * It takes a user object and an id, and then it sends a PUT request to the API with the user object
+   * and the id
+   * @param {Empleado} user - Empleado, id: number
+   * @param {number} id - number
+   * @returns The user that has been updated.
+   */
   editUser(user: Empleado, id: number) {
     let path = this.url
 
@@ -145,6 +152,17 @@ export class EmpleadoService {
       .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
     return this.http.put<EmpleadoResponse>(`${path}/${id}`, body, {headers: header});
+
+  }
+
+  deleteUser(id: number) {
+
+    let path = this.url + "/" + id;
+
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.delete(path, {headers: header});
 
   }
 
