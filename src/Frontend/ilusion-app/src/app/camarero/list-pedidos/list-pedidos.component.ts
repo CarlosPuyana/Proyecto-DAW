@@ -14,7 +14,7 @@ import { EmpleadoService } from '../../admin/services/empleado.service';
   styleUrls: ['./list-pedidos.component.css'],
 })
 export class ListPedidosComponent implements OnInit {
-  pedidos!: PedidoResponse[];
+  pedidos!: Pedido[];
   pedido!: PedidoResponse;
   jwt: JwtHelperService = new JwtHelperService();
 

@@ -80,19 +80,16 @@ export class CrearPedidoComponent implements OnInit {
    */
   registerPedido(): void {
 
-    console.log(this.formCreate.value.mesa);
-    console.log(this.nuevoPedido);
-
     this.mesaService.getMesa(this.formCreate.value.mesa).subscribe({
       next: resp => {
         this.mesa = resp;
 
         this.nuevoPedido.mesa = this.mesa;
-        console.log(this.nuevoPedido);
+        this.nuevoPedido.descripcion = this.formCreate.value.descripcion;
+
         this.pedidoService.create(this.nuevoPedido).subscribe(pedido => {
           Swal.fire('Creado', 'Nueva factura creada con éxito', 'success')
         });
-
       }
     })
 

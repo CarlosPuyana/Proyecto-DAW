@@ -34,7 +34,7 @@
 
             <td *ngIf="pedido.descripcion"> <span class="p-column-title" pSortableColumn="descripcion"><strong>Observación</strong></span> {{pedido.descripcion}} </td>
             <td *ngIf="!pedido.descripcion"> <span class="p-column-title" pSortableColumn="descripcion"><strong>Observación</strong></span> Sin Observación </td>
-            <td> <span class="p-column-title" pSortableColumn="total"><strong>Total</strong></span> {{pedido.total}} € </td>
+            <td> <span class="p-column-title" pSortableColumn="total"><strong>Total</strong></span> {{pedido.total.toFixed(2)}} € </td>
             <td> <span class="p-column-title" pSortableColumn="mesa"><strong>Mesa</strong></span> {{pedido.mesa.nombreMesa}} </td>
 
           </tr>

@@ -12,7 +12,7 @@
 
         <div class="form-group form-outline mb-4">
           <label> Mesa </label>
-          <select name="role" id="role" formControlName="mesa" class="form-control">
+          <select name="mesa" id="mesa" formControlName="mesa" class="form-control">
             <option selected="selected" disabled> {{optionDefault}}</option>
             <option *ngFor="let item of mesas" value="{{item.mesaId}}">{{item.nombreMesa}}</option>
         </select>
@@ -20,7 +20,7 @@
 
         <div class="form-group form-outline mb-4">
           <label> Producto </label>
-          <select name="role" id="role" formControlName="producto" class="form-control" (change)="seleccionarProducto($event)">
+          <select name="producto" id="producto" formControlName="producto" class="form-control" (change)="seleccionarProducto($event)">
             <option [selected]="optionDefault" disabled> {{optionDefault2}}</option>
             <option *ngFor="let item of productos" value="{{item.nombreProducto}}" >{{item.nombreProducto}}</option>
         </select>
@@ -28,7 +28,7 @@
 
         <div class="form-group form-outline mb-4">
           <label>Observación</label>
-          <input type="text" class="form-control" formControlName="descripcion">
+          <input name="descripcion" id="descripcion" type="text" class="form-control" formControlName="descripcion">
         </div>
 
 

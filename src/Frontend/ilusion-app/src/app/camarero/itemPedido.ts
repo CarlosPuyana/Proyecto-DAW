@@ -8,6 +8,6 @@ export class ItemPedido {
 
   public calcularImporte(): number {
 
-    return this.cantidad * this.producto.precio;
+    return Number((this.cantidad * this.producto.precio).toFixed(2));
   }
 }
