@@ -36,7 +36,7 @@
   <a [routerLink]="['/dashboard/camarero/listProductos']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Lista productos
   </a>
-  <a [routerLink]="['/dashboard/admin/listRestaurants']" *ngIf="findRolUser() === 'ROLE_COCINERO' " mat-list-item>
+  <a [routerLink]="['/dashboard/cocinero/listProductos']" *ngIf="findRolUser() === 'ROLE_COCINERO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Lista productos
   </a>
   <a [routerLink]="['/dashboard/camarero/listPedido']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
@@ -44,6 +44,9 @@
   </a>
   <a [routerLink]="['/dashboard/camarero/crearPedido']" *ngIf="findRolUser() === 'ROLE_CAMARERO' " mat-list-item>
     <mat-icon>restaurant_menu</mat-icon> Crear pedido
+  </a>
+  <a [routerLink]="['/dashboard/cocinero/listPedido']" *ngIf="findRolUser() === 'ROLE_COCINERO' " mat-list-item>
+    <mat-icon>restaurant_menu</mat-icon> Lista pedidos
   </a>
 
 </mat-nav-list>

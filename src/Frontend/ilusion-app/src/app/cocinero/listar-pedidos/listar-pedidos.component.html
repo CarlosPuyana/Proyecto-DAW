@@ -1,0 +1,63 @@
+
+<div class="container p-5 flex text-center bg-white">
+  <div class="card mh-100">
+    <p-panel header="Administración de Pedidos">
+
+      <div style="margin-bottom: 20px;">
+        <p-menubar [model]="items"></p-menubar>
+      </div>
+
+      <p-table #dt [value]="pedidos" responsiveLayout="stack" breackpoint="815px" [columns]="cols"  sortMode="multiple"
+      dataKey="id" selectionMode="single" [(selection)]="selectedPedido" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5,10,25]" [filterDelay]="0" [globalFilterFields]="['descripcion', 'total', 'mesa']">
+
+        <ng-template pTemplate="header" let-columns>
+
+          <tr>
+            <th pSortableColumn="descripcion">Descripción
+              <p-sortIcon field="descripcion"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="total">Total
+              <p-sortIcon field="total"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="mesa">Mesa
+              <p-sortIcon field="mesa"></p-sortIcon>
+            </th>
+          </tr>
+
+        </ng-template>
+
+        <ng-template pTemplate="body" let-pedido let-columns="pedido">
+
+          <tr [pSelectableRow]="pedido">
+
+            <td *ngIf="pedido.descripcion"> <span class="p-column-title" pSortableColumn="descripcion"><strong>Observación</strong></span> {{pedido.descripcion}} </td>
+            <td *ngIf="!pedido.descripcion"> <span class="p-column-title" pSortableColumn="descripcion"><strong>Observación</strong></span> Sin Observación </td>
+            <td> <span class="p-column-title" pSortableColumn="total"><strong>Total</strong></span> {{pedido.total.toFixed(2)}} € </td>
+            <td> <span class="p-column-title" pSortableColumn="mesa"><strong>Mesa</strong></span> {{pedido.mesa.nombreMesa}} </td>
+
+          </tr>
+
+        </ng-template>
+
+        <div style="margin-bottom: 20px;">
+          <p-menubar [model]="items"></p-menubar>
+        </div>
+
+        <ng-template pTemplate="footer" >
+          <th style="position: relative; right: 15%; top: 19px;">
+            <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar" />
+          </th>
+        </ng-template>
+
+
+
+      </p-table>
+
+      <div style="margin-bottom: 20px; float: right;">
+        <p-menubar [model]="items2"></p-menubar>
+      </div>
+    </p-panel>
+  </div>
+</div>

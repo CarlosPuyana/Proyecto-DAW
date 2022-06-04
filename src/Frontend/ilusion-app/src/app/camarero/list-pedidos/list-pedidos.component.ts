@@ -116,9 +116,14 @@ export class ListPedidosComponent implements OnInit {
             }
           })
 
+
         }
       })
     }
+
+    this.router.navigateByUrl(
+      'dashboard/camarero/listPedido'
+    );
   }
 
   crearPedido() {

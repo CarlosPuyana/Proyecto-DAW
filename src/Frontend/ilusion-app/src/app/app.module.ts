@@ -42,7 +42,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { ListPedidosCompletadosComponent } from './camarero/list-pedidos/list-pedidos-completados/list-pedidos-completados.component';
-
+import { ListarPedidosComponent } from './cocinero/listar-pedidos/listar-pedidos.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -68,6 +68,11 @@ const routes: Routes = [
   {path: 'dashboard/camarero/listPedido', component: ListPedidosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/listPedido/completados', component: ListPedidosCompletadosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/verDetalle/:id', component: DetallePedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
+
+  {path: 'dashboard/cocinero/listProductos', component: ListarProductosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_COCINERO'}},
+  {path: 'dashboard/cocinero/listPedido', component: ListarPedidosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_COCINERO'}},
+  {path: 'dashboard/cocinero/verDetalle/:id', component: DetallePedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_COCINERO'}},
+
 
 ]
 
@@ -96,7 +101,8 @@ const routes: Routes = [
     DetallePedidoComponent,
     HeaderComponent,
     SidenavComponent,
-    ListPedidosCompletadosComponent
+    ListPedidosCompletadosComponent,
+    ListarPedidosComponent
   ],
   imports: [
     TableModule,
