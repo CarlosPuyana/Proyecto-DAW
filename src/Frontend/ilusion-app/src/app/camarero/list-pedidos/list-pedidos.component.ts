@@ -42,7 +42,52 @@ export class ListPedidosComponent implements OnInit {
         icon: 'pi pi-fw pi-plus',
         command: () => this.crearPedido(),
       },
+      {
+        label: 'Completar pedido',
+        icon: 'pi pi-ticket',
+        command: () => this.completarPedido()
+      }
     ];
+  }
+
+  completarPedido() {
+
+    if (this.selectedPedido) {
+
+      Swal.fire({
+        title: 'Completar pedido',
+        text: `El total del pedido es de  ${this.selectedPedido?.total}. ¿Deseas completar el pedido?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, completar pedido!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Pedido completado!',
+            'El pedido ha sido completado.',
+            'success'
+          )
+
+          this.pedidoService.getPedidoById(this.selectedPedido!.id).subscribe({
+            next: resp => {
+
+              resp.activo = false;
+
+              this.pedidoService.editarPedido(resp.id, resp).subscribe({
+                next: resp => {
+
+                }
+              })
+
+            }
+          })
+
+        }
+      })
+    }
   }
 
   crearPedido() {

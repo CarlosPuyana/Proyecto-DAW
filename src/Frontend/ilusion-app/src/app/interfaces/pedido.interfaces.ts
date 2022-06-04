@@ -8,6 +8,7 @@ export interface Pedido {
   mesa: Mesa;
   total: number;
   createAt: string;
+  activo: boolean;
 }
 
 export interface PedidoResponse {
@@ -17,4 +18,5 @@ export interface PedidoResponse {
   mesa: Mesa;
   total: number;
   createAt: string;
+  activo: boolean;
 }

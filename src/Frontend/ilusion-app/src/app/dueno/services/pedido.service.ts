@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { PedidoResponse } from '../../interfaces/pedido.interfaces';
+import { Pedido, PedidoResponse } from '../../interfaces/pedido.interfaces';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -41,6 +41,16 @@ export class PedidoService {
     .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
     return this.http.get<PedidoResponse>(path, {headers: header});
+  }
+
+  editarPedido(id: number, pedido: Pedido): Observable<PedidoResponse> {
+
+    let path = this.url + "/" + id;
+
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    return this.http.put<PedidoResponse>(path, pedido, {headers: header});
   }
 
 }
