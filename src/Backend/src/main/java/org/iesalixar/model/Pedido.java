@@ -51,6 +51,8 @@ public class Pedido implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date createAt;
 	
+	private boolean activo;
+	
 	@PrePersist
 	public void prePersist() {
 		
@@ -58,7 +60,8 @@ public class Pedido implements Serializable {
 	}
 	
 	public Pedido() {
-		// TODO Auto-generated constructor stub
+		
+		this.activo = true;
 	}	
 	
 	public Double getTotal() {
