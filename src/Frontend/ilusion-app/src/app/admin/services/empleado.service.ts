@@ -17,6 +17,23 @@ export class EmpleadoService {
 
   constructor(private http: HttpClient) { }
 
+  uploadPhoto(archivo: File, id: any) {
+
+
+    let path = this.url + "/upload/" + id;
+
+    const headers = new HttpHeaders()
+      .set('Authorization', `Bearer ${localStorage.getItem('token')}` || '');
+
+
+    let formData = new FormData();
+    formData.append('archivo', archivo);
+    formData.append('id', id);
+
+    return this.http.post(path, formData, {headers: headers});
+
+  }
+
   /**
    * Devuelve el id del usuario a traves del token
    * @returns

@@ -3,6 +3,7 @@ import { Empleado } from 'src/app/interfaces/empleado.interface';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { EmpleadoService } from '../admin/services/empleado.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-perfil',
@@ -28,10 +29,28 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  getFoto(event: any) {
+  findIdUser() {
 
+    return this.jwt.decodeToken(localStorage.getItem('token')!).id
   }
 
+  getFoto(event: any) {
+    const archivoCapturado = event.target.files[0];
+
+    this.archivo = archivoCapturado;
+
+    this.empleadoService.uploadPhoto(this.archivo, this.findIdUser()).subscribe({
+      next: resp => {
+        Swal.fire('Foto actualizada!', 'La foto de perfil ha sido actualizada', 'success')
+
+        setTimeout(() => {
+          window.location.reload()
+        }, 2000);
+
+      }
+    })
+
+  }
 
   abrirModal() {
     this.modal = true;
