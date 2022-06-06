@@ -28,6 +28,36 @@ export class PedidoService {
     return this.http.post<Pedido>(this.url, pedido, {headers: header})
   }
 
+  /**
+   * It returns an observable of type Pedido, which is a class that represents a Pedido object
+   * @param {number} id - number
+   * @returns An observable of Pedido
+   */
+  findPedido(id: number): Observable<Pedido> {
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
 
+    let path = this.url + "/" + id;
+
+    return this.http.get<Pedido>(path, {headers: header})
+  }
+
+  /**
+   * It updates a pedido in the database
+   * @param {Pedido} pedido - Pedido - The object that will be updated.
+   * @returns An observable of type Pedido
+   */
+  updatePedido(pedido: Pedido, idPedido: number): Observable<Pedido> {
+    const header = new HttpHeaders()
+    .set('Authorization', `Bearer ${localStorage.getItem('token')}`);
+
+    console.log(pedido);
+
+
+    let path = this.url + "/" + idPedido;
+
+    return this.http.put<Pedido>(path, pedido, {headers: header})
+
+  }
 
 }

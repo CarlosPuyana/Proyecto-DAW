@@ -44,6 +44,7 @@ import { MatListModule } from '@angular/material/list';
 import { ListPedidosCompletadosComponent } from './camarero/list-pedidos/list-pedidos-completados/list-pedidos-completados.component';
 import { ListarPedidosComponent } from './cocinero/listar-pedidos/listar-pedidos.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { EditPedidoComponent } from './camarero/edit-pedido/edit-pedido.component';
 
 const routes: Routes = [
   {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
@@ -66,6 +67,7 @@ const routes: Routes = [
 
   {path: 'dashboard/camarero/listProductos', component: ListarProductosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/crearPedido', component: CrearPedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
+  {path: 'dashboard/camarero/editPedido/:id', component: EditPedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/listPedido', component: ListPedidosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/listPedido/completados', component: ListPedidosCompletadosComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
   {path: 'dashboard/camarero/verDetalle/:id', component: DetallePedidoComponent , canActivate: [AuthGuard, RoleGuard], data: {rol: 'ROLE_CAMARERO'}},
@@ -105,7 +107,8 @@ const routes: Routes = [
     SidenavComponent,
     ListPedidosCompletadosComponent,
     ListarPedidosComponent,
-    PerfilComponent
+    PerfilComponent,
+    EditPedidoComponent
   ],
   imports: [
     TableModule,

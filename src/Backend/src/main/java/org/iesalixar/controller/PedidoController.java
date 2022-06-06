@@ -114,6 +114,8 @@ public class PedidoController {
 	@ApiOperation(value = "Edita un pedido en concreto", produces = "application/json", response = Mesa.class)
 	public ResponseEntity<?> editPedido(@Valid @RequestBody Pedido pedido, BindingResult result, @PathVariable Long id) {
 		
+		System.out.println("ge" + pedido.getItems());
+		
 		Pedido pedidoActual = pedService.findPedidoById(id);
 		
 		Map<String,Object> response = new HashMap<>();
@@ -138,6 +140,8 @@ public class PedidoController {
 		try {
 			pedidoActual.setDescripcion(pedido.getDescripcion());
 			pedidoActual.setActivo(pedido.isActivo());
+			pedidoActual.setItems(pedido.getItems());
+			
 			
 			
 			pedService.updatePedido(pedidoActual);
@@ -154,5 +158,6 @@ public class PedidoController {
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 	
 	}
+	
 
 }

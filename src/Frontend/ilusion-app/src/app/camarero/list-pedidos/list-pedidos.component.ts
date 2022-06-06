@@ -49,6 +49,11 @@ export class ListPedidosComponent implements OnInit {
         label: 'Completar pedido',
         icon: 'pi pi-ticket',
         command: () => this.completarPedido()
+      },
+      {
+        label: 'Editar pedido',
+        icon: 'pi pi-ticket',
+        command: () => this.editarPedido()
       }
     ];
 
@@ -61,6 +66,9 @@ export class ListPedidosComponent implements OnInit {
   ]
   }
 
+  /**
+   * It navigates to the URL 'dashboard/camarero/listPedido/completados'
+   */
   pedidosCompletados() {
 
     this.router.navigateByUrl(
@@ -68,6 +76,19 @@ export class ListPedidosComponent implements OnInit {
     );
   }
 
+  editarPedido() {
+
+    if (this.selectedPedido) {
+      this.router.navigateByUrl(
+        'dashboard/camarero/editPedido/' + this.selectedPedido.id
+      );
+    }
+
+
+  }
+
+  /* A function that is called when the user clicks on the button "Completar pedido" in the table of
+  the component. */
   completarPedido() {
 
     if (this.selectedPedido) {
@@ -119,6 +140,11 @@ export class ListPedidosComponent implements OnInit {
 
         }
       })
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000);
+
     }
 
     this.router.navigateByUrl(

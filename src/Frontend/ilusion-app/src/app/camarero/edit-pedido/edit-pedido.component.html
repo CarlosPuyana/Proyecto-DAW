@@ -7,20 +7,17 @@
         <h3>Crear Pedido</h3>
       </div>
 
-      <form autocomplete="off" [formGroup]="formCreate" (ngSubmit)="registerPedido()">
+      <form autocomplete="off" [formGroup]="formCreate"  (ngSubmit)="registerPedido()" *ngIf="pedido">
 
         <div class="form-group form-outline mb-4">
           <label> Mesa </label>
-          <select name="mesa" id="mesa" formControlName="mesa" class="form-control">
-            <option selected="selected" disabled> {{optionDefault}}</option>
-            <option *ngFor="let item of mesas" value="{{item.mesaId}}">{{item.nombreMesa}}</option>
-        </select>
+          <input name="mesa" id="mesa" type="text" class="form-control" [placeholder]="pedido.mesa.nombreMesa" disabled>
         </div>
 
         <div class="form-group form-outline mb-4">
           <label> Producto </label>
           <select name="producto" id="producto" formControlName="producto" class="form-control" (change)="seleccionarProducto($event)">
-            <option [selected]="optionDefault" disabled> {{optionDefault2}}</option>
+            <option [selected]="optionDefault2" disabled> {{optionDefault2}}</option>
             <option *ngFor="let item of productos" value="{{item.nombreProducto}}" >{{item.nombreProducto}}</option>
         </select>
         </div>
@@ -66,4 +63,5 @@
     </div>
 <!--     <button class="btn btn-primary" (click)="addProd()">Añadir Producto</button>
  --></div>
+
 
