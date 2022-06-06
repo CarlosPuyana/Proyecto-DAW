@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.iesalixar.model.Empleados;
 import org.iesalixar.model.Restaurante;
+import org.springframework.web.multipart.MultipartFile;
 
 public interface EmpleadoService {
 
@@ -20,4 +21,6 @@ public interface EmpleadoService {
 	
 	public void delete(Empleados empleado);
 	
+	Empleados saveAttachment(MultipartFile file, Empleados empleados) throws Exception;
+	Empleados getAttachment(Long fileId) throws Exception;
 }

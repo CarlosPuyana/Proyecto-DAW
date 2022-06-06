@@ -18,6 +18,7 @@ export class HeaderComponent implements OnInit {
   user!: EmpleadoResponse;
   nombre!: string;
   jwt:JwtHelperService = new JwtHelperService();
+  foto!: string;
 
   constructor(public authService: AuthService, private router: Router, private empleadoService: EmpleadoService) { }
 
@@ -54,6 +55,7 @@ export class HeaderComponent implements OnInit {
         this.user = resp;
 
         this.nombre = this.user.nombre
+        this.foto = "http://localhost:8080/api/v1/users/download/" + this.user.id
 
       }, error: err => {
 

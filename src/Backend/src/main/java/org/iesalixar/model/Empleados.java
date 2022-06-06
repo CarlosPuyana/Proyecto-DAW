@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -49,6 +50,13 @@ public class Empleados {
 	@Column(nullable = false, columnDefinition = "BOOLEAN")
 	private boolean activo;
 	
+	@Lob
+	private byte[] data;
+	
+	String fileName;
+	
+	private String fileType;
+	
 	@ManyToOne()
 	@JoinColumn(name = "restaurante_id")
 	@JsonIgnore
@@ -73,8 +81,6 @@ public class Empleados {
 		this.activo = activo;
 		this.restaurante = restaurante;
 	}
-	
-	
 	
 	
 }

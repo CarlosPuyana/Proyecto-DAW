@@ -7,6 +7,7 @@ export interface Empleado {
   apellidos: string;
   role: string;
   password?: string;
+  fileName?: string;
 
 }
 
@@ -17,4 +18,5 @@ export interface EmpleadoResponse {
   email: string;
   apellidos: string;
   role: string;
+  fileName?: string;
 }

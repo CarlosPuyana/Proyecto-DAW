@@ -10,6 +10,7 @@ import javax.validation.Valid;
 
 import org.iesalixar.mail.Mail;
 import org.iesalixar.model.Empleados;
+import org.iesalixar.model.ResponseData;
 import org.iesalixar.services.EmpleadoServiceImpl;
 import org.iesalixar.services.MailServiceImpl;
 import org.iesalixar.services.Password;
@@ -17,8 +18,12 @@ import org.iesalixar.services.RestauranteServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.Resource;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
@@ -32,6 +37,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import io.swagger.annotations.ApiOperation;
 
@@ -306,5 +313,37 @@ public class UserController {
 		return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
 
 	}
+	
+	@PostMapping("/upload/{idUser}")
+	 public ResponseData uploadFile(@RequestParam("archivo")MultipartFile archivo, @PathVariable Long idUser) throws Exception {
+
+       String downloadURl = "";
+       
+       Empleados user = empleadoService.findEmpleadoById(idUser);
+      
+       user = empleadoService.saveAttachment(archivo, user);
+       downloadURl = ServletUriComponentsBuilder.fromCurrentContextPath()
+               .path("/api/v1/users/download/")
+               .path(user.getId().toString())
+               .toUriString();
+
+       return new ResponseData(user.getFileName(),
+               downloadURl,
+               archivo.getContentType(),
+               archivo.getSize());
+   }
+	
+	@GetMapping("/download/{fileId}")
+    public ResponseEntity<Resource> downloadFile(@PathVariable Long fileId) throws Exception {
+		
+		Empleados attachment = null;
+        attachment = empleadoService.getAttachment(fileId);
+        return  ResponseEntity.ok()
+                .contentType(MediaType.parseMediaType(attachment.getFileType()))
+                .header(HttpHeaders.CONTENT_DISPOSITION,
+                        "attachment; filename=\"" + attachment.getFileName()
+                + "\"")
+                .body(new ByteArrayResource(attachment.getData()));
+    }
 
 }

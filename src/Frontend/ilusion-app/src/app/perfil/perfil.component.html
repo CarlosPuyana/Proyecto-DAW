@@ -1,8 +1,72 @@
 
-<div class="container">
+<div *ngIf="modal" class="modal" tabindex="-1" role="dialog" style="display: block; ">
+  <div class="modal-dialog modal-dialog-centered"  role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" (click)="cerrarModal()" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body row align-items-center">
+        <div class="col-md-5 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <a (click)="abrirModal()">
+              <img *ngIf="user?.fileName" src="{{foto}}" alt="{{user.fileName}}" class="img-thumbnail rounded" style="width:250px; height: 250px;">
+            </a>
+            <a (click)="abrirModal()">
+            <img *ngIf="!user?.fileName" src="http://localhost:8080/img/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
+            style="width: 150px; cursor: pointer; ">
+            </a>
+            </div>
+        </div>
+        <div class="col-md-6 text-center">
+          <p >¿Deseas cambiar de foto de perfil?</p>
+          <label class="custom-file-upload">
+            <input (change)="getFoto($event)" accept="image/*" type="file"/>
+            Elegir foto de perfil
+        </label>
+        </div>
+      </div>
 
-    <h1>BAJO CONSTRUCCIÓN</h1>
-
-    <img src="https://static.vecteezy.com/system/resources/previews/000/331/848/non_2x/under-maintenance-line-filled-icon-vector.jpg" alt="" srcset="">
-
+    </div>
+  </div>
 </div>
+
+
+
+<div class="container rounded bg-white mt-5 mb-5" *ngIf="user">
+  <div class="row">
+      <div class="col-md-4 border-right">
+          <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+            <a (click)="abrirModal()"><img *ngIf="user?.fileName" src="{{foto}}" alt="{{user.fileName}}" class="img-thumbnail rounded" style="width:25%">
+            </a><img *ngIf="!user?.fileName" src="http://localhost:8080/img/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
+            style="width: 150px; cursor: pointer; ">
+            <span class="font-weight-bold">{{user.nombre}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
+      </div>
+
+
+      <div class="col-md-5 border-right">
+          <div class="p-3 py-5">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                  <h2 class="text-right">Perfil</h2>
+              </div>
+              <form #usuarioForm="ngForm">
+              <div class="row mt-2">
+                  <div class="col-md-6"><label class="labels">Nombre</label><input type="text" class="form-control" placeholder="Nombre" value="" [(ngModel)]="user.nombre" name="nombre" #nombre="ngModel"></div>
+                  <div class="col-md-6"><label class="labels">Apellido</label><input type="text" class="form-control" value="" placeholder="Apellido" [(ngModel)]="user.apellidos" name="apellidos" #apellidos="ngModel"></div>
+              </div>
+              <div class="row mt-3">
+                <div class="col-md-12"><label class="labels">Contraseña</label><input type="password" class="form-control" placeholder="Contraseña" [(ngModel)]="contrasena" name="password" #password="ngModel"></div>
+                <div class="col-md-12"><label class="labels">Usuario</label><input type="text" class="form-control" placeholder="Usuario" [(ngModel)]="user.userName" name="userName" #userName="ngModel" disabled></div>
+                <div class="col-md-12"><label class="labels">ROL</label><input type="text" class="form-control" placeholder="ROLE" [(ngModel)]='rol' name="role" #role="ngModel" disabled></div>
+              </div>
+
+              <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button" (click)="updatePerfil()">Guardar Cambios</button></div>
+            </form>
+            </div>
+      </div>
+
+  </div>
+</div>
+
+
