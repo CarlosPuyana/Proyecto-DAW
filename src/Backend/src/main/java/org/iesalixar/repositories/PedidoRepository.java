@@ -21,4 +21,8 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long> {
 	
 	@Query(value = "SELECT * FROM proyecto.pedidos p WHERE activo = FALSE AND mesa_id in (SELECT mesa_id from proyecto.mesas m WHERE m.restaurante_id =?1)", nativeQuery = true)
 	public List<Pedido> findPedidosByRestauranteAndActivoFalse(Long id);
+	
+	@Query(value = "SELECT * FROM proyecto.pedidos p WHERE activo = TRUE AND realizado = FALSE  AND mesa_id in (SELECT mesa_id from proyecto.mesas m WHERE m.restaurante_id =?1)", nativeQuery = true)
+	public List<Pedido> findPedidosByRestauranteRealizadoFalse(Long id);
+	
 }

@@ -56,4 +56,10 @@ public class PedidoServiceImpl implements PedidoService {
 		return pedRepo.findPedidosByRestauranteAndActivoFalse(id);
 	}
 
+	@Override
+	public List<Pedido> findPedidosByRestauranteAndRealizadoFalse(Long id) {
+		
+		return pedRepo.findPedidosByRestauranteRealizadoFalse(id);
+	}
+
 }

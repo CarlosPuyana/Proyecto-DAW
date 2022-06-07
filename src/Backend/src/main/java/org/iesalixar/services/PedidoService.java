@@ -14,5 +14,6 @@ public interface PedidoService {
 	public List<Pedido> findPedidosByRestaurante(Long id);
 	public List<Pedido> findPedidosByRestauranteAndActivoTrue(Long id);
 	public List<Pedido> findPedidosByRestauranteAndActivoFalse(Long id);
+	public List<Pedido> findPedidosByRestauranteAndRealizadoFalse(Long id);
 
 }

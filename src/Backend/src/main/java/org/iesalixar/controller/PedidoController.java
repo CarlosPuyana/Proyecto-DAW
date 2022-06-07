@@ -67,6 +67,16 @@ public class PedidoController {
 		
 	}
 	
+	@GetMapping("/restaurante/norealizado/{id}")
+	@ApiOperation(value = "Recoge los pedidos por realizar de un restaurante", produces = "application/json", response = Pedido.class)
+	public List<Pedido> getPedidosSinRealizar(@PathVariable Long id) {
+		
+		logger.info("Buscando pedidos sin realizar del restaurante " + id);
+		
+		return pedService.findPedidosByRestauranteAndRealizadoFalse(id);
+		
+	}
+	
 	@GetMapping("/{id}")
 	@ApiOperation(value = "Recoge un pedido en concreto", produces = "application/json", response = Pedido.class)
 	public ResponseEntity<?> getPedido(@PathVariable Long id) {

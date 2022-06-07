@@ -40,6 +40,11 @@ export class ListarPedidosComponent implements OnInit {
         label: 'Ver',
         icon: 'pi pi-fw pi-check',
         command: () => this.verPedido(),
+      },
+      {
+        label: 'Realizar',
+        icon: 'pi pi-fw pi-check',
+        command: () => this.verPedido(),
       }
     ];
 
@@ -61,7 +66,7 @@ export class ListarPedidosComponent implements OnInit {
   findPedidosActivos() {
     this.empleadoService.findRestaurante(this.findIdUser()).subscribe({
       next: (resp) => {
-        this.pedidoService.findPedidosByRestauranteActivos(resp.id).subscribe({
+        this.pedidoService.findPedidosByRestaurantePorRealizar(resp.id).subscribe({
           next: (resp) => {
             this.pedidos = resp;
             for(let i = 0; i < 10; i++) {

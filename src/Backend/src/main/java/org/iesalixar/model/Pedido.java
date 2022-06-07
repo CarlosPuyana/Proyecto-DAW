@@ -53,6 +53,8 @@ public class Pedido implements Serializable {
 	
 	private boolean activo;
 	
+	private boolean realizado;
+	
 	@PrePersist
 	public void prePersist() {
 		
