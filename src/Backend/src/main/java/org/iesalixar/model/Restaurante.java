@@ -55,6 +55,10 @@ public class Restaurante implements Serializable {
 	@JsonIgnore
 	private Set<Productos> productos = new HashSet<>();
 	
+	@OneToMany(mappedBy = "restaurante", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+	@JsonIgnore
+	private Set<Notificaciones> notificaciones = new HashSet<>();
+	
 	
 	public Restaurante() {
 		// TODO Auto-generated constructor stub
