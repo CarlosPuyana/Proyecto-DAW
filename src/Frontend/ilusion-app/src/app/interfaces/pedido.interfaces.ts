@@ -9,6 +9,7 @@ export interface Pedido {
   total: number;
   createAt: string;
   activo: boolean;
+  realizado: boolean;
 }
 
 export interface PedidoResponse {
@@ -19,4 +20,5 @@ export interface PedidoResponse {
   total: number;
   createAt: string;
   activo: boolean;
+  realizado: boolean;
 }

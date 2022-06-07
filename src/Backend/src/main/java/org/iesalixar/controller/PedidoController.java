@@ -151,7 +151,7 @@ public class PedidoController {
 			pedidoActual.setDescripcion(pedido.getDescripcion());
 			pedidoActual.setActivo(pedido.isActivo());
 			pedidoActual.setItems(pedido.getItems());
-			
+			pedidoActual.setRealizado(pedido.isRealizado());
 			
 			
 			pedService.updatePedido(pedidoActual);

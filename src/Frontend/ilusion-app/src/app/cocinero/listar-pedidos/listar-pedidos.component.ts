@@ -44,13 +44,64 @@ export class ListarPedidosComponent implements OnInit {
       {
         label: 'Realizar',
         icon: 'pi pi-fw pi-check',
-        command: () => this.verPedido(),
+        command: () => this.realizarPedido(),
       }
     ];
 
 
   }
 
+  realizarPedido() {
+    if (this.selectedPedido) {
+
+      Swal.fire({
+        title: 'Realizar pedido',
+        text: `¿Deseas dar como realizado el pedido ${this.selectedPedido.descripcion}?`,
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Si, completar pedido!',
+        cancelButtonText: 'Cancelar'
+      }).then((result) =>{
+
+        if (result.isConfirmed) {
+          Swal.fire(
+            'Pedido realizado!',
+            'El pedido ha sido realizado',
+            'success'
+          )
+
+          this.pedidoService.getPedidoById(this.selectedPedido!.id).subscribe({
+            next: resp => {
+
+              resp.activo = true;
+              resp.realizado = true;
+
+              this.pedidoService.editarPedido(resp.id, resp).subscribe({
+                next: resp => {
+
+                }
+              })
+            }
+
+          })
+
+        }
+
+      })
+
+      setTimeout(() => {
+        window.location.reload()
+      }, 2000);
+
+    }
+  }
+
+  /**
+   * If the selectedPedido is not null, then navigate to the url 'dashboard/cocinero/verDetalle/' + the
+   * id of the selectedPedido
+   */
   verPedido() {
     if (this.selectedPedido) {
       this.router.navigateByUrl(
