@@ -4,10 +4,29 @@
       <mat-icon>menu</mat-icon>
     </button>
     <div class="row mr-2 ml-auto">
+      <button mat-button [matMenuTriggerFor]="menu2" class="user mt-2 d-flex align-items-center" >
+        <mat-icon class="user-image-icon ml-1">mail_outline</mat-icon>
+      </button>
+      <mat-menu #menu2="matMenu" >
+        <table>
+          <thead>
+            <tr>
+              <th>Mensajes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of notis">
+              <td>{{item.mensaje}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </mat-menu>
+    </div>
+    <div class="row mr-2 ml-auto">
       <ul>
         <li>
           <button mat-button [matMenuTriggerFor]="menu" class="user mt-2 d-flex align-items-center" >
-            <img src="{{foto}}" alt="" class="user-image mr-1 p-2" />
+            <img *ngIf="user?.fileName" src="{{foto}}" alt="" class="user-image mr-1 p-2" /> <img *ngIf="!user?.fileName" src="http://localhost:8080/img/no_usuario.png" alt="Sin foto" class="user-image mr-1 p-2">
             {{user.userName}}
             <mat-icon class="user-image-icon ml-1">keyboard_arrow_down</mat-icon>
           </button>

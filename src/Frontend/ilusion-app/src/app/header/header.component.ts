@@ -5,6 +5,8 @@ import { EmpleadoService } from '../admin/services/empleado.service';
 import { AuthService } from '../login/auth.service';
 import Swal from 'sweetalert2';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { NotificacionesResponse } from '../interfaces/noti.interface';
+import { NotiService } from '../admin/services/noti.service';
 
 @Component({
   selector: 'app-header',
@@ -19,11 +21,13 @@ export class HeaderComponent implements OnInit {
   nombre!: string;
   jwt:JwtHelperService = new JwtHelperService();
   foto!: string;
+  notis!: NotificacionesResponse[];
 
-  constructor(public authService: AuthService, private router: Router, private empleadoService: EmpleadoService) { }
+  constructor(private notiService: NotiService, public authService: AuthService, private router: Router, private empleadoService: EmpleadoService) { }
 
   ngOnInit(): void {
     this.findInfoUser();
+    this.findNoti()
   }
 
   perfil() {
@@ -85,6 +89,16 @@ export class HeaderComponent implements OnInit {
 
   toggleSidebar() {
     this.toggleSidebarForMe.emit();
+  }
+
+  findNoti() {
+
+    this.notiService.getNotiByRestaurante(this.findIdUser()).subscribe({
+      next: resp => {
+        this.notis = resp;
+      }
+
+    })
   }
 
 }
