@@ -14,8 +14,8 @@
               <img *ngIf="user?.fileName" src="{{foto}}" alt="{{user.fileName}}" class="img-thumbnail rounded" style="width:250px; height: 250px;">
             </a>
             <a (click)="abrirModal()">
-            <img *ngIf="!user?.fileName" src="http://localhost:8080/img/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
-            style="width: 150px; cursor: pointer; ">
+              <img *ngIf="!user?.fileName" src="http://localhost:8080/img/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
+              style="width: 150px; cursor: pointer; ">
             </a>
             </div>
         </div>
@@ -39,8 +39,8 @@
       <div class="col-md-4 border-right">
           <div class="d-flex flex-column align-items-center text-center p-3 py-5">
             <a (click)="abrirModal()"><img *ngIf="user?.fileName" src="{{foto}}" alt="{{user.fileName}}" class="img-thumbnail rounded" style="width:25%">
-            </a><img *ngIf="!user?.fileName" src="http://localhost:8080/img/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
-            style="width: 150px; cursor: pointer; ">
+            <img *ngIf="!user?.fileName" src="http://localhost:8080/img/no_usuario.png" alt="Sin foto" class="img-thumbnail rounded"
+            style="width: 150px; cursor: pointer; "></a>
             <span class="font-weight-bold">{{user.nombre}}</span><span class="text-black-50">{{user.email}}</span><span> </span></div>
       </div>
 
