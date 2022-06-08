@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 public interface NotiRepository extends JpaRepository<Notificaciones,Long> {
 
 	public List<Notificaciones> findAllByRestaurante(Restaurante restaurante);
+	
+	public Notificaciones findNotiByMensaje(String mensaje);
 }

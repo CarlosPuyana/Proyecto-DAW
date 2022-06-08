@@ -15,7 +15,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of notis">
+            <tr *ngFor="let item of notis.slice().reverse()">
               <td>{{item.mensaje}}</td>
             </tr>
           </tbody>

@@ -25,4 +25,16 @@ public class NotiServiceImpl implements NotiService {
 		return notiRepo.save(noti);
 	}
 
+	@Override
+	public Notificaciones findNotiByMensaje(Notificaciones noti) {
+		
+		return notiRepo.findNotiByMensaje(noti.getMensaje());
+	}
+
+	@Override
+	public Notificaciones updateNoti(Notificaciones noti) {
+		
+		return notiRepo.save(noti);
+	}
+
 }

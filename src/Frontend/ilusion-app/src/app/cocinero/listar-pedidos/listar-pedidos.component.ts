@@ -8,6 +8,8 @@ import { PedidoService } from 'src/app/dueno/services/pedido.service';
 import Swal from 'sweetalert2';
 import { EmpleadoService } from '../../admin/services/empleado.service';
 import { MesaService } from '../../dueno/services/mesa.service';
+import { NotiService } from 'src/app/admin/services/noti.service';
+import { Notificaciones } from '../../interfaces/noti.interface';
 
 @Component({
   selector: 'app-listar-pedidos',
@@ -19,6 +21,7 @@ export class ListarPedidosComponent implements OnInit {
   pedidos!: Pedido[];
   pedido!: PedidoResponse;
   jwt: JwtHelperService = new JwtHelperService();
+  noti!: Notificaciones;
 
   cols: any[] = [];
   items: MenuItem[] = [];
@@ -29,7 +32,8 @@ export class ListarPedidosComponent implements OnInit {
     private router: Router,
     private pedidoService: PedidoService,
     private empleadoService: EmpleadoService,
-    private mesaService: MesaService
+    private mesaService: MesaService,
+    private notiService: NotiService
   ) {}
 
   ngOnInit(): void {
@@ -79,8 +83,23 @@ export class ListarPedidosComponent implements OnInit {
               resp.realizado = true;
 
               this.pedidoService.editarPedido(resp.id, resp).subscribe({
-                next: resp => {
+                next: resp2 => {
 
+                  const data: Notificaciones = {
+                    "mensaje": `Pedido ${resp.mesa.nombreMesa} realizado`
+                  }
+
+                  this.notiService.crearNoti(data).subscribe({
+                    next: resp => {
+
+                      this.notiService.setRestaurant(resp, this.findIdUser()).subscribe({
+                        next: resp => {
+
+                        }
+                      })
+
+                    }
+                  })
                 }
               })
             }

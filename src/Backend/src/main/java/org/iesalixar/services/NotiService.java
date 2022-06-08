@@ -9,5 +9,7 @@ public interface NotiService {
 
 	public List<Notificaciones> findAllByRestaurante(Restaurante restaurante);
 	public Notificaciones insertNoti(Notificaciones noti);
+	public Notificaciones findNotiByMensaje(Notificaciones noti);
+	public Notificaciones updateNoti(Notificaciones noti);
 	
 }

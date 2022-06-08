@@ -143,8 +143,6 @@ public class ProductController {
 		Productos productActual = prodService.findProductoByNombreProducto(prod.getNombreProducto());
 		Productos prodUpdate = null;
 		
-		System.out.println(productActual);
-		
 		logger.info("Nombre del restaurante: " + nombreRestaurante);
 		
 		Map<String, Object> response = new HashMap<>();
@@ -191,7 +189,7 @@ public class ProductController {
 		}
 		
 		response.put("mensaje", "El producto ha sido actualizado con exito!");
-		response.put("user", prodUpdate);
+		response.put("product", prodUpdate);
 		
 		return new ResponseEntity<Map<String,Object>>(response,HttpStatus.CREATED);
 	}

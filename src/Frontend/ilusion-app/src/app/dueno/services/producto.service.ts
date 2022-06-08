@@ -118,9 +118,6 @@ export class ProductoService {
       precio: prod.precio
     }
 
-    console.log(this.header);
-
-
     return this.http.put<AuthResponse>(path, body);
   }
 
