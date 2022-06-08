@@ -19,4 +19,10 @@ public class NotiServiceImpl implements NotiService {
 		return notiRepo.findAllByRestaurante(restaurante);
 	}
 
+	@Override
+	public Notificaciones insertNoti(Notificaciones noti) {
+		
+		return notiRepo.save(noti);
+	}
+
 }

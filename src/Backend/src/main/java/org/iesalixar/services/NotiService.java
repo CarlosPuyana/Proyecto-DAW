@@ -8,5 +8,6 @@ import org.iesalixar.model.Restaurante;
 public interface NotiService {
 
 	public List<Notificaciones> findAllByRestaurante(Restaurante restaurante);
+	public Notificaciones insertNoti(Notificaciones noti);
 	
 }
