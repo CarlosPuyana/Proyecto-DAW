@@ -36,7 +36,7 @@
         </ng-template>
 
         <ng-template pTemplate="footer" >
-          <th style="position: relative; left: 60%; top: 19px;">
+          <th class="buscador" style="position: relative; left: 60%; top: 19px;">
             <input pInputText type="text" (input)="dt.filterGlobal($any($event.target).value, 'contains')" placeholder="Buscar" />
           </th>
         </ng-template>
