@@ -30,13 +30,10 @@ export class AppComponent {
         if(event instanceof NavigationStart) {
 
           this.currentRoute = event.url
-          console.log(this.currentRoute);
           if (this.currentRoute === '/login') {
             this.esIndex = false;
-            console.log(this.esIndex);
           } else {
             this.esIndex = true;
-            console.log(this.esIndex);
           }
         }
       });

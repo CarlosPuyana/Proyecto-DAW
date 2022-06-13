@@ -56,12 +56,11 @@
 
         <h5 class="float-right">Gran Total: <span>{{nuevoPedido.calcularGranTotal()}}</span></h5>
 
-        <button class="btn btn-primary" type="submit" >Añadir</button>
+        <button class="btn btn-primary" type="submit" [disabled]="!formCreate.valid" >Añadir</button>
 
       </form>
 
     </div>
-<!--     <button class="btn btn-primary" (click)="addProd()">Añadir Producto</button>
- --></div>
+  </div>
 
 
