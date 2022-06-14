@@ -1,5 +1,5 @@
 
-# Restaurant App
+# La Ilusion App
 Curso Escolar 2021-2022 \
 Autor: [Carlos Puyana](https://github.com/CarlosPuyana) \
 Tutor: [Diana De La Lara Del Rey](https://github.com/dialarrey) \
