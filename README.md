@@ -14,8 +14,8 @@ Este proyecto consiste en una aplicación web en la que restaurantes/bares pueda
 Lograr que estos establecimientos dejen atrás tomar los pedidos en papel y agilizar y facilitar la toma de los pedidos. Teniendo así una mejor eficiencia en el trabajo y una comunicación más directa entre Camarero-Cocineros.
 
 ## Estructura del Proyecto 
-[Modelos de la tablas de la Base de Datos creado en Hibernate/Spring](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/src/main/java/org/iesalixar/model)
-[Alcance](https://github.com/CarlosPuyana/Proyecto-DAW/blob/main/docs/Alcance.md)
-[Proyecto Back-End](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/src/Backend)
-[Proyecto Front-End](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/src/Frontend)
+[Modelos de la tablas de la Base de Datos creado en Hibernate/Spring](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/src/main/java/org/iesalixar/model) \
+[Alcance](https://github.com/CarlosPuyana/Proyecto-DAW/blob/main/docs/Alcance.md) \
+[Proyecto Back-End](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/src/Backend) \
+[Proyecto Front-End](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/src/Frontend) \
 [Documentación](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/docs/Documentacion_La_Ilusion)
