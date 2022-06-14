@@ -4,13 +4,13 @@ En esta carpeta se recoge toda la documentación relativa al proyecto solicitada
 
 Un ejemplo sería el siguiente:
 - [Captura de requisitos](https://github.com/iesalixar/plantilla_proyecto_iesalixar/blob/master/docs/Alcance.md)
-- [Arquitectura del Proyecto y su contenido]()
-    - [Vista de Subsistemaa y Componentes: Mapa de la Aplicación]()
+- [Arquitectura del Proyecto y su contenido](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/docs/Arquitectura_del_Proyecto)
+    - [Vista de Subsistema y Componentes: Mapa de la Aplicación]()
     - [Vista de Concurrencia y Recursos: Diseño de Base de Datos]()
     - [Vista de Distribución: Diseño de la Página/Aplicación/Interfaz]()
     - [vista de Seguridad y Fiabilidad]()
     - [Vista de Despliegue]()
-- [Desarrollo (programación y diseño) de la Aplicación]()
+- [Desarrollo (programación y diseño) de la Aplicación](https://github.com/CarlosPuyana/Proyecto-DAW/tree/main/src)
     - [Diagramas de clases y diagramas de colaboración]()
     - [Estructura de datos]()
     - [Código fuente: HTML, CSS, JavaScript, AJAX, etc...]()
