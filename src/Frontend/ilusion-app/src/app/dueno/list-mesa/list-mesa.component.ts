@@ -38,10 +38,10 @@ export class ListMesaComponent implements OnInit {
         icon: 'pi pi-fw pi-user-edit',
         command: () => this.crearEditarMesa(true)
       },
-      {
+      /* {
         label: "Eliminar",
         icon: "pi pi-trash"
-      }
+      } */
     ]
   }
 

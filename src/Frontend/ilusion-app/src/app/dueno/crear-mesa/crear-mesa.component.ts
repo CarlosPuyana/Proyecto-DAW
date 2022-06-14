@@ -51,6 +51,13 @@ export class CrearMesaComponent implements OnInit {
             this.mesaService.setRestaurante(this.nuevoMesa, this.idRestaurante.nombreRestaurante).subscribe({
               next: resp3 => {
 
+                Swal.fire('Mesa creada', 'La mesa fue creada con éxito', 'success');
+                this.router.navigateByUrl("/dashboard/dueno/listMesa")
+
+                setTimeout(() => {
+                  window.location.reload()
+                }, 2000);
+
               }, error: err => {
 
                 console.log(err);
