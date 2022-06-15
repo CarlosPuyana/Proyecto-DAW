@@ -4,16 +4,6 @@
     <div class="tab-pane fade show active p-4" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <p-table #dt [value]="empleados" responsiveLayout="stack" breackpoint="815px">
 
-        <ng-template pTemplate="caption">
-          <div style="text-align: right">
-            <button class="btn float-left edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Añadir usuario</button>
-            <i class="bi bi-search-heart"></i>
-
-            <button class="btn float-right edit_btn" id="save" [routerLink]="['/dashboard/admin/createUser']" routerLinkActive="router-link-active">Excel</button>
-            <i class="bi bi-search-heart"></i>
-          </div>
-        </ng-template>
-
         <ng-template pTemplate="header" let-columns>
           <tr>
 
