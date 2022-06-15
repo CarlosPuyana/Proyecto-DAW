@@ -204,10 +204,21 @@ public class DuenoController {
 	@ApiOperation(value = "Usuario con Rol Dueño crea un empleado", produces = "application/json", response = Empleados.class)
 	public Empleados createEmpleado(@Valid @RequestBody Empleados empleado) {
 		
+
 		logger.info("Creando empleado");
+		String password = passwordService.getPassword();
+		empleado.setPassword(new BCryptPasswordEncoder(15).encode(password));
 		
 		
-		empleado.setPassword("prueba");
+		Mail mail = new Mail();
+		mail.setTo(empleado.getEmail());
+		mail.setSubject("Has sido registrado con éxito");
+		mail.setText("Bienvenido a nuestro sistema de Gestión de restaurantes \n"
+				+ "Has sido registrado en La Ilusión. \n Podrás conectarte en http://localhost:4200/login con tu correo electrónico y "
+				+ " con la contraseña: " + password + "\n Se le recomienda cambiar la contraseña. \n Gracias por su registro");
+		mail.setSendDate(new Date());
+		
+		mailService.sendSimpleMail(mail);
 		
 		return empleadoService.insertarEmpleado(empleado);
 		
