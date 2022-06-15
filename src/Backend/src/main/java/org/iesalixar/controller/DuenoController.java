@@ -1,5 +1,6 @@
 package org.iesalixar.controller;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,9 +8,12 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
+import org.iesalixar.mail.Mail;
 import org.iesalixar.model.Empleados;
 import org.iesalixar.model.Restaurante;
 import org.iesalixar.services.EmpleadoServiceImpl;
+import org.iesalixar.services.MailServiceImpl;
+import org.iesalixar.services.Password;
 import org.iesalixar.services.RestauranteServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +21,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,6 +42,9 @@ public class DuenoController {
 	@Autowired EmpleadoServiceImpl empleadoService;
 	@Autowired RestauranteServiceImpl restService;
 	
+	@Autowired Password passwordService;
+	@Autowired private MailServiceImpl mailService;
+	
 	private Logger logger = LoggerFactory.getLogger(DuenoController.class);
 
 	
@@ -53,6 +61,8 @@ public class DuenoController {
 		
 		logger.info("Creando empleado");
 		Empleados empleadoNuevo = null;
+		String password = passwordService.getPassword();
+		empleado.setPassword(new BCryptPasswordEncoder(15).encode(password));
 		
 		Map<String, Object> response = new HashMap<>();
 		
@@ -70,7 +80,15 @@ public class DuenoController {
 		
 		try {
 			
-			empleado.setPassword("prueba");
+			Mail mail = new Mail();
+			mail.setTo(empleado.getEmail());
+			mail.setSubject("Has sido registrado con éxito");
+			mail.setText("Bienvenido a nuestro sistema de Gestión de restaurantes \n"
+					+ "Has sido registrado en La Ilusión. \n Podrás conectarte en http://localhost:4200/login con tu correo electrónico y "
+					+ " con la contraseña: " + password + "\n Se le recomienda cambiar la contraseña. \n Gracias por su registro");
+			mail.setSendDate(new Date());
+			
+		mailService.sendSimpleMail(mail);
 			
 			empleadoNuevo = empleadoService.insertarEmpleado(empleadoNuevo);
 		} catch (DataAccessException e) {
